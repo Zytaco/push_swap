@@ -27,6 +27,8 @@ int		make_stack(int argc, char *argv, struct s_tack stk)
 	int i;
 
 	stk.stack = (int*)malloc(sizeof(int) * (argc - 1));
+	if (stk.stack = NULL)
+		return (-1);
 	stk.length = argc - 1;
 	i = 1;
 	while(i < argc)
@@ -39,9 +41,49 @@ int		make_stack(int argc, char *argv, struct s_tack stk)
 	return (1);
 }
 
+int		check_operation(char *line)
+{
+	if (strcmp(line, "sa"))
+		return (1);
+	else if (strcmp(line, "sb"))
+		return (1);
+	else if (strcmp(line, "ss"))
+		return (1);
+	else if (strcmp(line, "pa"))
+		return (1);
+	else if (strcmp(line, "pb"))
+		return (1);
+	else if (strcmp(line, "ra"))
+		return (1);
+	else if (strcmp(line, "rb"))
+		return (1);
+	else if (strcmp(line, "rr"))
+		return (1);
+	else if (strcmp(line, "rra"))
+		return (1);
+	else if (strcmp(line, "rrb"))
+		return (1);
+	else if (strcmp(line, "rrr"))
+		return (1);
+	else
+		return(-2);
+}
+
 int		operations(struct s_tack stk_one, struct s_tack stk_two)
 {
+	char	*line;
+	int		ret;
 
+	ret = 1;
+	while (ret == 1)
+	{
+		ret = get_next_line(&line);
+		if (ret == 1)
+		{
+			ret = check_operation(line);
+		}
+	}
+	if (ret == )
 }
 
 int		main(int argc, char *argv)
