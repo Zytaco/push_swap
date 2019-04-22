@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_if_int.c                                     :+:    :+:            */
+/*   ft_memset.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/22 14:48:01 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/22 14:48:02 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/01/11 16:52:07 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/02/10 13:59:36 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_if_int(char *s)
+#include <stdlib.h>
+
+void	*ft_memset(void *b, int c, size_t len)
 {
-	if (*s == '-')
-		s++;
-	else if (*s == '+')
-		s++;
-	if ('0' <= *s && *s <= '9')
+	unsigned char	*array;
+	unsigned char	temp;
+	size_t			i;
+
+	i = 0;
+	temp = c;
+	array = b;
+	while (i < len)
 	{
-		while ('0' <= *s && *s <= '9')
-			s++;
-		if (*s == '\0')
-			return (1);
+		*(array + i) = temp;
+		i++;
 	}
-	return (0);
+	return (b);
 }

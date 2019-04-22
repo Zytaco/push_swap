@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_if_int.c                                     :+:    :+:            */
+/*   ft_strncat.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/22 14:48:01 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/22 14:48:02 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/01/18 14:10:21 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/02/10 14:00:50 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_if_int(char *s)
+#include <stdlib.h>
+
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	if (*s == '-')
-		s++;
-	else if (*s == '+')
-		s++;
-	if ('0' <= *s && *s <= '9')
+	size_t i;
+	size_t j;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	j = 0;
+	while (s2[j] && j < n)
 	{
-		while ('0' <= *s && *s <= '9')
-			s++;
-		if (*s == '\0')
-			return (1);
+		s1[i + j] = s2[j];
+		j++;
 	}
-	return (0);
+	s1[i + j] = '\0';
+	return (s1);
 }

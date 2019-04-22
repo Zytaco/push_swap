@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_if_int.c                                     :+:    :+:            */
+/*   ft_strncpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/22 14:48:01 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/22 14:48:02 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/01/18 13:44:12 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/02/07 14:13:35 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_if_int(char *s)
+#include <stdlib.h>
+
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	if (*s == '-')
-		s++;
-	else if (*s == '+')
-		s++;
-	if ('0' <= *s && *s <= '9')
+	size_t	i;
+	int		j;
+
+	j = 0;
+	i = 0;
+	while (i < len)
 	{
-		while ('0' <= *s && *s <= '9')
-			s++;
-		if (*s == '\0')
-			return (1);
+		if (src[i + j] != 0)
+			dst[i] = src[i];
+		else
+		{
+			dst[i] = '\0';
+			j--;
+		}
+		i++;
 	}
-	return (0);
+	return (dst);
 }

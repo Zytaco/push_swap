@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_if_int.c                                     :+:    :+:            */
+/*   ft_lstmap.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/22 14:48:01 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/22 14:48:02 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/02/04 16:40:46 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/02/09 12:15:06 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_if_int(char *s)
+#include "libft.h"
+
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	if (*s == '-')
-		s++;
-	else if (*s == '+')
-		s++;
-	if ('0' <= *s && *s <= '9')
+	t_list *first;
+	t_list *current;
+
+	if (lst == NULL || f == NULL)
+		return (NULL);
+	first = f(lst);
+	current = first;
+	while (lst->next != NULL)
 	{
-		while ('0' <= *s && *s <= '9')
-			s++;
-		if (*s == '\0')
-			return (1);
+		lst = lst->next;
+		current->next = f(lst);
+		current = current->next;
 	}
-	return (0);
+	current->next = NULL;
+	return (first);
 }

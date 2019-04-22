@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_if_int.c                                     :+:    :+:            */
+/*   ft_lstaddlast.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/22 14:48:01 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/22 14:48:02 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/02/09 11:53:54 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/02/23 12:50:31 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_if_int(char *s)
+#include "libft.h"
+
+t_list	*ft_lstaddlast(t_list **alst, t_list *new)
 {
-	if (*s == '-')
-		s++;
-	else if (*s == '+')
-		s++;
-	if ('0' <= *s && *s <= '9')
+	t_list *current;
+
+	if (alst == NULL)
+		return (NULL);
+	if (*alst == NULL)
 	{
-		while ('0' <= *s && *s <= '9')
-			s++;
-		if (*s == '\0')
-			return (1);
+		*alst = new;
+		return (*alst);
 	}
-	return (0);
+	current = *alst;
+	while (current->next != NULL)
+		current = current->next;
+	if (current->next == NULL)
+		current->next = new;
+	return (*alst);
 }

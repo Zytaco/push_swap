@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_if_int.c                                     :+:    :+:            */
+/*   ft_atoi.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/22 14:48:01 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/22 14:48:02 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/01/12 13:37:31 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/02/09 13:09:17 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_if_int(char *s)
+int		ft_atoi(const char *str)
 {
-	if (*s == '-')
-		s++;
-	else if (*s == '+')
-		s++;
-	if ('0' <= *s && *s <= '9')
+	int sign;
+	int value;
+	int i;
+
+	sign = 1;
+	value = 0;
+	i = 0;
+	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\r' \
+		|| *str == '\v' || *str == '\f')
+		str++;
+	if (*str == '+' || *str == '-')
+		i++;
+	if (*str == '-')
+		sign = -1;
+	while ('0' <= str[i] && str[i] <= '9')
 	{
-		while ('0' <= *s && *s <= '9')
-			s++;
-		if (*s == '\0')
-			return (1);
+		value = 10 * value + sign * (str[i] - '0');
+		i++;
 	}
-	return (0);
+	return (value);
 }

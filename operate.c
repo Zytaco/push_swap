@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   operate.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jheeresm <marvin@codam.nl>                   +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/04/22 14:48:47 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/04/22 14:48:48 by jheeresm      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "checker.h"
 
@@ -6,7 +17,7 @@ static void	swap(struct s_tack stk)
 	int temp;
 
 	if (stk.length <= 1)
-		return;
+		return ;
 	temp = stk.stack[0];
 	stk.stack[0] = stk.stack[1];
 	stk.stack[1] = temp;
@@ -52,24 +63,28 @@ static void	rotate(struct s_tack stk)
 
 void		operate(char *line, struct s_tack a, struct s_tack b)
 {
-	if (strcmp(line, "sa"))
+	if (ft_strcmp(line, "sa"))
 		swap(a);
-	else if (strcmp(line, "sb"))
+	else if (ft_strcmp(line, "sb"))
 		swap(b);
-	else if (strcmp(line, "ss"))
+	else if (ft_strcmp(line, "ss"))
 	{
 		swap(a);
 		swap(b);
 	}
-	else if (strcmp(line, "pa"))
+	else if (ft_strcmp(line, "pa"))
 		push(a, b);
-	else if (strcmp(line, "pb"))
+	else if (ft_strcmp(line, "pb"))
 		push(b, a);
-	else if (strcmp(line, "ra"))
+	else if (ft_strcmp(line, "ra"))
 		rotate(a);
-	else if (strcmp(line, "rb"))
+	else if (ft_strcmp(line, "rb"))
 		rotate(b);
+	else if (ft_strcmp(line, "rr"))
+	{
+		rotate(a);
+		rotate(b);
+	}
 	else
 		operate_helper(line, a, b);
 }
-

@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_if_int.c                                     :+:    :+:            */
+/*   ft_memcpy.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/22 14:48:01 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/22 14:48:02 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/01/13 14:03:01 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/02/18 13:25:37 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_if_int(char *s)
+#include <stdlib.h>
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	if (*s == '-')
-		s++;
-	else if (*s == '+')
-		s++;
-	if ('0' <= *s && *s <= '9')
+	size_t		i;
+	char		*tempdst;
+	const char	*tempsrc;
+
+	tempdst = dst;
+	tempsrc = src;
+	if (dst < src)
 	{
-		while ('0' <= *s && *s <= '9')
-			s++;
-		if (*s == '\0')
-			return (1);
+		i = 0;
+		while (i < n)
+		{
+			tempdst[i] = tempsrc[i];
+			i++;
+		}
 	}
-	return (0);
+	else
+	{
+		i = n;
+		while (i > 0)
+		{
+			i--;
+			tempdst[i] = tempsrc[i];
+		}
+	}
+	return (dst);
 }

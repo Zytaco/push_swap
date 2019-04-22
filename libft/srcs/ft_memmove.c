@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_if_int.c                                     :+:    :+:            */
+/*   ft_memmove.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/22 14:48:01 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/22 14:48:02 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/01/13 14:03:01 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/02/08 16:26:58 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_if_int(char *s)
+#include <stdlib.h>
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (*s == '-')
-		s++;
-	else if (*s == '+')
-		s++;
-	if ('0' <= *s && *s <= '9')
+	size_t		i;
+	char		*tempdst;
+	char const	*tempsrc;
+
+	tempdst = dst;
+	tempsrc = src;
+	if (dst >= src)
 	{
-		while ('0' <= *s && *s <= '9')
-			s++;
-		if (*s == '\0')
-			return (1);
+		i = len;
+		while (i > 0)
+		{
+			i--;
+			tempdst[i] = tempsrc[i];
+		}
 	}
-	return (0);
+	else
+	{
+		i = 0;
+		while (i < len)
+		{
+			tempdst[i] = tempsrc[i];
+			i++;
+		}
+	}
+	return (dst);
 }

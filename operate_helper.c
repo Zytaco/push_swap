@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   operate_helper.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jheeresm <marvin@codam.nl>                   +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/04/22 14:48:54 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/04/22 14:48:55 by jheeresm      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "checker.h"
 
@@ -16,18 +27,13 @@ static void	reverse_rotate(struct s_tack stk)
 	stk.stack[0] = temp;
 }
 
-void	operate_helper(char *line, struct s_tack a, struct s_tack b)
+void		operate_helper(char *line, struct s_tack a, struct s_tack b)
 {
-	if (strcmp(line, "rr"))
-	{
-		rotate(a);
-		rotate(b);
-	}
-	else if (strcmp(line, "rra"))
+	if (ft_strcmp(line, "rra"))
 		reverse_rotate(a);
-	else if (strcmp(line, "rrb"))
+	else if (ft_strcmp(line, "rrb"))
 		reverse_rotate(b);
-	else if (strcmp(line, "rrr"))
+	else if (ft_strcmp(line, "rrr"))
 	{
 		reverse_rotate(a);
 		reverse_rotate(b);

@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_if_int.c                                     :+:    :+:            */
+/*   ft_power_of.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/22 14:48:01 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/22 14:48:02 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/02/09 14:22:33 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/02/09 14:36:04 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_if_int(char *s)
+int		ft_power_of(int base, unsigned int power)
 {
-	if (*s == '-')
-		s++;
-	else if (*s == '+')
-		s++;
-	if ('0' <= *s && *s <= '9')
+	int result;
+
+	if (base == 0)
+		return (0);
+	result = 1;
+	while (power > 0)
 	{
-		while ('0' <= *s && *s <= '9')
-			s++;
-		if (*s == '\0')
-			return (1);
+		if (2147483647 / base > result)
+			return (0);
+		if (-2147483648 / base < result)
+			return (0);
+		result *= base;
+		power--;
 	}
-	return (0);
+	return (result);
 }
