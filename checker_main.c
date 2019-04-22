@@ -1,10 +1,5 @@
 #include <unistd.h>
-
-struct		s_tack
-{
-	int		*stack;
-	int		length;
-}			t_tack;
+#include "checker.h"
 
 int		check_if_int(char *s)
 {
@@ -20,6 +15,21 @@ int		check_if_int(char *s)
 			return (1);
 	}
 	return (0);
+}
+
+int		check_stacks(struct s_tack stk_one, struct s_tack stk_two)
+{
+	int i;
+
+	if (stk_two.length != 0)
+		return (0);
+	i = 0;
+	while (i < stk_one.length - 1)
+	{
+		if (stk_one.stack[0] > stk_two.stack[1])
+			return (0);
+	}
+	return (1);
 }
 
 int		make_stack(int argc, char *argv, struct s_tack stk)
@@ -41,7 +51,7 @@ int		make_stack(int argc, char *argv, struct s_tack stk)
 	return (1);
 }
 
-int		check_operation(char *line)
+static int	check_operation(char *line)
 {
 	if (strcmp(line, "sa"))
 		return (1);
@@ -69,24 +79,30 @@ int		check_operation(char *line)
 		return(-2);
 }
 
-int		operations(struct s_tack stk_one, struct s_tack stk_two)
+static int	operations(struct s_tack stk_one, struct s_tack stk_two)
 {
 	char	*line;
 	int		ret;
 
-	ret = 1;
+	ret = get_next_line(&line);
 	while (ret == 1)
 	{
-		ret = get_next_line(&line);
-		if (ret == 1)
+		ret = check_operation(line);
+		if (ret >= 1)
 		{
-			ret = check_operation(line);
+			operate(line, stk_one, stk_two);
+			ret = get_next_line(0, &line);
 		}
 	}
-	if (ret == )
+	if (ret < 0)
+	{
+		write(1, "Error\n", 6);
+		return (ret);
+	}
+	return (check_stacks(stk_one, stk_two));
 }
 
-int		main(int argc, char *argv)
+int			main(int argc, char *argv)
 {
 	struct s_tack	stk_one;
 	struct s_tack	stk_two;
