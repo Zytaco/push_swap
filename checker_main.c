@@ -114,13 +114,13 @@ int			main(int argc, char **argv)
 		write(1, "improper input\n", 15);
 		return (1);
 	}
-	stk_two.stack = (int*)malloc(sizeof(int) * (stk_one.length - 1));
-	stk_two.length = 0;
 	if (operations(stk_one, stk_two) <= -1)
 		write(1, "ERROR\n", 6);
 	else if (check_stacks(stk_one, stk_two) == 1)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+	free(stk_one.stack);
+	free(stk_two.stack);
 	return (1);
 }

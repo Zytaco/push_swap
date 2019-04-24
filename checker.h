@@ -26,5 +26,6 @@ void			operate_helper(char *line, struct s_tack a, struct s_tack b);
 int				ft_atoi(const char *str);
 int				ft_strcmp(const char *s1, const char *s2);
 int				get_next_line(const int fd, char **line);
+void			write_solution(char **solution);
 
 #endif

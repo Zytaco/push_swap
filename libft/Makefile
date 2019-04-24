@@ -27,6 +27,7 @@ SRC += ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c
 SRC += ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c
 SRC += ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_lstaddlast.c ft_lstlen.c
 SRC += ft_power_of.c ft_lstpop.c ft_greatest.c ft_strnchr.c ft_strnchr2.c
+SRC += ft_strrcut.c
 SRCL = $(addprefix srcs/,$(SRC))
 
 OBJ = $(SRC:c=o)
