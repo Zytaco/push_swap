@@ -10,34 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "operate.h"
 
-static void	reverse_rotate(struct s_tack stk)
+static void	reverse_rotate(t_tack stk)
 {
 	int temp;
 	int i;
 
 	temp = stk.stack[stk.length - 1];
-	i = 0;
-	while (i < stk.length - 1)
+	i = stk.length - 2;
+	while (i >= 0)
 	{
-		stk.stack[i] = stk.stack[i + 1];
-		i++;
+		stk.stack[i + 1] = stk.stack[i];
+		i--;
 	}
 	stk.stack[0] = temp;
 }
 
-void		operate_helper(char *line, struct s_tack a, struct s_tack b)
+void		operate_helper(char *line, int i, t_tack a, t_tack b)
 {
-	if (ft_strcmp(line, "rra") == 0)
+	if ((i == -1 && ft_strcmp(line, "rra") == 0) || i == 8)
 		reverse_rotate(a);
-	else if (ft_strcmp(line, "rrb") == 0)
+	else if ((i == -1 && ft_strcmp(line, "rrb") == 0) || i == 9)
 		reverse_rotate(b);
-	else if (ft_strcmp(line, "rrr") == 0)
+	else if ((i == -1 && ft_strcmp(line, "rrr") == 0) || i == 10)
 	{
 		reverse_rotate(a);
 		reverse_rotate(b);
 	}
-	else
-		write(1, "ERROR1\n", 7);
 }

@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_if_int.c                                     :+:    :+:            */
+/*   check_and_make.h                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/22 14:48:01 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/22 14:48:02 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/04/25 14:38:24 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/04/25 14:38:27 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_if_int(char *s)
+#ifndef CHECK_AND_MAKE_H
+# define CHECK_AND_MAKE_H
+
+typedef struct	s_tack
 {
-	if (*s == '-')
-		s++;
-	else if (*s == '+')
-		s++;
-	if ('0' <= *s && *s <= '9')
-	{
-		while ('0' <= *s && *s <= '9')
-			s++;
-		if (*s == '\0')
-			return (1);
-	}
-	return (0);
-}
+	int			*stack;
+	int			length;
+}				t_tack;
+int				ft_atoi(const char *str);
+
+#endif

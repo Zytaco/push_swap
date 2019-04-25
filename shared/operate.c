@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include <unistd.h>
+#include "operate.h"
 
-static void	swap(struct s_tack stk)
+static void	swap(t_tack stk)
 {
 	int temp;
 
@@ -23,7 +24,7 @@ static void	swap(struct s_tack stk)
 	stk.stack[1] = temp;
 }
 
-static void	push(struct s_tack a, struct s_tack b)
+static void	push(t_tack a, t_tack b)
 {
 	int i;
 
@@ -46,7 +47,7 @@ static void	push(struct s_tack a, struct s_tack b)
 	b.length--;
 }
 
-static void	rotate(struct s_tack stk)
+static void	rotate(t_tack stk)
 {
 	int temp;
 	int i;
@@ -58,33 +59,33 @@ static void	rotate(struct s_tack stk)
 		stk.stack[i] = stk.stack[i + 1];
 		i++;
 	}
-	stk.stack[stk.length] = temp;
+	stk.stack[stk.length - 1] = temp;
 }
 
-void		operate(char *line, struct s_tack a, struct s_tack b)
+void		operate(char *line, int i, t_tack a, t_tack b)
 {
-	if (ft_strcmp(line, "sa") == 0)
+	if ((i == -1 && ft_strcmp(line, "sa") == 0) || i == 0)
 		swap(a);
-	else if (ft_strcmp(line, "sb") == 0)
+	else if ((i == -1 && ft_strcmp(line, "sb") == 0) || i == 1)
 		swap(b);
-	else if (ft_strcmp(line, "ss") == 0)
+	else if ((i == -1 && ft_strcmp(line, "ss") == 0) || i == 2)
 	{
 		swap(a);
 		swap(b);
 	}
-	else if (ft_strcmp(line, "pa") == 0)
+	else if ((i == -1 && ft_strcmp(line, "pa") == 0) || i == 3)
 		push(a, b);
-	else if (ft_strcmp(line, "pb") == 0)
+	else if ((i == -1 && ft_strcmp(line, "pb") == 0) || i == 4)
 		push(b, a);
-	else if (ft_strcmp(line, "ra") == 0)
+	else if ((i == -1 && ft_strcmp(line, "ra") == 0) || i == 5)
 		rotate(a);
-	else if (ft_strcmp(line, "rb") == 0)
+	else if ((i == -1 && ft_strcmp(line, "rb") == 0) || i == 6)
 		rotate(b);
-	else if (ft_strcmp(line, "rr") == 0)
+	else if ((i == -1 && ft_strcmp(line, "rr") == 0) || i == 7)
 	{
 		rotate(a);
 		rotate(b);
 	}
 	else
-		operate_helper(line, a, b);
+		operate_helper(line, i, a, b);
 }
