@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   display_stacks.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jheeresm <marvin@codam.nl>                   +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/04/26 12:28:56 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/04/26 12:28:57 by jheeresm      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdio.h>
-#include "checker_main.h"
 
 void	display_stacks(t_tack a, t_tack b)
 {

@@ -86,6 +86,6 @@ t_list				*ft_lstpop(t_list **lst, t_list **remove);
 int					ft_greatest(int a, int b);
 int					ft_strnchr(const char *s, int c);
 int					ft_strnchr2(const char *s, int c1, int c2);
-char				*ft_strrcut(char const *s1, char const *s2)
+char				*ft_strrcut(char const *s1, char const *s2);
 
 #endif

@@ -33,6 +33,16 @@ static char	*ft_strncpy(char *dst, const char *src, size_t len)
 	return (dst);
 }
 
+static int	get_i(char const *s1)
+{
+	int i;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	return (i);
+}
+
 char		*ft_strrcut(char const *s1, char const *s2)
 {
 	int		i;
@@ -40,9 +50,7 @@ char		*ft_strrcut(char const *s1, char const *s2)
 	int		len;
 	char	*newstr;
 
-	i = 0;
-	while (s1[i])
-		i++;
+	i = get_i(s1);
 	len = i;
 	while (i >= 0)
 	{

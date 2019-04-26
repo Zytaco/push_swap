@@ -22,7 +22,8 @@ char			*ft_strnew(size_t size);
 int				make_stack(int argc, char **argv, t_tack *stk_one,
 				t_tack *stk_two);
 int				check_stacks(t_tack stk_one, t_tack stk_two);
-void			operate(char *line, int i, t_tack a, t_tack b);
+int				operate(char *line, int i, t_tack *a, t_tack *b);
 char			*ft_strjoin(char const *s1, char const *s2);
+int				check_duplicates(int argc, char **argv);
 
 #endif

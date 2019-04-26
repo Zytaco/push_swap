@@ -14,8 +14,6 @@
 #include <unistd.h>
 #include "checker_main.h"
 
-// #include "display_stacks.c"
-
 static int	check_operation(char *line)
 {
 	if (ft_strcmp(line, "sa") == 0)
@@ -44,18 +42,19 @@ static int	check_operation(char *line)
 		return (-2);
 }
 
-static int	get_operations(t_tack stk_one, t_tack stk_two)
+static int	get_operations(t_tack *a, t_tack *b)
 {
 	char	*line;
 	int		ret;
 
+	write(1, "\n", 1);
 	ret = get_next_line(0, &line);
 	while (ret == 1 && line != NULL && line[0] != 0)
 	{
 		ret = check_operation(line);
 		if (ret >= 1)
 		{
-			operate(line, -1, stk_one, stk_two);
+			operate(line, -1, a, b);
 			ret = get_next_line(0, &line);
 		}
 	}
@@ -69,28 +68,28 @@ static int	get_operations(t_tack stk_one, t_tack stk_two)
 
 int			main(int argc, char **argv)
 {
-	t_tack	stk_one;
-	t_tack	stk_two;
+	t_tack	a;
+	t_tack	b;
 
 	if (argc <= 1)
 		return (1);
-	if (make_stack(argc, argv, &stk_one, &stk_two) == 0)
+	if (make_stack(argc, argv, &a, &b) == 0 ||
+	check_duplicates(argc, argv) == 0)
 	{
-		write(1, "improper input\n", 15);
+		write(1, "Error\n", 6);
 		return (1);
 	}
-	if (get_operations(stk_one, stk_two) <= -1)
+	if (get_operations(&a, &b) <= -1)
 	{
-		free(stk_one.stack);
-		free(stk_two.stack);
+		free(a.stack);
+		free(b.stack);
 		return (1);
 	}
-	else if (check_stacks(stk_one, stk_two) == 1)
+	else if (check_stacks(a, b) == 1)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	// display_stacks(stk_one, stk_two);
-	free(stk_one.stack);
-	free(stk_two.stack);
+	free(a.stack);
+	free(b.stack);
 	return (1);
 }

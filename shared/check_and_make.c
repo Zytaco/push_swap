@@ -11,7 +11,28 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "check_and_make.h"
+
+int			check_duplicates(int argc, char **argv)
+{
+	int i;
+	int j;
+
+	i = 1;
+	while (i + 1 <= argc - 1)
+	{
+		j = i + 1;
+		while (j <= argc - 1)
+		{
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 static int	check_if_int(char *s)
 {
@@ -28,38 +49,38 @@ static int	check_if_int(char *s)
 		return (0);
 }
 
-int			check_stacks(t_tack stk_one, t_tack stk_two)
+int			check_stacks(t_tack a, t_tack b)
 {
 	int i;
 
-	if (stk_two.length != 0)
+	if (b.length > 0)
 		return (0);
 	i = 0;
-	while (i < stk_one.length - 1)
+	while (i < a.length - 1)
 	{
-		if (stk_one.stack[i] >= stk_one.stack[i + 1])
+		if (a.stack[i] >= a.stack[i + 1])
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int			make_stack(int argc, char **argv, t_tack *stk_one, t_tack *stk_two)
+int			make_stack(int argc, char **argv, t_tack *a, t_tack *b)
 {
 	int i;
 
-	stk_two->length = 0;
-	stk_two->stack = (int*)malloc(sizeof(int) * (argc - 1));
-	stk_one->stack = (int*)malloc(sizeof(int) * (argc - 1));
-	if (stk_one->stack == (int*)0 && stk_two->stack == (int*)0)
+	b->length = 0;
+	b->stack = (int*)malloc(sizeof(int) * (argc - 1));
+	a->stack = (int*)malloc(sizeof(int) * (argc - 1));
+	if (a->stack == (int*)0 && a->stack == (int*)0)
 		return (-1);
-	stk_one->length = argc - 1;
+	a->length = argc - 1;
 	i = 1;
 	while (i < argc)
 	{
 		if (check_if_int(argv[i]) == 0)
 			return (0);
-		stk_one->stack[i - 1] = ft_atoi(argv[i]);
+		a->stack[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
 	return (1);

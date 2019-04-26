@@ -14,6 +14,11 @@
 #include <stdlib.h>
 #include "push_swap.h"
 
+/*
+** NOTE: use ARG = (4 67 3) instead of ARG = "4 67 3" so tit's not a string
+** but multiple arguments
+*/
+
 static void	write_solution(char **solution)
 {
 	int i;
@@ -29,38 +34,39 @@ static void	write_solution(char **solution)
 	while (i > 0)
 	{
 		i--;
-		write(1, solution + i, 1);
+		write(1, *solution + i, 1);
 	}
 	free(*solution);
 	*solution = NULL;
 }
 
 /*
-** action	inverse		i
-** sa		sa			0
-** sb		sb			1
-** ss		ss			2
-** pa		pb			3
-** pb		pa			4
-** ra		rra			5
-** rb		rrb			6
-** rr		rrr			7
-** rra		ra			8
-** rrb		rb			9
-** rrr		rr			10
+** action	i		inverse		i
+** sa		0		sa			0
+** sb		1		sb			1
+** ss		2		ss			2
+** pa		3		pb			4
+** pb		4		pa			3
+** ra		5		rra			8
+** rb		6		rrb			9
+** rr		7		rrr			10
+** rra		8		ra			5
+** rrb		9		rb			6
+** rrr		10		rr			7
 */
 
-static void	undo_operation(t_tack a, t_tack b, int i)
+static void	undo_operation(t_tack *a, t_tack *b, int i, int ret)
 {
-	if (i == 3)
-		i = 4;
-	if (i == 4)
-		i = 3;
-	if (5 <= i && i <= 7)
-		i += 3;
-	if (8 <= i && i <= 10)
-		i -= 3;
-	operate(NULL, i, a, b);
+	if (0 <= i && i <= 2)
+		operate(NULL, i, a, b);
+	else if (i == 3 && ret == 1)
+		operate(NULL, 4, a, b);
+	else if (i == 4 && ret == 1)
+		operate(NULL, 3, a, b);
+	else if (5 <= i && i <= 7)
+		operate(NULL, i + 3, a, b);
+	else if (8 <= i && i <= 10)
+		operate(NULL, i - 3, a, b);
 }
 
 /*
@@ -118,15 +124,16 @@ static int	solver(t_tack a, t_tack b, char **solution, int level)
 {
 	int		i;
 	char	*temp;
+	int		ret;
 
-	if (level == 0 && check_stacks(a, b) == 1)
+	if (level <= 0 && check_stacks(a, b) == 1)
 		return (1);
 	if (level > 0)
 	{
 		i = 0;
 		while (i < 11)
 		{
-			operate(NULL, i, a, b);
+			ret = operate(NULL, i, &a, &b);
 			if (solver(a, b, solution, level - 1) == 1)
 			{
 				temp = NULL;
@@ -134,7 +141,7 @@ static int	solver(t_tack a, t_tack b, char **solution, int level)
 					*solution = add_operation(solution, i, temp);
 				return (1);
 			}
-			undo_operation(a, b, i);
+			undo_operation(&a, &b, i, ret);
 			i++;
 		}
 	}
@@ -143,29 +150,25 @@ static int	solver(t_tack a, t_tack b, char **solution, int level)
 
 int			main(int argc, char **argv)
 {
-	t_tack	stk_one;
-	t_tack	stk_two;
+	t_tack	a;
+	t_tack	b;
 	char	*solution;
 	int		level;
 
+	if (argc <= 1)
+		return (1);
 	solution = ft_strnew(0);
-	if (solution == NULL)
+	if (solution == NULL || make_stack(argc, argv, &a, &b) == 0 ||
+	check_duplicates(argc, argv) == 0)
 	{
 		write(1, "Error\n", 6);
 		return (1);
 	}
-	if (argc <= 1)
-		return (1);
-	if (make_stack(argc, argv, &stk_one, &stk_two) == 0)
-	{
-		write(1, "improper input\n", 15);
-		return (1);
-	}
 	level = 0;
-	while (solver(stk_one, stk_two, &solution, level) == 0)
+	while (solver(a, b, &solution, level) == 0)
 		level++;
 	write_solution(&solution);
-	free(stk_one.stack);
-	free(stk_two.stack);
+	free(a.stack);
+	free(b.stack);
 	return (1);
 }
