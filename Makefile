@@ -21,7 +21,7 @@ LIBFT1 += ft_strcmp.c ft_strnchr.c ft_strnew.c
 
 SRC1 = $(CHECKER:%=check_files/%)
 SRC1 += $(SHARED:%=shared/%)
-SRC1 += $(LIBFT1:%=shared/libft/srcs/%)
+SRC1 += $(LIBFT1:%=libft/srcs/%)
 
 OBJ1 = $(CHECKER:.c=.o)
 OBJ1 += $(SHARED:.c=.o)
@@ -35,13 +35,13 @@ LIBFT2 = ft_strnew.c ft_strjoin.c ft_atoi.c ft_strcmp.c
 
 SRC2 = $(OPERATE:%=operate_files/%)
 SRC2 += $(SHARED:%=shared/%)
-SRC2 += $(LIBFT2:%=shared/libft/srcs/%)
+SRC2 += $(LIBFT2:%=libft/srcs/%)
 
 OBJ2 = $(OPERATE:.c=.o)
 OBJ2 += $(SHARED:.c=.o)
 OBJ2 += $(LIBFT2:.c=.o)
 
-FLG = -Wall -Werror -Wextra
+FLG = -Wall -Werror -Wextra -g
 
 all: $(NAME1) $(NAME2)
 

@@ -122,30 +122,7 @@ static char	*add_operation(char **solution, int i, char *temp)
 
 static int	solver(t_tack a, t_tack b, char **solution, int level)
 {
-	int		i;
-	char	*temp;
-	int		ret;
 
-	if (level <= 0 && check_stacks(a, b) == 1)
-		return (1);
-	if (level > 0)
-	{
-		i = 0;
-		while (i < 11)
-		{
-			ret = operate(NULL, i, &a, &b);
-			if (solver(a, b, solution, level - 1) == 1)
-			{
-				temp = NULL;
-				if (*solution != NULL)
-					*solution = add_operation(solution, i, temp);
-				return (1);
-			}
-			undo_operation(&a, &b, i, ret);
-			i++;
-		}
-	}
-	return (0);
 }
 
 int			main(int argc, char **argv)
@@ -164,9 +141,9 @@ int			main(int argc, char **argv)
 		write(1, "Error\n", 6);
 		return (1);
 	}
-	level = 0;
-	while (solver(a, b, &solution, level) == 0)
-		level++;
+	simplify_stack(&a);
+	find_solution(a, b, &solution, level);
+	improve_solution(&solution);
 	write_solution(&solution);
 	free(a.stack);
 	free(b.stack);

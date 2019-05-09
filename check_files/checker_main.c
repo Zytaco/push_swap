@@ -47,7 +47,7 @@ static int	get_operations(t_tack *a, t_tack *b)
 	char	*line;
 	int		ret;
 
-	write(1, "\n", 1);
+	line = (char*)malloc(sizeof(char));
 	ret = get_next_line(0, &line);
 	while (ret == 1 && line != NULL && line[0] != 0)
 	{
@@ -63,6 +63,7 @@ static int	get_operations(t_tack *a, t_tack *b)
 		write(1, "Error\n", 6);
 		return (ret);
 	}
+	ft_strdel(&line);
 	return (ret);
 }
 

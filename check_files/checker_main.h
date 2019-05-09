@@ -25,5 +25,6 @@ int				get_next_line(const int fd, char **line);
 int				operate(char *line, int i, t_tack *a, t_tack *b);
 int				check_stacks(t_tack stk_one, t_tack stk_two);
 int				check_duplicates(int argc, char **argv);
+void			ft_strdel(char **as);
 
 #endif

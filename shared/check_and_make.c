@@ -37,16 +37,24 @@ int			check_duplicates(int argc, char **argv)
 static int	check_if_int(char *s)
 {
 	int i;
+	int sign;
 
 	i = 0;
-	if (s[i] == '-' || s[i] == '+')
+	sign = 0;
+	if (*s == '-')
+		sign == 1;
+	if (*s == '-' || *s == '+')
+		s++;
+	while ('0' <= s[i] && s[i] <= '9' && i <= 9)
 		i++;
-	while ('0' <= s[i] && s[i] <= '9')
-		i++;
-	if (s[i] == '\0')
-		return (1);
-	else
+	if (s[i] != '\0')
 		return (0);
+	else if (i == 9 && s[0] > '2')
+		return (0);
+	else if ((sign && ft_atoi(s) >= 0) || (!sign && ft_atoi < 0))
+		return (0);
+	else
+		return (1);
 }
 
 int			check_stacks(t_tack a, t_tack b)

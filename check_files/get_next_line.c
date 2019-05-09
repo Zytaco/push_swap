@@ -86,7 +86,7 @@ int				get_next_line(const int fd, char **line)
 
 	if (fd < 0 || line == NULL || BUFF_SIZE < 1)
 		return (-1);
-	*line = NULL;
+	ft_strdel(line);
 	if (tb_rd == NULL)
 		tb_rd = ft_strnew(BUFF_SIZE);
 	buf = ft_strnew(BUFF_SIZE);
