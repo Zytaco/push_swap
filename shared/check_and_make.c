@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "check_and_make.h"
 
 int			check_duplicates(int argc, char **argv)
@@ -42,19 +40,22 @@ static int	check_if_int(char *s)
 	i = 0;
 	sign = 0;
 	if (*s == '-')
-		sign == 1;
-	if (*s == '-' || *s == '+')
+		sign = 1;
+	if ((*s == '-' || *s == '+') && ('0' <= s[1] && s[1] <= '9'))
 		s++;
+	if (s[i] == '0' && s[i + 1] != '\0')
+		return (0);
 	while ('0' <= s[i] && s[i] <= '9' && i <= 9)
 		i++;
 	if (s[i] != '\0')
 		return (0);
-	else if (i == 9 && s[0] > '2')
+	if (i == 9 && s[0] > '2')
 		return (0);
-	else if ((sign && ft_atoi(s) >= 0) || (!sign && ft_atoi < 0))
+	if (sign)
+		s--;
+	if ((sign && ft_atoi(s) >= 0) || (!sign && ft_atoi(s) < 0))
 		return (0);
-	else
-		return (1);
+	return (1);
 }
 
 int			check_stacks(t_tack a, t_tack b)
@@ -81,7 +82,7 @@ int			make_stack(int argc, char **argv, t_tack *a, t_tack *b)
 	b->stack = (int*)malloc(sizeof(int) * (argc - 1));
 	a->stack = (int*)malloc(sizeof(int) * (argc - 1));
 	if (a->stack == (int*)0 && a->stack == (int*)0)
-		return (-1);
+		return (0);
 	a->length = argc - 1;
 	i = 1;
 	while (i < argc)

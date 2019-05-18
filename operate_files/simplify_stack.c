@@ -12,47 +12,47 @@
 
 #include "simplify_stack.h"
 
-static int	find_lowest(t_tack a)
+static int	find_lowest(int *stk, int len)
 {
 	int i;
 	int lowest;
 
-	lowest = a.stack[0];
-	i = 0;
-	while (i < a.length)
+	lowest = stk[0];
+	i = 1;
+	while (i < len)
 	{
-		if (a.stack[i] < lowest)
-			lowest = a.stack[i];
+		if (stk[i] < lowest)
+			lowest = stk[i];
 		i++;
 	}
 	return (lowest);
 }
 
-void		simplify_stack(t_tack a)
+void		simplify_stack(t_tack *a)
 {
 	int *new;
 	int i;
 	int j;
 	int lowest;
 
-	new = (int*)malloc(sizeof(int) * a.length);
-	lowest = find_lowest(a);
+	new = (int*)malloc(sizeof(int) * a->length);
+	lowest = find_lowest(a->stack, a->length);
 	i = 0;
 	j = 0;
-	while (j < a.length)
+	while (j < a->length)
 	{
-		if (a.stack[i] == lowest + j)
+		if (a->stack[i] == lowest + j)
 		{
-			new[i] = lowest + j;
+			new[i] = j;
 			j++;
-			i = 0;
+			i = -1;
 		}
 		i++;
-		if (i == a.length)
+		if (i == a->length)
 			lowest++;
-		if (i == a.length)
+		if (i == a->length)
 			i = 0;
 	}
-	free(a.stack);
-	a.stack = new;
+	free(a->stack);
+	a->stack = new;
 }

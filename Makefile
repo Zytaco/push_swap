@@ -12,9 +12,9 @@
 
 NAME1 = checker
 
-CHECKER = checker_main.c get_next_line.c
+SHARED = check_and_make.c
 
-SHARED = check_and_make.c operate.c operate_helper.c
+CHECKER = checker_main.c get_next_line.c operate.c operate_helper.c
 
 LIBFT1 = ft_atoi.c ft_strdel.c ft_strjoin.c ft_strcpy.c ft_strlen.c
 LIBFT1 += ft_strcmp.c ft_strnchr.c ft_strnew.c
@@ -29,9 +29,10 @@ OBJ1 += $(LIBFT1:.c=.o)
 
 NAME2 = push_swap
 
-OPERATE = push_swap.c
+OPERATE = push_swap.c optimal_rotation.c simplify_stack.c solver.c split.c
 
-LIBFT2 = ft_strnew.c ft_strjoin.c ft_atoi.c ft_strcmp.c
+LIBFT2 = ft_strnew.c ft_strjoin.c ft_atoi.c ft_strcmp.c ft_strfajoin.c
+LIBFT2 += ft_strncmp.c ft_strcpy.c
 
 SRC2 = $(OPERATE:%=operate_files/%)
 SRC2 += $(SHARED:%=shared/%)

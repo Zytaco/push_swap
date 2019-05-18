@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bzero.c                                         :+:    :+:            */
+/*   solver.h                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/18 12:53:28 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/02/09 16:34:52 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/05/15 09:57:07 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/05/15 09:57:08 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef SOLVER_H
+# define SOLVER_H
+# include <stdlib.h>
 
-void	ft_bzero(void *s, size_t n)
+typedef struct	s_tack
 {
-	char	*str;
+	int			*stack;
+	int			length;
+}				t_tack;
+void			split(t_tack *a, t_tack *b, int pivot, char **solution);
+void			optimal_rotation(t_tack a, char **solution);
+char			*ft_strfajoin(char **s1, char const *s2);
 
-	str = s;
-	while (n > 1)
-	{
-		n--;
-		str[n] = 0;
-	}
-}
+#endif

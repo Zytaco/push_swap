@@ -12,6 +12,8 @@
 
 #ifndef CHECK_AND_MAKE_H
 # define CHECK_AND_MAKE_H
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct	s_tack
 {

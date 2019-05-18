@@ -12,8 +12,10 @@
 
 #ifndef SIMPLIFY_STACK_H
 # define SIMPLIFY_STACK_H
-
 # include <stdlib.h>
+# include <unistd.h>
+
+
 typedef struct	s_tack
 {
 	int			*stack;

@@ -87,5 +87,9 @@ int					ft_greatest(int a, int b);
 int					ft_strnchr(const char *s, int c);
 int					ft_strnchr2(const char *s, int c1, int c2);
 char				*ft_strrcut(char const *s1, char const *s2);
+char				*ft_strfajoin(char **s1, char const *s2);
+char				*ft_strfbjoin(char const *s1, char **s2);
+char				*ft_strfjoin(char **s1, char **s2);
+void				ft_strbchr(char *s, size_t n, char c);
 
 #endif

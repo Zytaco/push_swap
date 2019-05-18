@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bzero.c                                         :+:    :+:            */
+/*   optimal_rotation.h                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/18 12:53:28 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/02/09 16:34:52 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/05/16 11:26:38 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/05/16 11:26:38 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef OPTIMAL_ROTATION_H
+# define OPTIMAL_ROTATION_H
 
-void	ft_bzero(void *s, size_t n)
+typedef struct	s_tack
 {
-	char	*str;
+	int			*stack;
+	int			length;
+}				t_tack;
+char			*ft_strfajoin(char **s1, char const *s2);
 
-	str = s;
-	while (n > 1)
-	{
-		n--;
-		str[n] = 0;
-	}
-}
+#endif

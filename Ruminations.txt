@@ -22,236 +22,329 @@ Continuity: every number is the previous number + 1 (for the first number the pr
 Difference between Na and Nb: x for the smallest x >= 0 number that satisfies (Na + x + 1) % length == Nb.
 Swap at will: swap only if it minimizes the difference between two numbers.
 
-PLAN1:
-PHASE1:
+PLAN1: time <= (N/2)(N/2 + 1)/2 + 2N, estimate is half that (N/2 is rounded down)
 STEP1:
-Figure out the shortest rotation to the lowest number in A and always swap things into order on the way if possible
-STEP2:
-Check if stack B >= stack A, if so PHASE2. Check if stack A is ordered if yes, STEP3. Else, STEP1.
-STEP3:
-rotate A so the lowest is in front then push everything back to A. DONE
-
-PHASE2:
-STEP1:
-Figure out the longest rotation to the lowest number and swap at will.
+Figure out the shortest rotation to the lowest number in A and always swap things into order on the way if possible.
+If the second lowest number in A is met on the way to 1 then push it to B unless it's part of an ordered piece of A that ends with the
+highest unordered number in A. If this was done do rb.
 STEP2:
 Check if stack A is ordered if yes, STEP3. Else, STEP1.
 STEP3:
-rotate B so the highest is in front then return to PHASE1 STEP3.
+rotate A so the lowest is in front then push everything back to A. DONE
+
+
+SWAP: if it makes things in order, do not swap if it makes things out of order unless it grows a longer ordered sequence than it shrinks.
+
+WORST CASE: 4 6 3 1 5 2,
+
+PROBLEM: what if rra == ra in terms of distance? then go ra for possibility of a swap speeding things up
+
 
 PLAN2:
 STEP1:
 rotate to closest discontinuity while keeping the reduction in differences.
 if distances are equal rotate in the direction biggest difference change.
-while doing this swap at will and push the lowest number in A to B if met on the way and rotating with ra, not rra.
+
+While doing this swap at will and push the lowest number in A to B if met on the way and rotating with ra, not rra.
 
 STEP2:
 check if the stack is ordered, if so rotate the lowest number to the front and push everything in B to A.
 
+PLAN3: time <= (N/2 - 3)(N/2 + 1)/2 + 2N + 2		(the - 3 comes from ordering three things being so easy and taking at most +2 operations)
+N**2 / 4 - N - 3 + 2N + 2
 
+time <= N**2 / 4 + N - 1
+
+
+PLAN4:
+Assume B is ordered.
+push to B.
+rotate B if necessary so that the first number in A can be pushed into it in the right order.
+repeat untill A contains the end in order (like 3 4 5 6 or 6 if A was 6 long to start with).
+Push everything to A.
+
+PLAN5:
+get the lowest three numbers in A to B.
+Sort B.
+Push them back to A. (make sure the lowest to be pushed back is after the highest that has already been pushed back.)
+Repeat for the next lowest numbers in A untill there are three or less numbers left in A.
+Order A.
+
+PLAN6: time <= 2N * Log2(N) + 2N
+split if neccesary untill the split is of size two or one by:
+	pushing smaller things to B, rotating over bigger things, rotating back then pushing back to A.
+
+	
+	If the split encompasses the entire stack a rotaion first may may things easier.
+	If the split is small swapping may be better.
+{
+push the first two to B.
+sa, sb or ss. Depending on the first pairs of A and B.
+split A if neccesary.
+	Split is only neccesary if the first are not already in front for this particular split.
+	If they're not in front then a higher level split may be neccesary.
+repeat untill A only has one or two left.
+}
+Push everything to A.
 
 AFTERWADS:
-pb, rra, pa -> rra sa
+pb		->		rra
+rra				sa
+pa
 
-PROBLEM: what if rra == ra in terms of distance?
+pb		->		ra
+ra				sa
+pa
 
-2 3 1 4
- 0 4 2  = 6
-
-2 1 3 4
- 5 1 0  = 6
-
-
-
-
+START, no pb
+sa		->		pb 2
+pb 2			rr/rrr
+ra/rra
 
 
 TRYING OUT PLANs:
-/PLAN1		3 2 1 4 5 6
-sa			2 3 1 4 5 6
-ra			3 1 4 5 6 2
-sa			1 3 4 5 6 2
-pb			3 4 5 6 2		1
-rra			2 3 4 5 6		1
-pa			1 2 3 4 5 6
-6
+/PLAN6		4 6 3 1 5 2
+ra 2		3 1 5 2	4 6
+pb 2		5 2 4 6			1 3
+ra			2 4 6 5			1 3
+pb			4 6 5			2 1 3
+rrb			4 6 5			3 2 1
+rra			5 4 6			3 2 1
+sa			4 5 6			3 2 1
+pa 3		1 2 3 4 5 6
+12 :|
+
+/PLAN1		4 6 3 1 5 2
+ra 3		1 5 2 4 6 3
+pb			5 2 4 6 3		1
+sa			2 5 4 6 3		1
+pb			5 4 6 3			2 1
+sa			4 5 6 3			2 1
+rra			3 4 5 6			2 1
+pa 2		1 2 3 4 5 6
+10 :) almost
 
 
-/PLAN1		6 5 4 3 2 1
-sa			5 6 4 3 2 1
-rra			1 5 6 4 3 2
-pb			5 6 4 3 2		1
-rra			2 5 6 4 3		1
-pb			5 6 4 3			2 1
-rra			3 5 6 4			2 1
-pb			5 6 4			3 2 1
+/PLAN6		1 2 3 6 5 4
+pb 2		3 6 5 4			2 1
+rra			4 3 6 5			2 1
+pb 2		6 5				3 4 2 1
+ss			5 6				4 3 2 1
+pa 4		1 2 3 4 5 6
+10 :|
+
+
+/PLAN1		1 2 3 6 5 4
+pb			2 3 6 5 4		1
+pb			3 6 5 4			2 1
+pb			6 5 4			3 2 1
+sa			5 6 4			3 2 1
 rra			4 5 6			3 2 1
 pa			3 4 5 6			2 1
 pa			2 3 4 5 6		1
 pa			1 2 3 4 5 6
-11
+8 ^_^
 
-/PLAN2		6 5 4 3 2 1
-sa			5 6 4 3 2 1
+/PLAN6		5 4 3 2 1
 
+14
 
 /PLAN1		5 4 3 2 1
 sa			4 5 3 2 1
 rra			1 4 5 3 2
 pb			4 5 3 2			1
 rra			2 4 5 3			1
-pb			4 5 3			2 1			ORDERED
-rra			3 4 5			2 1
-pa			2 3 4 5			1
+pb	:		4 5 3			2 1
+rra	:		3 4 5			2 1
+pa	:		2 3 4 5			1
 pa			1 2 3 4 5
-9
-
-/PLAN2		5 4 3 2 1
-sa			4 5 3 2 1
-rra			1 4 5 3 2
-rra			2 1 4 5 3
-sa			1 2 4 5 3
-
-/PLAN1		1 2 3 6 5 4
-pb			2 3 6 5 4		1
-pb			3 6 5 4			2 1
-pb			6 5 4			3 2 1
-sa			5 6 4			3 2 1			ORDERED
-rra			4 5 6			3 2 1
-pa			3 4 5 6			2 1
-pa			2 3 4 5 6		1
-pa			1 2 3 4 5 6
-8
+8 - 1 ^_^
 
 /PLAN1		1 2 5 4 3 6
-pb			2 5 4 3 6		1
-pb			5 4 3 6			2 1
+pb 2		5 4 3 6			2 1
 sa			4 5 3 6			2 1
-ra?			5 3 6 4			2 1
-ra			3 6 4 5			2 1		????????
-pb			6 4 5			3 2 1		ORDERED
-ra			4 5 6			3 2 1
-pa			3 4 5 6			2 1
-pa			2 3 4 5 6		1
-pa			1 2 3 4 5 6
+ra 2		3 6 4 5			2 1
+pb	:		6 4 5			3 2 1
+rra	:		4 5 6			3 2 1
+pa	:		3 4 5 6			2 1
+pa 2		1 2 3 4 5 6
+10 - 1 ^_^
 
 /PLAN1		1 4 3 2 5 6
 pb			4 3 2 5 6		1
 sa			3 4 2 5 6		1
 ra			4 2 5 6 3		1
-ra			2 5 6 3 4		1
-pb			5 6 3 4			2 1			ORDERED
-ra			6 3 4 5			2 1
-ra			3 4 5 6			2 1
-pa			2 3 4 5 6		1
+sa			2 4 5 6 3		1
+pb	:		4 5 6 3			2 1
+rra	:		3 4 5 6			2 1
+pa	:		2 3 4 5 6		1
 pa			1 2 3 4 5 6
-9
+8 - 1 ^_^
 
 /PLAN1		3 2 1 4 5 6
 sa			2 3 1 4 5 6
 ra			3 1 4 5 6 2
 sa			1 3 4 5 6 2
-pb			3 4 5 6 2		1
-rra			2 3 4 5 6		1			ORDERED
-pa			1 2 3 4 5 6
-6
+pb	:		3 4 5 6 2		1
+rra	:		2 3 4 5 6		1
+pa	:		1 2 3 4 5 6
+6 - 1 ^_^
+
+
+/PLAN1		3 2 7 1 4 5 6
+sa :		2 3 7 1 4 5 6
+pb 2 :		7 1 4 5 6		3 2
+ra :		1 4 5 6 7		3 2
+pb			4 5 6 7			1 3 2
+rb			4 5 6 7			3 2 1
+pa 3		1 2 3 4 5 6 7
+9 - 1
 
 /PLAN1		1 2 6 5 4 3
 pb			2 6 5 4 3		1
 pb			6 5 4 3			2 1
 sa			5 6 4 3			2 1
 rra			3 5 6 4			2 1
-pb			5 6 4			3 2 1		ORDERED
-rra			4 5 6			3 2 1
-pa			3 4 5 6			2 1
+pb	:		5 6 4			3 2 1
+rra	:		4 5 6			3 2 1
+pa	:		3 4 5 6			2 1
 pa			2 3 4 5 6		1
 pa			1 2 3 4 5 6
-9
+9 - 1 ^_^
 
 /PLAN1		1 5 4 3 2 6
 pb			5 4 3 2 6		1
 sa			4 5 3 2 6		1
 rra			6 4 5 3 2		1
-sa			4 6 5 3 2		1
-rra			2 4 6 5 3		1
-pb			4 6 5 3			2 1
-rra			3 4 6 5			2 1
-pb			4 6 5			3 2 1		PHASE2
-ra			6 5 4			3 2 1
-sa			5 6 4			3 2 1		ORDERED
-
-/PLAN1		4 3 2 1 5 6
-sa			3 4 2 1 5 6					??????
-ra			4 2 1 5 6 3
-sa			2 4 1 5 6 3
-ra			4 1 5 6 3 2
-sa			1 4 5 6 3 2
-pb			4 5 6 3 2		1			ORDERED
-rra			2 4 5 6 3		1
-pb			4 5 6 3			2 1
-rra			3 4 5 6			2 1
+rra			2 6 4 5 3		1
+pb			6 4 5 3			2 1
+rra			3 6 4 5			2 1
+pb	:		6 4 5			3 2 1
+ra	:		4 5 6			3 2 1
+pa	:		3 4 5 6			2 1
 pa			2 3 4 5 6		1
 pa			1 2 3 4 5 6
-11
+11 - 1 ^_^
 
-/PLAN1		1 2 3 4 6 5 7 8
-pb			2 3 4 6 5 7 8		1
-pb			3 4 6 5 7 8			2 1
-pb			4 6 5 7 8			3 2 1
-pb			6 5 7 8				4 3 2 1
-sa			5 6 7 8				4 3 2 1		ORDERED
-pa			4 5 6 7 8			3 2 1
-pa			3 4 5 6 7 8			2 1
-pa			2 3 4 5 6 7 8		1
-pa			1 2 3 4 5 6 7 8
-limit
+/PLAN1		4 3 2 1 5 6
+sa			3 4 2 1 5 6
+ra			4 2 1 5 6 3
+ra			2 1 5 6 3 4
+sa :		1 2 5 6 3 4
+pb :		2 5 6 3 4		1
+pb :		5 6 3 4			2 1
+ra :		6 3 4 5			2 1
+ra			3 4 5 6			2 1
+pa			2 3 4 5 6		1
+pa			1 2 3 4 5 6
+10 - 1 ^_^
 
 /PLAN1		1 3 2 4 6 5 7
 pb			3 2 4 6 5 7			1
-sa			2 3 4 6 5 7			1		
+sa			2 3 4 6 5 7			1
 pb			3 4 6 5 7			2 1
 pb			4 6 5 7				3 2 1
 pb			6 5 7				4 3 2 1
 sa			5 6 7				4 3 2 1
-pb			4 5 6 7				3 2 1
-pb			3 4 5 6 7			2 1
-pb			2 3 4 5 6 7			1
-pb			1 2 3 4 5 6 7
-10
+pa			4 5 6 7				3 2 1
+pa			3 4 5 6 7			2 1
+pa			2 3 4 5 6 7			1
+pa			1 2 3 4 5 6 7
+10 ^_^
 
-/PLAN1		1 5 3 4 6 7 8 10 9 2
-pb			5 3 4 6 7 8 10 9 2			1
-sa			3 5 4 6 7 8 10 9 2			1
-rra			2 3 5 4 6 7 8 10 9			1
-pb			3 5 4 6 7 8 10 9			2 1
-pb			5 4 6 7 8 10 9				3 2 1
-sa			4 5 6 7 8 10 9				3 2 1  PROBLEM
-PROBLEM
+/PLAN6		3 2 5 9 7 1 8 6 10 4
+pb
+pb
+pb
+ra
+ra
+pb
+ra
+ra
+ra
+pb			9 7 8 6 10			4 1 5 2 3
+pa 5		3 2 5 1 4 9 7 8 6 10
+pb
+pb
+ra
+pb
+ra
+rra
+rra			5 4 9 7 8 6 10		1 2 3
+sb								2 1 3
+rb								1 3 2
+sb								3 1 2
+rrb								2 3 1
+sb			5 4 9 7 8 6 10		3 2 1
+pb 2		9 7 8 6 10			4 5 3 2 1
+sb			9 7 8 6 10			5 4 3 2 1
+ra
+pb
+pb
+pb
+ra
+rra 2
 
-/PLAN 1		9 1 8 5 7 6 3 10 4 2
-sa			1 9 8 5 7 6 3 10 4 2
-pb			9 8 5 7 6 3 10 4 2			1
-sa			8 9 5 7 6 3 10 4 2			1
-rra			2 8 9 5 7 6 3 10 4 			1
-pb			8 9 5 7 6 3 10 4			2 1
-rra			4 8 9 5 7 6 3 10			2 1
-rra			10 4 8 9 5 7 6 3			2 1
-sa			4 10 8 9 5 7 6 3			2 1
-rra			3 4 10 8 9 5 7 6			2 1
-pb			4 10 8 9 5 7 6				3 2 1
-pb			10 8 9 5 7 6				4 3 2 1
-sa			8 10 9 5 7 6				4 3 2 1
-ra			10 9 5 7 6 8				4 3 2 1
-sa			9 10 5 7 6 8				4 3 2 1
-ra			10 5 7 6 8 9				4 3 2 1
-sa			5 10 7 6 8 9				4 3 2 1
-pb			10 7 6 8 9					5 4 3 2 1
 
 
+
+/PLAN1		3 2 5 9 7 1 8 6 10 4
+sa			2 3 5 9 7 1 8 6 10 4
+ra 5		1 8 6 10 4 2 3 5 9 7
+pb			8 6 10 4 2 3 5 9 7		1
+ra 4		2 3 5 9 7 8 6 10 4		1
+pb 2		5 9 7 8 6 10 4			3 2 1
+rra			4 5 9 7 8 6 10			3 2 1
+pb 2		9 7 8 6 10				5 4 3 2 1
+rra			10 9 7 8 6				5 4 3 2 1
+sa			9 10 7 8 6				5 4 3 2 1
+rra			6 9 10 7 8				5 4 3 2 1
+pb			9 10 7 8				6 5 4 3 2 1
+ra 2		7 8 9 10				6 5 4 3 2 1
+pa 6		1 2 3 4 5 6 7 8 9 10
+28 ?
+
+/PLAN1+		3 2 5 9 7 1 8 6 10 4
+sa :		2 3 5 9 7 1 8 6 10 4
+pb 2 :		5 9 7 1 8 6 10 4		3 2
+ra 3 :		1 8 6 10 4 5 9 7		3 2
+pb			8 6 10 4 5 9 7			1 3 2
+rb :		8 6 10 4 5 9 7			3 2 1
+ra 3 :		4 5 9 7 8 6 10			3 2 1
+pb 2		9 7 8 6 10				5 4 3 2 1
+rra			10 9 7 8 6				5 4 3 2 1
+sa			9 10 7 8 6				5 4 3 2 1
+rra			6 9 10 7 8				5 4 3 2 1
+pb			9 10 7 8				6 5 4 3 2 1
+rb 2		7 8 9 10				6 5 4 3 2 1
+pa 6		1 2 3 4 5 6 7 8 9 10
+25 - 2 
+
+/PLAN1		2 4 6 1 3 5
+pb			4 6 1 3 5		2
+ra 2		1 3 5 4 6		2
+pb			3 5 4 6			1 2
+rb			3 5 4 6			2 1
+pb			5 4 6			3 2 1
+sa			4 5 6			3 2 1
+pa 3		1 2 3 4 5 6
+10 :| okay, I guess
 
 /TRYING
 
 Optimal Solutions:
+/push_swap	4 6 3 1 5 2
+sa			6 4 3 1 5 2
+pb			4 3 1 5 2		6
+sa			3 4 1 5 2		6
+ra 2		1 5 2 3 4		6
+sa			5 1 2 3 4		6
+ra			1 2 3 4 5		6
+pa			6 1 2 3 4 5
+ra			1 2 3 4 5 6
+9
+
+
 /push_swap	5 4 3 2 1
 sa			4 5 3 2 1
 rra			1 4 5 3 2
@@ -283,7 +376,7 @@ rra			4 3 5 6 2		1
 sa			3 4 5 6 2		1
 rra			2 3 4 5 6		1
 pa			1 2 3 4 5 6
-10
+9
 
 /push_swap	1 4 3 2 5 6
 pb			4 3 2 5 6		1

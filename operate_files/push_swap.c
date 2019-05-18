@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
 #include "push_swap.h"
 
@@ -18,111 +17,86 @@
 ** NOTE: use ARG = (4 67 3) instead of ARG = "4 67 3" so tit's not a string
 ** but multiple arguments
 */
+/*
+static int	two_checks(char *s, int i, int j)
+{
+	if ((ft_strncmp(s + i, "pb.\n", 4) && ft_strncmp(s + i + j, "pa.\n", 4))
+	|| (ft_strncmp(s + i, "pa.\n", 4) && ft_strncmp(s + i + j, "pb.\n", 4)) ||
+	(ft_strncmp(s + i, "sa.\n", 4) && ft_strncmp(s + i + j, "sb.\n", 4)) ||
+	(ft_strncmp(s + i, "sb.\n", 4) && ft_strncmp(s + i + j, "sa.\n", 4)) ||
+	(ft_strncmp(s + i, "ra\n", 4) && ft_strncmp(s + i + j, "rra\n", 4)) ||
+	(ft_strncmp(s + i, "rb\n", 4) && ft_strncmp(s + i + j, "rrb\n", 4)) ||
+	(ft_strncmp(s + i, "rra\n", 4) && ft_strncmp(s + i + j, "ra\n", 4)) ||
+	(ft_strncmp(s + i, "rrb\n", 4) && ft_strncmp(s + i + j, "rb\n", 4)))
+	{
+		ft_strcpy(s + i, "....");
+		ft_strcpy(s + i + j, "....");
+		return (1);
+	}
+	return (0);
+}
 
-static void	write_solution(char **solution)
+static int	three_checks(char *s, int i, int j)
+{
+	if ((ft_strncmp(s + i, "pb.\n", 4) && ft_strncmp(s + i + j, "ra.\n", 4) &&
+	ft_strncmp(s + i + j + 4, "pa.\n", 4)))
+	{
+		ft_strcpy(s + i, "....");
+		ft_strcpy(s + i + j, "sa.\n");
+		ft_strcpy(s + i + j + 4, "ra.\n");
+		return (1);
+	}
+	if ((ft_strncmp(s + i, "pb.\n", 4) && ft_strncmp(s + i + j, "rra.\n", 4) &&
+	ft_strncmp(s + i + j + 4, "pa.\n", 4)))
+	{
+		ft_strcpy(s + i, "....");
+		ft_strcpy(s + i + j, "rra\n");
+		ft_strcpy(s + i + j + 4, "sa.\n");
+		return (1);
+	}
+	return (0);
+}
+
+static void	improve_solution(char *s)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 4;
+	while (s[i])
+	{
+		j = i + 4
+		while (s[j] == '.')
+			j++;
+		if (j <= i)
+		{
+			j++;
+			while (s[j - 1] != '\n')
+				j++;
+		}
+		if (two_checks(s, i, j) || three_checks(s, i, j))
+			i -= 4;
+		else
+			i += 4;
+		if (i < 0)
+			i = 0;
+	}
+}
+*/
+
+static void	write_solution(char *s)
 {
 	int i;
 
-	if (*solution == NULL)
-	{
-		write(1, "Error\n", 6);
-		return ;
-	}
 	i = 0;
-	while ((*solution)[i])
-		i++;
-	while (i > 0)
+	while (s[i])
 	{
-		i--;
-		write(1, *solution + i, 1);
+		if (s[i] != '.')
+			write(1, s + i, 1);
+		i++;
 	}
-	free(*solution);
-	*solution = NULL;
-}
-
-/*
-** action	i		inverse		i
-** sa		0		sa			0
-** sb		1		sb			1
-** ss		2		ss			2
-** pa		3		pb			4
-** pb		4		pa			3
-** ra		5		rra			8
-** rb		6		rrb			9
-** rr		7		rrr			10
-** rra		8		ra			5
-** rrb		9		rb			6
-** rrr		10		rr			7
-*/
-
-static void	undo_operation(t_tack *a, t_tack *b, int i, int ret)
-{
-	if (0 <= i && i <= 2)
-		operate(NULL, i, a, b);
-	else if (i == 3 && ret == 1)
-		operate(NULL, 4, a, b);
-	else if (i == 4 && ret == 1)
-		operate(NULL, 3, a, b);
-	else if (5 <= i && i <= 7)
-		operate(NULL, i + 3, a, b);
-	else if (8 <= i && i <= 10)
-		operate(NULL, i - 3, a, b);
-}
-
-/*
-** level starts at 0 and solver only checks.
-** then it's 1 and solver checks, does one level of operations
-*/
-/*
-** sa	switch top elements of a
-** sb	switch top elements of b
-** ss	sa and sb
-** pa	move top of b to top of a
-** pb	move top of b to top of a
-** ra	first of a becomes last and other elements shift
-** rb	first of b becomes last and other elements shift
-** rr	ra and rb
-** rra	last of a becomes first and other elements shift
-** rrb	last of b becomes first and other elements shift
-** rrr	rra and rrb
-*/
-/*
-** add_operation adds the commands reversed because things are added in reverse
-** that way when the solution is read in reverse things come out correctly.
-*/
-
-static char	*add_operation(char **solution, int i, char *temp)
-{
-	if (i == 0)
-		temp = ft_strjoin(*solution, "\nas");
-	else if (i == 1)
-		temp = ft_strjoin(*solution, "\nbs");
-	else if (i == 2)
-		temp = ft_strjoin(*solution, "\nss");
-	else if (i == 3)
-		temp = ft_strjoin(*solution, "\nap");
-	else if (i == 4)
-		temp = ft_strjoin(*solution, "\nbp");
-	else if (i == 5)
-		temp = ft_strjoin(*solution, "\nar");
-	else if (i == 6)
-		temp = ft_strjoin(*solution, "\nbr");
-	else if (i == 7)
-		temp = ft_strjoin(*solution, "\nrr");
-	else if (i == 8)
-		temp = ft_strjoin(*solution, "\narr");
-	else if (i == 9)
-		temp = ft_strjoin(*solution, "\nbrr");
-	else if (i == 10)
-		temp = ft_strjoin(*solution, "\nrrr");
-	free(*solution);
-	*solution = NULL;
-	return (temp);
-}
-
-static int	solver(t_tack a, t_tack b, char **solution, int level)
-{
-
+	free(s);
 }
 
 int			main(int argc, char **argv)
@@ -130,22 +104,20 @@ int			main(int argc, char **argv)
 	t_tack	a;
 	t_tack	b;
 	char	*solution;
-	int		level;
 
 	if (argc <= 1)
 		return (1);
 	solution = ft_strnew(0);
-	if (solution == NULL || make_stack(argc, argv, &a, &b) == 0 ||
-	check_duplicates(argc, argv) == 0)
+	solution[0] = '\0';
+	if (solution == NULL || make_stack(argc, argv, &a, &b) != 1 ||
+	check_duplicates(argc, argv) != 1)
 	{
 		write(1, "Error\n", 6);
 		return (1);
 	}
 	simplify_stack(&a);
-	find_solution(a, b, &solution, level);
-	improve_solution(&solution);
-	write_solution(&solution);
-	free(a.stack);
-	free(b.stack);
+	solver(a, b, &solution);
+	// improve_solution(solution);
+	write_solution(solution);
 	return (1);
 }
