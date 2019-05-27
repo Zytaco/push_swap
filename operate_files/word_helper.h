@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   optimal_rotation.h                                 :+:    :+:            */
+/*   word_helper.h                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/16 11:26:38 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/05/16 11:26:38 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/05/22 11:22:47 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/05/22 11:22:48 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OPTIMAL_ROTATION_H
-# define OPTIMAL_ROTATION_H
+#ifndef WORD_HELPER_H
+# define WORD_HELPER_H
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct		s_word
 {
@@ -19,14 +21,6 @@ typedef struct		s_word
 	struct s_word	*next;
 	struct s_word	*prev;
 }					t_word;
-typedef struct		s_tack
-{
-	int				*stack;
-	int				length;
-}					t_tack;
-char				*ft_strfajoin(char **s1, char const *s2);
-t_word				*new_to_list(t_word *start, char s[3]);
-void				rotate(int *stk, int len);
-void				reverse_rotate(int *stk, int len);
+char				*ft_strncpy(char *dst, const char *src, size_t len);
 
 #endif

@@ -46,6 +46,7 @@ char		*ft_strfajoin(char **s1, char const *s2)
 	size_t	j;
 	char	*str;
 
+
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
 	i = 0;

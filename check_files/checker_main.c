@@ -49,7 +49,7 @@ static int	get_operations(t_tack *a, t_tack *b)
 
 	line = (char*)malloc(sizeof(char));
 	ret = get_next_line(0, &line);
-	while (ret == 1 && line != NULL && line[0] != 0)
+	while (ret == 1 && line != NULL)
 	{
 		ret = check_operation(line);
 		if (ret >= 1)

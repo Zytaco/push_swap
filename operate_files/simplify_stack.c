@@ -12,22 +12,6 @@
 
 #include "simplify_stack.h"
 
-static int	find_lowest(int *stk, int len)
-{
-	int i;
-	int lowest;
-
-	lowest = stk[0];
-	i = 1;
-	while (i < len)
-	{
-		if (stk[i] < lowest)
-			lowest = stk[i];
-		i++;
-	}
-	return (lowest);
-}
-
 void		simplify_stack(t_tack *a)
 {
 	int *new;

@@ -14,13 +14,29 @@
 # define SOLVER_H
 # include <stdlib.h>
 
-typedef struct	s_tack
+typedef struct		s_word
 {
-	int			*stack;
-	int			length;
-}				t_tack;
-void			split(t_tack *a, t_tack *b, int pivot, char **solution);
-void			optimal_rotation(t_tack a, char **solution);
-char			*ft_strfajoin(char **s1, char const *s2);
+	char			word[3];
+	struct s_word	*next;
+	struct s_word	*prev;
+}					t_word;
+typedef struct		s_tack
+{
+	int				*stack;
+	int				length;
+}					t_tack;
+void				split(t_tack *a, t_tack *b, int width, t_word *start);
+void				optimal_rotation(t_tack a, t_word *list);
+char				*ft_strfajoin(char **s1, char const *s2);
+t_word				*new_to_list(t_word *start, char s[3]);
+int					push(t_tack *a, t_tack *b);
+void				rotate(int *stk, int len);
+void				reverse_rotate(int *stk, int len);
+void				swap(t_tack stk);
+void				rotation(t_tack a, int i, t_word *list);
+void				rotate_to_front(t_tack *a, t_word *start);
+void				push_four(t_tack *a, t_tack *b, t_word *start);
+void				push_remainder(t_tack *a, t_tack *b, t_word *start);
+void				push_all(t_tack *a, t_tack *b, t_word *start);
 
 #endif

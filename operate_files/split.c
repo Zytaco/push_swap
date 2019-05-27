@@ -11,117 +11,79 @@
 /* ************************************************************************** */
 
 #include "split.h"
+#include <stdio.h>
 
-static int	push(int *a_stk, t_tack *a, int *b_stk, t_tack *b)
-{
-	int i;
-
-	if (b->length <= 0)
-		return (0);
-	i = a->length - 1;
-	while (i >= 0)
-	{
-		a_stk[i + 1] = a_stk[i];
-		i--;
-	}
-	a_stk[0] = b_stk[0];
-	a->length++;
-	i = 0;
-	while (i <= b->length - 2)
-	{
-		b_stk[i] = b_stk[i + 1];
-		i++;
-	}
-	b->length--;
-	return (1);
-}
-
-static void	rotate(int *stk, int len)
-{
-	int temp;
-	int i;
-
-	temp = stk[0];
-	i = 0;
-	while (i <= len - 2)
-	{
-		stk[i] = stk[i + 1];
-		i++;
-	}
-	stk[len - 1] = temp;
-}
-
-static void	reverse_rotate(int *stk, int len)
-{
-	int temp;
-	int i;
-
-	temp = stk[len - 1];
-	i = len - 2;
-	while (i >= 0)
-	{
-		stk[i + 1] = stk[i];
-		i--;
-	}
-	stk[0] = temp;
-}
-
-static void	do_thing(char *s, char **solution, t_tack *a, t_tack *b)
+static void	do_thing(char *s, t_word *start, t_tack *a, t_tack *b)
 {
 	if (s[0] == 'r' && s[1] == 'a')
 	{
-		*solution = ft_strfajoin(solution, "ra.\n");
+		new_to_list(start, "ra.");
 		rotate(a->stack, a->length);
 	}
 	else if (s[0] == 'p' && s[1] == 'a')
 	{
-		*solution = ft_strfajoin(solution, "pa.\n");
-		push(a->stack, a, b->stack, b);
+		new_to_list(start, "pa.");
+		push(a, b);
 	}
 	else if (s[0] == 'p' && s[1] == 'b')
 	{
-		*solution = ft_strfajoin(solution, "pb.\n");
-		push(b->stack, b, a->stack, a);
+		new_to_list(start, "pb.");
+		push(b, a);
 	}
 	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'a')
 	{
-		*solution = ft_strfajoin(solution, "rra\n");
+		new_to_list(start, "rra");
 		reverse_rotate(a->stack, a->length);
 	}
 }
 
-void		split(t_tack *a, t_tack *b, int width, char **solution)
+static int	tailles(int *stk, int len)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < len && stk[i] != 0)
+		i++;
+	j = 0;
+	while (i + j + 1 < len && stk[i + j] + 1 == stk[i + j + 1])
+		j++;
+	if (i + j + 1 >= len)
+		return (i);
+	else
+		return (len);
+}
+
+/*
+** Pushes the higher valued half within the width to b
+** while rotating past the lower valued half.
+** Then pushes everything back and then rotates everything back.
+** Effectively everything within the width is split in half with everythin at
+** or before half the width being smaller than everything after half the width.
+*/
+
+
+void		split(t_tack *a, t_tack *b, int width, t_word *start)
 {
 	int	i;
 	int	*stack;
-
 	int pivot;
+	int a_len;
 
-	pivot = 0;
-	i = a->length - 1;
-	while (i > 0 && a->stack[i - 1] == a->stack[i] - 1)
-		i--;
-	if (a->stack[i] == 0)
-		pivot = a->length - 1 - i;
-	pivot += width / 2 + b->length;
-	if (width > a->length)
-		width = a->length;
 	stack = a->stack;
+	a_len = tailles(stack, a->length);
+	if (width > a_len)
+		width = a_len;
+	pivot = find_lowest(stack, tailles(stack, a->length)) + (width / 2);
 	i = 0;
-	while (i < width)
+	while (i < width && i < a_len)
 	{
-		if (stack[i] < pivot)
-			do_thing("ra", solution, a, b);
+		if (stack[0] < pivot)
+			do_thing("ra", start, a, b);
 		else
-			do_thing("pb", solution, a, b);
+			do_thing("pb", start, a, b);
 		i++;
 	}
-	while (i > 0)
-	{
-		if (i < pivot)
-			do_thing("pa", solution, a, b);
-		else
-			do_thing("rra", solution, a, b);
-		i--;
-	}
+	while (b->length > 0)
+		do_thing("pa", start, a, b);
 }

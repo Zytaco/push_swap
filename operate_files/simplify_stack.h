@@ -21,5 +21,6 @@ typedef struct	s_tack
 	int			*stack;
 	int			length;
 }				t_tack;
+int				find_lowest(int *stk, int len);
 
 #endif

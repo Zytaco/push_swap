@@ -14,96 +14,53 @@
 #include <unistd.h>
 #include <stdio.h>
 
-static void	swap(t_tack *stk)
+int			find_lowest(int *stk, int len)
 {
-	int temp;
+	int lowest;
+	int i;
 
-	if (stk->length >= 2)
+	lowest = stk[0];
+	i = 1;
+	while (i < len)
 	{
-		temp = stk->stack[0];
-		stk->stack[0] = stk->stack[1];
-		stk->stack[1] = temp;
+		if (stk[i] < lowest)
+			lowest = stk[i];
+		i++;
 	}
+	return (lowest);
 }
 
-static int	push(t_tack *a, t_tack *b)
+static int	tailles(int *stk, int len)
 {
 	int i;
-	int *a_stk;
-	int *b_stk;
+	int j;
 
-	a_stk = a->stack;
-	b_stk = b->stack;
-	if (b->length <= 0)
-		return (0);
-	i = a->length - 1;
-	while (i >= 0)
-	{
-		a_stk[i + 1] = a_stk[i];
-		i--;
-	}
-	a_stk[0] = b_stk[0];
-	a->length++;
 	i = 0;
-	while (i <= b->length - 2)
-	{
-		b_stk[i] = b_stk[i + 1];
+	while (i < len && stk[i] != 0)
 		i++;
-	}
-	b->length--;
-	return (1);
+	j = 0;
+	while (i + j + 1 < len && stk[i + j] + 1 == stk[i + j + 1])
+		j++;
+	if (i + j + 1 >= len)
+		return (i);
+	else
+		return (len);
 }
 
-static int	needs_split(int width, int *stk, int a_len, int b_len)
+static int	needs_split(int width, int *stk, int len)
 {
 	int i;
-	int pivot;
+	int biggest;
 
-	pivot = 0;
-	i = a_len - 1;
-	while (i > 0 && stk[i - 1] == stk[i] - 1)
-		i--;
-	if (stk[i] == 0)
-		pivot = a_len - 1 - i;
-	pivot += width / 2 + b_len;
-	while (i < pivot)
+	biggest = find_lowest(stk, tailles(stk, len)) + (width / 2) - 1;
+	i = 0;
+	while (i < width / 2)
 	{
-		if (stk[i] >= pivot)
+		if (stk[i] > biggest)
 			return (1);
-		i++;
+		i++;		
 	}
 	return (0);
-}
-
-static void	push_four(t_tack *a, t_tack *b, char **solution)
-{
-	*solution = ft_strfajoin(solution, "pb.\n");
-	push(b, a);
-	*solution = ft_strfajoin(solution, "pb.\n");
-	push(b, a);
-	if (b->stack[1] > b->stack[0] && a->stack[0] > a->stack[1])
-	{
-		*solution = ft_strfajoin(solution, "ss.\n");
-		swap(a);
-		swap(b);
-	}
-	else
-	{
-		if (b->stack[1] > b->stack[0])
-		{
-			*solution = ft_strfajoin(solution, "sb.\n");
-			swap(b);
-		}
-		else if (a->stack[0] > a->stack[1])
-		{
-			*solution = ft_strfajoin(solution, "sa.\n");
-			swap(a);
-		}
-	}
-	*solution = ft_strfajoin(solution, "pb.\n");
-	push(b, a);
-	*solution = ft_strfajoin(solution, "pb.\n");
-	push(b, a);
 }
 
 static int	ordered(t_tack a)
@@ -113,7 +70,7 @@ static int	ordered(t_tack a)
 
 	i = a.length - 1;
 	stk = a.stack;
-	if (stk[i + 1] > stk[0] && stk[0] != 0)
+	if (stk[i] > stk[0] && stk[0] != 0)
 		return (0);
 	while (i > 0)
 	{
@@ -124,82 +81,59 @@ static int	ordered(t_tack a)
 	return (1);
 }
 
-void		push_remainder(t_tack *a, t_tack *b, char **solution)
-{
-	if (a->stack[0] > a->stack[1])
-	{
-		swap(a);
-		*solution = ft_strfajoin(solution, "sa.\n");
-	}
-	while (b->length > 0)
-	{
-		push(a, b);
-		*solution = ft_strfajoin(solution, "pa.\n");
-	}
-}
-
-void		push_everything(t_tack *a, t_tack *b, char **solution)
-{
-	int i;
-
-	i = 0;
-	while (a->stack[i] != b->length)
-		i++;
-	if (i > a->length / 2)
-		i = i - a->length;
-	while (i > 0)
-	{
-		*solution = ft_strfajoin(solution, "ra.\n");
-		i--;
-	}
-	while (i < 0)
-	{
-		*solution = ft_strfajoin(solution, "rra\n");
-		i++;
-	}
-	i = b->length;
-	while (i > 0)
-	{
-		*solution = ft_strfajoin(solution, "pa.\n");
-		i--;
-	}
-}
-
 /*
-** optimal_rotaion is non functional, does nothing.
-** pb 2
-** ra 2
-** rra 2
-** pa 2
-** must be reduced to nothing.
+** width means how muc hsplit will go over while pa-ing and ra-ing
+** The plan of solver is as follows:
+** First rotate the already ordered part of A to the tail of A where it will be ignored untill the very end.
+** Repeatedly push the four lowest values in A (ignoring the tail) to B and order them with swaps while doing so.
+** to get the lowest and second lowest pairs to the front of A splits are repeatedly done on A when neccesary.
+** Finally push everything back to A after rotating it correctly and then rotating A correctly again to get 0 in front.
 */
 
-void		solver(t_tack a, t_tack b, char **solution)
+int			swap_maybe(t_tack stack)
+{
+	int len;
+	int *stk;
+
+	len = stack.length;
+	stk = stack.stack;
+	if (len >= 2 &&
+	((stk[0] - 1 == stk[1] && stk[len - 1] + 1 != stk[0]) ||
+	(stk[len - 1] - 1 == stk[0] && stk[0] + 1 != stk[1])))
+	{
+		swap(stack);
+		return (1);
+	}
+	return (0);
+}
+
+void		solver(t_tack a, t_tack b, t_word *start)
 {
 	int	width;
 
-	optimal_rotation(a, solution);
 	while (!ordered(a))
 	{
 		width = 4;
-		while (width < a.length &&
-		needs_split(width / 2, a.stack, a.length, b.length))
+		while (width < tailles(a.stack, a.length) * 2 &&
+		needs_split(width, a.stack, tailles(a.stack, a.length)))
 			width *= 2;
-		while (width > 2)
+		while (width > 4)
 		{
-			if (width < a.length && width >= 4)
-				split(&a, &b, width, solution);
 			width /= 2;
+			if (width < tailles(a.stack, a.length) * 2 && width >= 4)
+				split(&a, &b, width, start);
+			optimal_rotation(a, start);
 		}
-		if (needs_split(2, a.stack, a.length, b.length))
-			split(&a, &b, 2, solution);
-		if (a.length >= 4)
-			push_four(&a, &b, solution);
+		if (tailles(a.stack, a.length) >= 4)
+			push_four(&a, &b, start);
 		else
-			push_remainder(&a, &b, solution);
+			push_remainder(&a, &b, start);
+		optimal_rotation(a, start);
 	}
-	push_everything(&a, &b, solution);
-	write(1, "hey\n", 4);
-	free(a.stack);
-	free(b.stack);
+	if (b.length > 0)
+	{
+		optimal_rotation(a, start);
+		push_all(&a, &b, start);
+	}
+	rotate_to_front(&a, start);
 }

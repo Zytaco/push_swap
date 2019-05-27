@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   optimal_rotation.h                                 :+:    :+:            */
+/*   push.h                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/16 11:26:38 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/05/16 11:26:38 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/05/26 10:21:57 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/05/26 10:21:58 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OPTIMAL_ROTATION_H
-# define OPTIMAL_ROTATION_H
+#ifndef PUSH_H
+# define PUSH_H
 
 typedef struct		s_word
 {
@@ -24,9 +24,9 @@ typedef struct		s_tack
 	int				*stack;
 	int				length;
 }					t_tack;
-char				*ft_strfajoin(char **s1, char const *s2);
+void				rotation(t_tack a, int i, t_word *list);
 t_word				*new_to_list(t_word *start, char s[3]);
-void				rotate(int *stk, int len);
-void				reverse_rotate(int *stk, int len);
+int					push(t_tack *a, t_tack *b);
+void				swap(t_tack stk);
 
 #endif

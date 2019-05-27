@@ -29,10 +29,11 @@ OBJ1 += $(LIBFT1:.c=.o)
 
 NAME2 = push_swap
 
-OPERATE = push_swap.c optimal_rotation.c simplify_stack.c solver.c split.c
+OPERATE = operations.c optimal_rotation.c push_swap.c push.c simplify_stack.c
+OPERATE += solver.c split.c word_helper.c
 
 LIBFT2 = ft_strnew.c ft_strjoin.c ft_atoi.c ft_strcmp.c ft_strfajoin.c
-LIBFT2 += ft_strncmp.c ft_strcpy.c
+LIBFT2 += ft_strncmp.c ft_strncpy.c
 
 SRC2 = $(OPERATE:%=operate_files/%)
 SRC2 += $(SHARED:%=shared/%)

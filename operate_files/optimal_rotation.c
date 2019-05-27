@@ -13,37 +13,7 @@
 #include "optimal_rotation.h"
 #include <unistd.h>
 
-static void	rotate(int *stk, int len)
-{
-	int temp;
-	int i;
-
-	temp = stk[0];
-	i = 0;
-	while (i <= len - 2)
-	{
-		stk[i] = stk[i + 1];
-		i++;
-	}
-	stk[len - 1] = temp;
-}
-
-static void	reverse_rotate(int *stk, int len)
-{
-	int temp;
-	int i;
-
-	temp = stk[len - 1];
-	i = len - 2;
-	while (i >= 0)
-	{
-		stk[i + 1] = stk[i];
-		i--;
-	}
-	stk[0] = temp;
-}
-
-static void	rotation(t_tack a, int i, char **solution)
+void	rotation(t_tack a, int i, t_word *list)
 {
 	int *stk;
 
@@ -52,19 +22,19 @@ static void	rotation(t_tack a, int i, char **solution)
 		i -= a.length;
 	while (i > 0)
 	{
-		*solution = ft_strfajoin(solution, "ra.\n");
+		new_to_list(list, "ra.");
 		rotate(a.stack, a.length);
 		i--;
 	}
 	while (i < 0)
 	{
-		*solution = ft_strfajoin(solution, "rra\n");
+		new_to_list(list, "rra");
 		reverse_rotate(a.stack, a.length);
 		i++;
 	}
 }
 
-void		optimal_rotation(t_tack a, char **solution)
+void		optimal_rotation(t_tack a, t_word *list)
 {
 	int i;
 	int *stk;
@@ -88,5 +58,5 @@ void		optimal_rotation(t_tack a, char **solution)
 		i++;
 	i++;
 	i %= a.length;
-	rotation(a, i, solution);
+	rotation(a, i, list);
 }
