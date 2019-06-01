@@ -26,17 +26,21 @@ typedef struct		s_tack
 	int				length;
 }					t_tack;
 void				split(t_tack *a, t_tack *b, int width, t_word *start);
-void				optimal_rotation(t_tack a, t_word *list);
+void				optimal_rotation(t_tack a, t_word *list, char name);
 char				*ft_strfajoin(char **s1, char const *s2);
 t_word				*new_to_list(t_word *start, char s[3]);
 int					push(t_tack *a, t_tack *b);
 void				rotate(int *stk, int len);
 void				reverse_rotate(int *stk, int len);
 void				swap(t_tack stk);
-void				rotation(t_tack a, int i, t_word *list);
+void				rotation(t_tack a, int i, t_word *list, char name);
 void				rotate_to_front(t_tack *a, t_word *start);
 void				push_four(t_tack *a, t_tack *b, t_word *start);
 void				push_remainder(t_tack *a, t_tack *b, t_word *start);
 void				push_all(t_tack *a, t_tack *b, t_word *start);
+int					swap_maybe(t_tack stack, t_word *start, char name);
+int					rotate_a_maybe(t_tack a, t_word *list);
+int					rotate_b_maybe(t_tack b, t_word *list, int biggest);
+int					find_biggest(int *stk, int len);
 
 #endif

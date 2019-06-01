@@ -78,10 +78,12 @@ void		split(t_tack *a, t_tack *b, int width, t_word *start)
 	i = 0;
 	while (i < width && i < a_len)
 	{
+		swap_maybe(*a, start, 'a');
 		if (stack[0] < pivot)
 			do_thing("ra", start, a, b);
 		else
 			do_thing("pb", start, a, b);
+		swap_maybe(*b, start, 'b');
 		i++;
 	}
 	while (b->length > 0)

@@ -90,23 +90,45 @@ static int	ordered(t_tack a)
 ** Finally push everything back to A after rotating it correctly and then rotating A correctly again to get 0 in front.
 */
 
-int			swap_maybe(t_tack stack)
+void		solver(t_tack a, t_tack b, t_word *start)
 {
-	int len;
-	int *stk;
+	int width;
 
-	len = stack.length;
-	stk = stack.stack;
-	if (len >= 2 &&
-	((stk[0] - 1 == stk[1] && stk[len - 1] + 1 != stk[0]) ||
-	(stk[len - 1] - 1 == stk[0] && stk[0] + 1 != stk[1])))
+	width = 2;
+	swap_maybe(a, start, 'a');
+	while (!ordered(a))
 	{
-		swap(stack);
-		return (1);
+		rotate_a_maybe(a, start);
+		while (width < a.length && needs_split(width, a.stack, a.length))
+			width *= 2;
+		printf("width %d, needs_split %d\n", width, needs_split(width, a.stack, a.length));
+		while (width > 2 && !rotate_a_maybe(a, start))
+		{
+			width /= 2;
+			split(&a, &b, width, start);
+			rotate_b_maybe(b, start, find_biggest(b.stack, b.length));
+		}
+		if (a.length == 4)
+			printf("%d %d %d %d\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
+		swap_maybe(a, start, 'a');
+		swap_maybe(a, start, 'b');
+		printf("length %d\n", a.length);
+		if (a.length == 4)
+			printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
+		if (tailles(a.stack, a.length) >= 4)
+			push_four(&a, &b, start);
+		else
+			push_remainder(&a, &b, start);
 	}
-	return (0);
+	if (b.length > 0)
+	{
+		optimal_rotation(a, start, 'a');
+		push_all(&a, &b, start);
+	}
+	rotate_to_front(&a, start);
 }
 
+/*
 void		solver(t_tack a, t_tack b, t_word *start)
 {
 	int	width;
@@ -137,3 +159,4 @@ void		solver(t_tack a, t_tack b, t_word *start)
 	}
 	rotate_to_front(&a, start);
 }
+*/
