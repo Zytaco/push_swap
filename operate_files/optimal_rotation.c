@@ -13,56 +13,85 @@
 #include "optimal_rotation.h"
 #include <unistd.h>
 
-int		swap_maybe(t_tack stack, t_word *start, char name)
+int		swap_a_maybe(t_tack a, t_word *start)
 {
 	int len;
 	int *stk;
 
-	len = stack.length;
-	stk = stack.stack;
+	len = a.length;
+	stk = a.stack;
 	if (len < 2 ||
-	(stk[0] + 1) % len == stk[1] ||
-	(stk[len - 1] + 1) % len == stk[0])
+	(stk[0] + 1) % len == stk[1] % len ||
+	(stk[len - 1] + 1) % len == stk[0] % len)
 		return (0);
-	if ((stk[1] + 1) % len == stk[len - 1] ||
+	if ((stk[1] + 1) % len == stk[len - 1] % len ||
 	(len >= 3 &&
-	(stk[0] + 1) % len == stk[2]))
+	(stk[0] + 1) % len == stk[2] % len))
 	{
-		swap(stack);
-		if (name == 'a')
+		swap(a);
 			new_to_list(start, "sa.");
-		if (name == 'b')
-			new_to_list(start, "sb.");
 		return (1);
 	}
 	return (0);
 }
 
-void	rotation(t_tack a, int i, t_word *list, char name)
+int		swap_b_maybe(t_tack b, t_word *start)
+{
+	int len;
+	int *stk;
+
+	len = b.length;
+	stk = b.stack;
+	if (len < 2 ||
+	(stk[0] - 1) % len == stk[1] % len ||
+	(stk[len - 1] - 1) % len == stk[0] % len)
+		return (0);
+	if ((stk[1] - 1) % len == stk[len - 1] % len ||
+	(len >= 3 &&
+	(stk[0] - 1) % len == stk[2] % len))
+	{
+		swap(b);
+		new_to_list(start, "sb.");
+		return (1);
+	}
+	return (0);
+}
+
+void	rotation(t_tack st, int i, t_word *list, char name)
 {
 	int *stk;
 
-	stk = a.stack;
-	if (i > a.length / 2)
-		i -= a.length;
+	stk = st.stack;
+	if (i > st.length / 2)
+		i -= st.length;
 	while (i > 0)
 	{
-		swap_maybe(a, list, name);
 		if (name == 'a')
+		{
+			swap_a_maybe(st, list);
 			new_to_list(list, "ra.");
+		}
 		if (name == 'b')
+		{
+			swap_b_maybe(st, list);
 			new_to_list(list, "rb.");
-		rotate(a.stack, a.length);
+		}
+		rotate(st.stack, st.length);
 		i--;
 	}
 	while (i < 0)
 	{
-		swap_maybe(a, list, name);
 		if (name == 'a')
+		{
+			swap_a_maybe(st, list);
 			new_to_list(list, "rra");
+		}
 		if (name == 'b')
+		{
+			swap_b_maybe(st, list);
 			new_to_list(list, "rrb");
-		reverse_rotate(a.stack, a.length);
+		}
+		reverse_rotate(st.stack, st.length);
 		i++;
 	}
 }
@@ -121,6 +150,7 @@ int			rotate_a_maybe(t_tack a, t_word *list)
 		rotation(a, i, list, 'a');
 		return (1);
 	}
+	swap_a_maybe(a, list);
 	return (0);
 }
 
@@ -165,5 +195,6 @@ int			rotate_b_maybe(t_tack b, t_word *list, int biggest)
 		rotation(b, i, list, 'b');
 		return (1);
 	}
+	swap_b_maybe(b, list);
 	return (0);
 }

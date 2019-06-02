@@ -31,6 +31,7 @@ int					push(t_tack *a, t_tack *b);
 void				rotate(int *stk, int len);
 void				reverse_rotate(int *stk, int len);
 int					find_lowest(int *stk, int len);
-int					swap_maybe(t_tack stack, t_word *start, char name);
+int					swap_a_maybe(t_tack stack, t_word *start);
+int					swap_b_maybe(t_tack stack, t_word *start);
 
 #endif

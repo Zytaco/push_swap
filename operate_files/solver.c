@@ -94,31 +94,30 @@ void		solver(t_tack a, t_tack b, t_word *start)
 {
 	int width;
 
-	width = 2;
-	swap_maybe(a, start, 'a');
+	swap_a_maybe(a, start);
 	while (!ordered(a))
 	{
-		rotate_a_maybe(a, start);
+		width = 2;
 		while (width < a.length && needs_split(width, a.stack, a.length))
 			width *= 2;
-		printf("width %d, needs_split %d\n", width, needs_split(width, a.stack, a.length));
+		printf("width: %d\nneeds_split: %d\n", width, needs_split(width, a.stack, a.length));
+		printf("len a: %d\n", a.length);
+		if (a.length == 4)
+			printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
 		while (width > 2 && !rotate_a_maybe(a, start))
 		{
 			width /= 2;
 			split(&a, &b, width, start);
 			rotate_b_maybe(b, start, find_biggest(b.stack, b.length));
+			printf("len a %d\n", a.length);
+			if (a.length == 4)
+				printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
 		}
-		if (a.length == 4)
-			printf("%d %d %d %d\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
-		swap_maybe(a, start, 'a');
-		swap_maybe(a, start, 'b');
-		printf("length %d\n", a.length);
-		if (a.length == 4)
-			printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
 		if (tailles(a.stack, a.length) >= 4)
 			push_four(&a, &b, start);
 		else
 			push_remainder(&a, &b, start);
+		rotate_a_maybe(a, start);
 	}
 	if (b.length > 0)
 	{
@@ -127,36 +126,3 @@ void		solver(t_tack a, t_tack b, t_word *start)
 	}
 	rotate_to_front(&a, start);
 }
-
-/*
-void		solver(t_tack a, t_tack b, t_word *start)
-{
-	int	width;
-
-	while (!ordered(a))
-	{
-		width = 4;
-		while (width < tailles(a.stack, a.length) * 2 &&
-		needs_split(width, a.stack, tailles(a.stack, a.length)))
-			width *= 2;
-		while (width > 4)
-		{
-			width /= 2;
-			if (width < tailles(a.stack, a.length) * 2 && width >= 4)
-				split(&a, &b, width, start);
-			optimal_rotation(a, start);
-		}
-		if (tailles(a.stack, a.length) >= 4)
-			push_four(&a, &b, start);
-		else
-			push_remainder(&a, &b, start);
-		optimal_rotation(a, start);
-	}
-	if (b.length > 0)
-	{
-		optimal_rotation(a, start);
-		push_all(&a, &b, start);
-	}
-	rotate_to_front(&a, start);
-}
-*/
