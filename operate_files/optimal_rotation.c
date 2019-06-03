@@ -12,43 +12,56 @@
 
 #include "optimal_rotation.h"
 #include <unistd.h>
+#include <stdio.h>
 
-int		swap_a_maybe(t_tack a, t_word *start)
+int		swap_a_maybe(t_tack a, t_word *start, int mod)
 {
 	int len;
 	int *stk;
 
 	len = a.length;
 	stk = a.stack;
-	if (len < 2 ||
-	(stk[0] + 1) % len == stk[1] % len ||
-	(stk[len - 1] + 1) % len == stk[0] % len)
+	if (len <= 1 || (len >= 3 &&
+	((stk[0] + 1) % len == stk[1] % len ||
+	((stk[len - 1] + 1) % len == stk[0] % len) ||
+	(stk[len - 1] % len == (stk[0] - 1) % len) ||
+	(stk[0] % len == (stk[1] - 1) % len))))
 		return (0);
 	if ((stk[1] + 1) % len == stk[len - 1] % len ||
-	(len >= 3 &&
-	(stk[0] + 1) % len == stk[2] % len))
+	(len >= 3 && (stk[0] + 1) % len == stk[2] % len) ||
+	(len <= 4 && stk[0] - 1 == stk[1]))
 	{
 		swap(a);
-			new_to_list(start, "sa.");
+		if (len >= 3 && (stk[0] + 1) % len == stk[2] % len)
+		{
+			new_to_list(start, "->.");
+			printf("len %d\n", len);
+		}
+		new_to_list(start, "sa.");
+		if (len >= 3 && (stk[0] + 1) % len == stk[2] % len)
+			new_to_list(start, "<-.");
 		return (1);
 	}
 	return (0);
 }
 
-int		swap_b_maybe(t_tack b, t_word *start)
+int		swap_b_maybe(t_tack b, t_word *start, int mod)
 {
 	int len;
 	int *stk;
 
 	len = b.length;
 	stk = b.stack;
-	if (len < 2 ||
-	(stk[0] - 1) % len == stk[1] % len ||
-	(stk[len - 1] - 1) % len == stk[0] % len)
+	if (len <= 1 || (len >= 3 &&
+	((stk[0] + 1) % len == stk[1] % len ||
+	((stk[len - 1] + 1) % len == stk[0] % len) ||
+	(stk[len - 1] % len == (stk[0] - 1) % len) ||
+	(stk[0] % len == (stk[1] - 1) % len))))
 		return (0);
 	if ((stk[1] - 1) % len == stk[len - 1] % len ||
 	(len >= 3 &&
-	(stk[0] - 1) % len == stk[2] % len))
+	(stk[0] - 1) % len == stk[2] % len) ||
+	(len <= 4 && stk[0] + 1 == stk[1]))
 	{
 		swap(b);
 		new_to_list(start, "sb.");
@@ -102,6 +115,8 @@ void		optimal_rotation(t_tack a, t_word *list, char name)
 	int *stk;
 	int start;
 
+	if (a.length <= 0)
+		return ;
 	stk = a.stack;
 	i = 0;
 	start = -1;
@@ -109,18 +124,38 @@ void		optimal_rotation(t_tack a, t_word *list, char name)
 	{
 		if (stk[i] == 0)
 			start = i;
-		i++;
+		else
+			i++;
 	}
-	i--;
-	if (stk[(i + 1) % a.length] == stk[i % a.length] + 1)
+	printf("i before: %d\n", i % a.length);
+	if (a.length > 1 && stk[(i + 1) % a.length] == stk[i % a.length] + 1)
 		i++;
 	while (stk[(i + 1) % a.length] % a.length ==
 	(stk[i % a.length] + 1) % a.length &&
-	i % a.length != start)
+	stk[(i - 1) % a.length] != 0)
 		i++;
+	printf("i after: %d\n", i);
 	i++;
 	i %= a.length;
 	rotation(a, i, list, name);
+}
+
+int			find_biggest(int *stk, int len)
+{
+	int i;
+	int biggest;
+
+	if (len <= 0)
+		return (-1);
+	biggest = stk[0];
+	i = 1;
+	while (i < len)
+	{
+		if (stk[i] > biggest)
+			biggest = stk[i];
+		i++;
+	}
+	return (biggest);
 }
 
 int			rotate_a_maybe(t_tack a, t_word *list)
@@ -129,6 +164,8 @@ int			rotate_a_maybe(t_tack a, t_word *list)
 	int *stk;
 	int start;
 
+	if (a.length <= 1)
+		return (0);
 	stk = a.stack;
 	i = 0;
 	start = -1;
@@ -154,30 +191,14 @@ int			rotate_a_maybe(t_tack a, t_word *list)
 	return (0);
 }
 
-int			find_biggest(int *stk, int len)
-{
-	int i;
-	int biggest;
-
-	if (len <= 0)
-		return (-1);
-	biggest = stk[0];
-	i = 1;
-	while (i < len)
-	{
-		if (stk[i] > biggest)
-			biggest = stk[i];
-		i++;
-	}
-	return (biggest);
-}
-
 int			rotate_b_maybe(t_tack b, t_word *list, int biggest)
 {
 	int i;
 	int *stk;
 	int start;
 
+	if (b.length <= 1)
+		return (0);
 	stk = b.stack;
 	i = 0;
 	start = -1;

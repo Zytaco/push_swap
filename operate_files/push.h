@@ -28,5 +28,6 @@ void				rotation(t_tack a, int i, t_word *list, char name);
 t_word				*new_to_list(t_word *start, char s[3]);
 int					push(t_tack *a, t_tack *b);
 void				swap(t_tack stk);
+int					swap_a_maybe(t_tack stack, t_word *start);
 
 #endif

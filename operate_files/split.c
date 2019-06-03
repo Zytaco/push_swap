@@ -76,10 +76,10 @@ void		split(t_tack *a, t_tack *b, int width, t_word *start)
 		width = a_len;
 	pivot = find_lowest(stack, tailles(stack, a->length)) + (width / 2);
 	i = 0;
-	while (i < width && i < a_len)
+	swap_a_maybe(*a, start);
+	swap_b_maybe(*b, start);
+	while (i < width && i < a_len && !ordered(*a))
 	{
-		swap_a_maybe(*a, start);
-		swap_b_maybe(*b, start);
 		if (stack[0] < pivot)
 			do_thing("ra", start, a, b);
 		else

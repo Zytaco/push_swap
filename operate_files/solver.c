@@ -63,7 +63,7 @@ static int	needs_split(int width, int *stk, int len)
 	return (0);
 }
 
-static int	ordered(t_tack a)
+int			ordered(t_tack a)
 {
 	int *stk;
 	int i;
@@ -79,6 +79,15 @@ static int	ordered(t_tack a)
 			return(0);
 	}
 	return (1);
+}
+
+static void	zero_to_front(t_tack a, t_word *start)
+{
+	int i;
+	i = 0;
+	while (i < a.length && a.stack[i] != 0)
+		i++;
+	rotation(a, i, start, 'a');
 }
 
 /*
@@ -100,29 +109,23 @@ void		solver(t_tack a, t_tack b, t_word *start)
 		width = 2;
 		while (width < a.length && needs_split(width, a.stack, a.length))
 			width *= 2;
-		printf("width: %d\nneeds_split: %d\n", width, needs_split(width, a.stack, a.length));
-		printf("len a: %d\n", a.length);
-		if (a.length == 4)
-			printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
-		while (width > 2 && !rotate_a_maybe(a, start))
+		// printf("width: %d\nneeds_split: %d\n", width, needs_split(width, a.stack, a.length));
+		// printf("len a: %d\n", a.length);
+		// if (a.length == 4)
+		// 	printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
+		while (width > 2)
 		{
 			width /= 2;
 			split(&a, &b, width, start);
-			rotate_b_maybe(b, start, find_biggest(b.stack, b.length));
-			printf("len a %d\n", a.length);
-			if (a.length == 4)
-				printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
+			// printf("len a %d\n", a.length);
+			// if (a.length == 4)
+			// 	printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
 		}
-		if (tailles(a.stack, a.length) >= 4)
-			push_four(&a, &b, start);
-		else
-			push_remainder(&a, &b, start);
-		rotate_a_maybe(a, start);
 	}
 	if (b.length > 0)
 	{
-		optimal_rotation(a, start, 'a');
+		zero_to_front(a, start);
 		push_all(&a, &b, start);
+		zero_to_front(a, start);
 	}
-	rotate_to_front(&a, start);
 }

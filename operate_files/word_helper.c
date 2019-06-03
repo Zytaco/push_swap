@@ -54,8 +54,6 @@ static int	two_checks(char a[3], char b[3])
 {
 	if ((a[0] == 'p' && a[1] == 'b' && b[0] == 'p' && b[1] == 'a')
 	|| (a[0] == 'p' && a[1] == 'a' && b[0] == 'p' && b[1] == 'b') ||
-	(a[0] == 's' && a[1] == 'a' && b[0] == 's' && b[1] == 'b') ||
-	(a[0] == 's' && a[1] == 'b' && b[0] == 's' && b[1] == 'a') ||
 	(a[0] == 'r' && a[1] == 'a' &&
 	b[0] == 'r' && b[1] == 'r' && b[2] == 'a') ||
 	(a[0] == 'r' && a[1] == 'b' &&
@@ -93,6 +91,20 @@ static int	three_checks(char a[3], char b[3], char c[3])
 	return (0);
 }
 
+static int	ss_checks(char a[3], char b[3])
+{
+	if ((a[0] == 's' && a[1] == 'a' &&
+	b[0] == 's' && b[1] == 'b') ||
+	(a[0] == 'a' && a[1] == 'b' &&
+	b[0] == 's' && b[1] == 'a'))
+	{
+		ft_strncpy(a, "...", 3);
+		ft_strncpy(b, "ss.", 3);
+		return (1);
+	}
+	return (0);
+}
+
 void		improve_solution(t_word *start)
 {
 	t_word *one;
@@ -113,8 +125,9 @@ void		improve_solution(t_word *start)
 			three = two->next;
 		while (three && three->word[0] == '.')
 			three = three->next;
-		if (one && two && (two_checks(one->word, two->word) ||
-		(one && two && three && three_checks(one->word, two->word, three->word))))
+		if ((one && two && two_checks(one->word, two->word)) ||
+		(one && two && ss_checks(one->word, two->word)) ||
+		(one && two && three && three_checks(one->word, two->word, three->word)))
 		{
 			if (one->prev)
 				one = one->prev;

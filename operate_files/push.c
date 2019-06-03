@@ -75,11 +75,7 @@ void		push_four(t_tack *a, t_tack *b, t_word *start)
 
 void		push_remainder(t_tack *a, t_tack *b, t_word *start)
 {
-	if (a->length >= 2 && a->stack[0] + 1 == a->stack[1])
-	{
-		swap(*a);
-		new_to_list(start, "sa.");
-	}
+	swap_a_maybe(*a, start);
 	push(b, a);
 	new_to_list(start, "pb.");
 	if (a->length >= 2 && a->stack[0] + 1 == a->stack[1])
