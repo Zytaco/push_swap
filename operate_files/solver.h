@@ -39,8 +39,11 @@ void				push_four(t_tack *a, t_tack *b, t_word *start);
 void				push_remainder(t_tack *a, t_tack *b, t_word *start);
 void				push_all(t_tack *a, t_tack *b, t_word *start);
 int					swap_a_maybe(t_tack stack, t_word *start);
+int					swap_b_maybe(t_tack b, t_word *start);
 int					rotate_a_maybe(t_tack a, t_word *list);
 int					rotate_b_maybe(t_tack b, t_word *list, int biggest);
 int					find_biggest(int *stk, int len);
+void				do_thing_a(char *s, t_word *start, t_tack *a, t_tack *b);
+void				do_thing_b(char *s, t_word *start, t_tack *a, t_tack *b);
 
 #endif

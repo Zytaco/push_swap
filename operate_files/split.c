@@ -13,7 +13,7 @@
 #include "split.h"
 #include <stdio.h>
 
-static void	do_thing(char *s, t_word *start, t_tack *a, t_tack *b)
+void		do_thing_a(char *s, t_word *start, t_tack *a, t_tack *b)
 {
 	if (s[0] == 'r' && s[1] == 'a')
 	{
@@ -25,18 +25,43 @@ static void	do_thing(char *s, t_word *start, t_tack *a, t_tack *b)
 		new_to_list(start, "pa.");
 		push(a, b);
 	}
-	else if (s[0] == 'p' && s[1] == 'b')
-	{
-		new_to_list(start, "pb.");
-		push(b, a);
-	}
 	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'a')
 	{
 		new_to_list(start, "rra");
 		reverse_rotate(a->stack, a->length);
 	}
+	else if (s[0] == 's' && s[1] == 'a')
+	{
+		new_to_list(start, "sa.");
+		swap(*a);
+	}
 }
 
+void		do_thing_b(char *s, t_word *start, t_tack *a, t_tack *b)
+{
+	if (s[0] == 'r' && s[1] == 'b')
+	{
+		new_to_list(start, "rb.");
+		rotate(b->stack, b->length);
+	}
+	else if (s[0] == 'p' && s[1] == 'b')
+	{
+		new_to_list(start, "pb.");
+		push(b, a);
+	}
+	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'b')
+	{
+		new_to_list(start, "rrb");
+		reverse_rotate(b->stack, b->length);
+	}
+	else if (s[0] == 's' && s[1] == 'b')
+	{
+		new_to_list(start, "sb.");
+		swap(*b);
+	}
+}
+
+/*
 static int	tailles(int *stk, int len)
 {
 	int i;
@@ -53,6 +78,7 @@ static int	tailles(int *stk, int len)
 	else
 		return (len);
 }
+*/
 
 /*
 ** Pushes the higher valued half within the width to b
@@ -62,6 +88,26 @@ static int	tailles(int *stk, int len)
 ** or before half the width being smaller than everything after half the width.
 */
 
+static int	push_ss(t_tack *a, t_tack *b, int pivot, t_word *start)
+{
+	if (a->stack[0] >= pivot && a->stack[1] >= pivot)
+	{
+		while (a->stack[0] >= pivot && a->stack[1] >= pivot)
+		{
+			do_thing_b("pb", start, a, b);
+			do_thing_b("pb", start, a, b);
+			swap_a_maybe(*a, start);
+			swap_b_maybe(*b, start);
+			if (a->stack[0] >= pivot && a->stack[1] >= pivot)
+			{
+				do_thing_b("pb", start, a, b);
+				do_thing_b("pb", start, a, b);
+			}
+		}
+		return (1);
+	}
+	return (0);
+}
 
 void		split(t_tack *a, t_tack *b, int width, t_word *start)
 {
@@ -71,19 +117,21 @@ void		split(t_tack *a, t_tack *b, int width, t_word *start)
 	int a_len;
 
 	stack = a->stack;
-	a_len = tailles(stack, a->length);
+	a_len = a->length;
 	if (width > a_len)
 		width = a_len;
-	pivot = find_lowest(stack, tailles(stack, a->length)) + (width / 2);
+	pivot = find_lowest(stack, a_len) + (width / 2);
 	i = 0;
+	push_ss(a, b, pivot, start);
 	swap_a_maybe(*a, start);
 	swap_b_maybe(*b, start);
 	while (i < width && i < a_len && !ordered(*a))
 	{
-		if (stack[0] < pivot)
-			do_thing("ra", start, a, b);
+		if (stack[0] >= pivot)
+			do_thing_b("pb", start, a, b);
 		else
-			do_thing("pb", start, a, b);
+			do_thing_a("ra", start, a, b);
+		push_ss(a, b, pivot, start);
 		swap_a_maybe(*a, start);
 		swap_b_maybe(*b, start);
 		i++;

@@ -14,57 +14,51 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int		swap_a_maybe(t_tack a, t_word *start, int mod)
+int		swap_a_maybe(t_tack a, t_word *start)
 {
-	int len;
+	int l;
 	int *stk;
 
-	len = a.length;
+	l = a.length;
 	stk = a.stack;
-	if (len <= 1 || (len >= 3 &&
-	((stk[0] + 1) % len == stk[1] % len ||
-	((stk[len - 1] + 1) % len == stk[0] % len) ||
-	(stk[len - 1] % len == (stk[0] - 1) % len) ||
-	(stk[0] % len == (stk[1] - 1) % len))))
+	if (l < 2 ||
+	(l > 2 &&
+	(stk[0] + 1 == stk[1] || stk[1] + 1 == stk[2] || stk[l - 1] + 1 == stk[0]
+	|| (stk[0] == l - 1 && stk[1] == 0) || (stk[1] == l - 1 && stk[2] == 0) ||
+	(stk[l - 1] == l - 1 && stk[0] == 0))))
 		return (0);
-	if ((stk[1] + 1) % len == stk[len - 1] % len ||
-	(len >= 3 && (stk[0] + 1) % len == stk[2] % len) ||
-	(len <= 4 && stk[0] - 1 == stk[1]))
+	if ((l == 2 && stk[0] > stk[1]) ||
+	(l > 2 &&
+	(stk[0] - 1 == stk[1] || stk[1] - 1 == stk[2] || stk[l - 1] - 1 == stk[0]
+	|| (stk[0] == 0 && stk[1] == l - 1) || (stk[1] == 0 && stk[2] == l - 1) ||
+	(stk[l - 1] == 0 && stk[0] == l - 1))))
 	{
-		swap(a);
-		if (len >= 3 && (stk[0] + 1) % len == stk[2] % len)
-		{
-			new_to_list(start, "->.");
-			printf("len %d\n", len);
-		}
-		new_to_list(start, "sa.");
-		if (len >= 3 && (stk[0] + 1) % len == stk[2] % len)
-			new_to_list(start, "<-.");
+		do_thing_a("sa.", start, &a, NULL);
 		return (1);
 	}
 	return (0);
 }
 
-int		swap_b_maybe(t_tack b, t_word *start, int mod)
+int		swap_b_maybe(t_tack b, t_word *start)
 {
-	int len;
+	int l;
 	int *stk;
 
-	len = b.length;
+	l = b.length;
 	stk = b.stack;
-	if (len <= 1 || (len >= 3 &&
-	((stk[0] + 1) % len == stk[1] % len ||
-	((stk[len - 1] + 1) % len == stk[0] % len) ||
-	(stk[len - 1] % len == (stk[0] - 1) % len) ||
-	(stk[0] % len == (stk[1] - 1) % len))))
+	if (l < 2 ||
+	(l > 2 &&
+	(stk[0] - 1 == stk[1] || stk[1] - 1 == stk[2] || stk[l - 1] - 1 == stk[0]
+	|| (stk[0] == 0 && stk[1] == l - 1) || (stk[1] == 0 && stk[2] == l - 1) ||
+	(stk[l - 1] == 0 && stk[0] == l - 1))))
 		return (0);
-	if ((stk[1] - 1) % len == stk[len - 1] % len ||
-	(len >= 3 &&
-	(stk[0] - 1) % len == stk[2] % len) ||
-	(len <= 4 && stk[0] + 1 == stk[1]))
+	if ((l == 2 && stk[0] < stk[1]) ||
+	(l > 2 &&
+	(stk[0] + 1 == stk[1] || stk[1] + 1 == stk[2] || stk[l - 1] + 1 == stk[0]
+	|| (stk[0] == l - 1 && stk[1] == 0) || (stk[1] == l - 1 && stk[2] == 0) ||
+	(stk[l - 1] == l - 1 && stk[0] == 0))))
 	{
-		swap(b);
-		new_to_list(start, "sb.");
+		do_thing_b("sb.", start, NULL, &b);
 		return (1);
 	}
 	return (0);
@@ -82,14 +76,13 @@ void	rotation(t_tack st, int i, t_word *list, char name)
 		if (name == 'a')
 		{
 			swap_a_maybe(st, list);
-			new_to_list(list, "ra.");
+			do_thing_a("ra.", list, &st, NULL);
 		}
 		if (name == 'b')
 		{
 			swap_b_maybe(st, list);
-			new_to_list(list, "rb.");
+			do_thing_b("rb.", list, NULL, &st);
 		}
-		rotate(st.stack, st.length);
 		i--;
 	}
 	while (i < 0)
@@ -97,14 +90,13 @@ void	rotation(t_tack st, int i, t_word *list, char name)
 		if (name == 'a')
 		{
 			swap_a_maybe(st, list);
-			new_to_list(list, "rra");
+			do_thing_a("rra", list, &st, NULL);
 		}
 		if (name == 'b')
 		{
 			swap_b_maybe(st, list);
-			new_to_list(list, "rrb");
+			do_thing_b("rrb", list, NULL, &st);
 		}
-		reverse_rotate(st.stack, st.length);
 		i++;
 	}
 }
@@ -127,14 +119,12 @@ void		optimal_rotation(t_tack a, t_word *list, char name)
 		else
 			i++;
 	}
-	printf("i before: %d\n", i % a.length);
 	if (a.length > 1 && stk[(i + 1) % a.length] == stk[i % a.length] + 1)
 		i++;
 	while (stk[(i + 1) % a.length] % a.length ==
 	(stk[i % a.length] + 1) % a.length &&
 	stk[(i - 1) % a.length] != 0)
 		i++;
-	printf("i after: %d\n", i);
 	i++;
 	i %= a.length;
 	rotation(a, i, list, name);

@@ -30,6 +30,7 @@ int			find_lowest(int *stk, int len)
 	return (lowest);
 }
 
+/*
 static int	tailles(int *stk, int len)
 {
 	int i;
@@ -46,13 +47,14 @@ static int	tailles(int *stk, int len)
 	else
 		return (len);
 }
+*/
 
 static int	needs_split(int width, int *stk, int len)
 {
 	int i;
 	int biggest;
 
-	biggest = find_lowest(stk, tailles(stk, len)) + (width / 2) - 1;
+	biggest = find_lowest(stk, len) + (width / 2) - 1;
 	i = 0;
 	while (i < width / 2)
 	{
@@ -99,33 +101,75 @@ static void	zero_to_front(t_tack a, t_word *start)
 ** Finally push everything back to A after rotating it correctly and then rotating A correctly again to get 0 in front.
 */
 
+static int bigger_than_stack(int bigger, int *stk, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len && bigger > stk[i])
+		i++;
+	if (i == len)
+		return (1);
+	else
+		return (0);
+}
+
+static void	insert_to(t_tack *a, t_tack *b, t_word *start, char name)
+{
+	int i;
+	int *stk;
+	int insert;
+	int mod;
+
+	stk = a->stack;
+	insert = b->stack[0];
+	mod = a->length;
+	i = mod - 1;
+	if (bigger_than_stack(insert, a->stack, a->length))
+		zero_to_front(*a, start);
+	else
+	{
+		if (name == 'a')
+			while (stk[(i - 1) % mod] > insert || insert > stk[i % mod])
+				i++;
+		else if (name == 'b')
+			while (stk[(i - 1) % mod] < insert || insert < stk[i % mod])
+				i++;
+		rotation(*a, i, start, 'a');
+	}	
+	if (name == 'a')
+		do_thing_a("pa.", start, a, b);
+	if (name == 'b')
+		do_thing_b("pb.", start, a, b);
+}
+
+static void	insert_all(t_tack a, t_tack b, t_word *start)
+{
+	swap_a_maybe(a, start);
+	swap_b_maybe(b, start);
+	while (b.length > 0)
+	{
+		insert_to(&a, &b, start, 'a');
+		swap_a_maybe(a, start);
+		swap_b_maybe(b, start);
+	}
+	zero_to_front(a, start);
+}
+
 void		solver(t_tack a, t_tack b, t_word *start)
 {
 	int width;
 
-	swap_a_maybe(a, start);
 	while (!ordered(a))
 	{
 		width = 2;
 		while (width < a.length && needs_split(width, a.stack, a.length))
 			width *= 2;
-		// printf("width: %d\nneeds_split: %d\n", width, needs_split(width, a.stack, a.length));
-		// printf("len a: %d\n", a.length);
-		// if (a.length == 4)
-		// 	printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
 		while (width > 2)
 		{
 			width /= 2;
 			split(&a, &b, width, start);
-			// printf("len a %d\n", a.length);
-			// if (a.length == 4)
-			// 	printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
 		}
 	}
-	if (b.length > 0)
-	{
-		zero_to_front(a, start);
-		push_all(&a, &b, start);
-		zero_to_front(a, start);
-	}
+	insert_all(a, b, start);
 }

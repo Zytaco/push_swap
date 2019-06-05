@@ -19,8 +19,7 @@ void		push_all(t_tack *a, t_tack *b, t_word *start)
 	i = b->length;
 	while (i > 0)
 	{
-		new_to_list(start, "pa.");
-		push(a, b);
+		do_thing_a("pa.", start, a, b);
 		i--;
 	}
 }
@@ -35,57 +34,24 @@ void		rotate_to_front(t_tack *a, t_word *start)
 	rotation(*a, i, start, 'a');
 }
 
-static void push_push_helper(t_tack *a, t_tack *b, t_word *start)
-{
-	new_to_list(start, "pb.");
-	push(b, a);
-	new_to_list(start, "pb.");
-	push(b, a);
-	while (b->length > 0)
-	{
-		new_to_list(start, "pa.");
-		push(a, b);
-	}
-}
-
 void		push_four(t_tack *a, t_tack *b, t_word *start)
 {
-    push_push_helper(a, b, start);
-	if (b->stack[1] > b->stack[0] && a->stack[0] > a->stack[1])
-	{
-		new_to_list(start, "ss.");
-		swap(*a);
-		swap(*b);
-	}
-	else
-	{
-		if (b->length >= 2 && b->stack[1] > b->stack[0])
-		{
-			new_to_list(start, "sb.");
-			swap(*b);
-		}
-		else if (a->length >= 2 && a->stack[0] > a->stack[1])
-		{
-			new_to_list(start, "sa.");
-			swap(*a);
-		}
-	}
-    push_push_helper(a, b, start);
+	do_thing_b("pb.", start, a, b);
+	do_thing_b("pb.", start, a, b);
+	if (b->length >= 2 && b->stack[1] > b->stack[0])
+		do_thing_b("sb.", start, a, b);
+	if (a->length >= 2 && a->stack[0] > a->stack[1])
+		do_thing_a("sa.", start, a, b);
+	do_thing_b("pb.", start, a, b);
+	do_thing_b("pb.", start, a, b);
 }
 
 void		push_remainder(t_tack *a, t_tack *b, t_word *start)
 {
 	swap_a_maybe(*a, start);
-	push(b, a);
-	new_to_list(start, "pb.");
+	do_thing_b("pb.", start, a, b);
 	if (a->length >= 2 && a->stack[0] + 1 == a->stack[1])
-	{
-		swap(*a);
-		new_to_list(start, "sa.");
-	}
+		do_thing_a("sa.", start, a, b);
 	while (a->length > 0)
-	{
-		push(b, a);
-		new_to_list(start, "pb.");
-	}
+		do_thing_b("pb.", start, a, b);
 }

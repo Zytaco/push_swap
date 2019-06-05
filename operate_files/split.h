@@ -30,6 +30,7 @@ char				*ft_strfajoin(char **s1, char const *s2);
 int					push(t_tack *a, t_tack *b);
 void				rotate(int *stk, int len);
 void				reverse_rotate(int *stk, int len);
+void				swap(t_tack stk);
 int					find_lowest(int *stk, int len);
 int					swap_a_maybe(t_tack stack, t_word *start);
 int					swap_b_maybe(t_tack stack, t_word *start);

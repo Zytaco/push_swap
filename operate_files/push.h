@@ -29,5 +29,7 @@ t_word				*new_to_list(t_word *start, char s[3]);
 int					push(t_tack *a, t_tack *b);
 void				swap(t_tack stk);
 int					swap_a_maybe(t_tack stack, t_word *start);
+void				do_thing_a(char *s, t_word *start, t_tack *a, t_tack *b);
+void				do_thing_b(char *s, t_word *start, t_tack *a, t_tack *b);
 
 #endif
