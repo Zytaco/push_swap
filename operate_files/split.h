@@ -34,6 +34,6 @@ void				swap(t_tack stk);
 int					find_lowest(int *stk, int len);
 int					swap_a_maybe(t_tack stack, t_word *start);
 int					swap_b_maybe(t_tack stack, t_word *start);
-int					ordered(t_tack a);
+int					ordered(int *stk, int len);
 
 #endif

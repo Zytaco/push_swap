@@ -78,17 +78,25 @@ static int	three_checks(char a[3], char b[3], char c[3])
 		ft_strncpy(a, "...", 3);
 		ft_strncpy(b, "sa.", 3);
 		ft_strncpy(c, "ra.", 3);
-		return (1);
 	}
-	if (a[0] == 'p' && a[1] == 'b' && b[0] == 'r' && b[1] == 'r' &&
+	else if (a[0] == 'p' && a[1] == 'b' && b[0] == 'r' && b[1] == 'r' &&
 	b[2] == 'a' && c[0] == 'p' && c[1] == 'a')
 	{
 		ft_strncpy(a, "...", 3);
 		ft_strncpy(b, "rra", 3);
 		ft_strncpy(c, "sa.", 3);
-		return (1);
 	}
-	return (0);
+	else if (a[0] == 's' && a[1] == 'a' &&
+	b[0] == 'r' && b[1] == 'a' &&
+	c[0] == 'p' && c[1] == 'b')
+	{
+		ft_strncpy(a, "...", 3);
+		ft_strncpy(b, "pb.", 3);
+		ft_strncpy(c, "ra.", 3);
+	}
+	else
+		return (0);
+	return (1);
 }
 
 static int	ss_checks(char a[3], char b[3])

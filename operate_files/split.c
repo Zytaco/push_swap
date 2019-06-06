@@ -90,8 +90,9 @@ static int	tailles(int *stk, int len)
 
 static int	push_ss(t_tack *a, t_tack *b, int pivot, t_word *start)
 {
-	if (a->stack[0] >= pivot && a->stack[1] >= pivot)
+	if (a->length >= 4 && a->stack[0] >= pivot && a->stack[1] >= pivot)
 	{
+		write(1, "hey\n", 4);
 		while (a->stack[0] >= pivot && a->stack[1] >= pivot)
 		{
 			do_thing_b("pb", start, a, b);
@@ -121,11 +122,15 @@ void		split(t_tack *a, t_tack *b, int width, t_word *start)
 	if (width > a_len)
 		width = a_len;
 	pivot = find_lowest(stack, a_len) + (width / 2);
+	printf("pivot %d\n", pivot);
 	i = 0;
-	push_ss(a, b, pivot, start);
-	swap_a_maybe(*a, start);
-	swap_b_maybe(*b, start);
-	while (i < width && i < a_len && !ordered(*a))
+	if (ordered(a->stack + 4, a->length - 4))
+	{
+		push_ss(a, b, pivot, start);
+		swap_a_maybe(*a, start);
+		swap_b_maybe(*b, start);
+	}
+	while (i < width && i < a_len && !ordered(a->stack, a->length))
 	{
 		if (stack[0] >= pivot)
 			do_thing_b("pb", start, a, b);

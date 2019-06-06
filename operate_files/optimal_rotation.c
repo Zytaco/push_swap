@@ -14,24 +14,46 @@
 #include <unistd.h>
 #include <stdio.h>
 
+int			find_biggest(int *stk, int len)
+{
+	int i;
+	int biggest;
+
+	if (len <= 0)
+		return (-1);
+	biggest = stk[0];
+	i = 1;
+	while (i < len)
+	{
+		if (stk[i] > biggest)
+			biggest = stk[i];
+		i++;
+	}
+	return (biggest);
+}
+
 int		swap_a_maybe(t_tack a, t_word *start)
 {
 	int l;
 	int *stk;
+	int low;
+	int big;
 
 	l = a.length;
 	stk = a.stack;
+	low = find_lowest(stk, l);
+	big = find_biggest(stk, l);
 	if (l < 2 ||
 	(l > 2 &&
 	(stk[0] + 1 == stk[1] || stk[1] + 1 == stk[2] || stk[l - 1] + 1 == stk[0]
-	|| (stk[0] == l - 1 && stk[1] == 0) || (stk[1] == l - 1 && stk[2] == 0) ||
-	(stk[l - 1] == l - 1 && stk[0] == 0))))
+	|| (stk[0] == big && stk[1] == low) || (stk[1] == big && stk[2] == low) ||
+	(stk[l - 1] == big && stk[0] == low))))
 		return (0);
 	if ((l == 2 && stk[0] > stk[1]) ||
 	(l > 2 &&
 	(stk[0] - 1 == stk[1] || stk[1] - 1 == stk[2] || stk[l - 1] - 1 == stk[0]
-	|| (stk[0] == 0 && stk[1] == l - 1) || (stk[1] == 0 && stk[2] == l - 1) ||
-	(stk[l - 1] == 0 && stk[0] == l - 1))))
+	|| (stk[0] == low && stk[1] == big) || (stk[1] == low && stk[2] == big) ||
+	(stk[l - 1] == low && stk[0] == big))))
 	{
 		do_thing_a("sa.", start, &a, NULL);
 		return (1);
@@ -43,20 +65,24 @@ int		swap_b_maybe(t_tack b, t_word *start)
 {
 	int l;
 	int *stk;
+	int low;
+	int big;
 
 	l = b.length;
 	stk = b.stack;
+	low = find_lowest(stk, l);
+	big = find_biggest(stk, l);
 	if (l < 2 ||
 	(l > 2 &&
 	(stk[0] - 1 == stk[1] || stk[1] - 1 == stk[2] || stk[l - 1] - 1 == stk[0]
-	|| (stk[0] == 0 && stk[1] == l - 1) || (stk[1] == 0 && stk[2] == l - 1) ||
-	(stk[l - 1] == 0 && stk[0] == l - 1))))
+	|| (stk[0] == low && stk[1] == big) || (stk[1] == low && stk[2] == big) ||
+	(stk[l - 1] == low && stk[0] == big))))
 		return (0);
 	if ((l == 2 && stk[0] < stk[1]) ||
 	(l > 2 &&
 	(stk[0] + 1 == stk[1] || stk[1] + 1 == stk[2] || stk[l - 1] + 1 == stk[0]
-	|| (stk[0] == l - 1 && stk[1] == 0) || (stk[1] == l - 1 && stk[2] == 0) ||
-	(stk[l - 1] == l - 1 && stk[0] == 0))))
+	|| (stk[0] == big && stk[1] == low) || (stk[1] == big && stk[2] == low) ||
+	(stk[l - 1] == big && stk[0] == low))))
 	{
 		do_thing_b("sb.", start, NULL, &b);
 		return (1);
@@ -128,24 +154,6 @@ void		optimal_rotation(t_tack a, t_word *list, char name)
 	i++;
 	i %= a.length;
 	rotation(a, i, list, name);
-}
-
-int			find_biggest(int *stk, int len)
-{
-	int i;
-	int biggest;
-
-	if (len <= 0)
-		return (-1);
-	biggest = stk[0];
-	i = 1;
-	while (i < len)
-	{
-		if (stk[i] > biggest)
-			biggest = stk[i];
-		i++;
-	}
-	return (biggest);
 }
 
 int			rotate_a_maybe(t_tack a, t_word *list)

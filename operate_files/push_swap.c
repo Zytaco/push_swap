@@ -66,7 +66,7 @@ int			main(int argc, char **argv)
 	{
 		while (start->prev != NULL)
 			start = start->prev;
-		improve_solution(start);
+		// improve_solution(start);
 		print_list(start);
 	}
 	free(a.stack);
