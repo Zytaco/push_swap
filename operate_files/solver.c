@@ -30,24 +30,24 @@ int			find_lowest(int *stk, int len)
 	return (lowest);
 }
 
-/*
-static int	tailles(int *stk, int len)
+
+int			tail(int *stk, int len)
 {
 	int i;
-	int j;
+	int zero;
 
 	i = 0;
 	while (i < len && stk[i] != 0)
 		i++;
-	j = 0;
-	while (i + j + 1 < len && stk[i + j] + 1 == stk[i + j + 1])
-		j++;
-	if (i + j + 1 >= len)
-		return (i);
-	else
-		return (len);
+	if (stk[i] != 0)
+		return (0);
+	zero = i;
+	while (i + 1 < len && stk[i] + 1 == stk[i + 1])
+		i++;
+	if (i + 1 == len)
+		return (zero);
+	return (0);
 }
-*/
 
 static int	needs_split(int width, int *stk, int len)
 {
@@ -148,8 +148,6 @@ static void	insert_to_a(t_tack *a, t_tack *b, int insert, t_word *start)
 
 static void	insert_all(t_tack *a, t_tack *b, t_word *start)
 {
-	swap_a_maybe(*a, start);
-	swap_b_maybe(*b, start);
 	while (b->length > 0)
 	{
 		insert_to_a(a, b, b->stack[0], start);
@@ -161,32 +159,39 @@ static void	insert_all(t_tack *a, t_tack *b, t_word *start)
 
 static void	push_start(t_tack *a, t_tack *b, t_word *start)
 {
-	int i;
-
-	if (a->stack[0] != 0)
-		return ;
-	i = 0;
-	while (i + 1 < a->length && a->stack[i] + 1 == a->stack[i + 1])
-		i++;
-	if (i >= a->length / 2)
-		return ;
-	while (find_lowest(a->stack, a->length) == a->stack[0] &&
-	(b->length == 0 || a->stack[0] == b->stack[0] + 1))
-		do_thing_b("pb.", start, a, b);
-	swap_a_maybe(*a, start);
+	while (a->length >= 2 && (a->stack[0] == b->length || 
+	a->stack[1] == b->length))
+	{
+		if (a->stack[0] == b->length + 1 && a->stack[1] == b->length)
+		{
+			do_thing_b("pb.", start, a, b);
+			do_thing_b("pb.", start, a, b);
+			swap_a_maybe(*a, start);
+			swap_b_maybe(*b, start);
+		}
+		else
+		{
+			swap_a_maybe(*a, start);
+			if (a->stack[0] == 0)
+			{
+				do_thing_b("pb.", start, a, b);
+				swap_a_maybe(*a, start);
+			}
+		}
+	}
 }
 
 void		solver(t_tack a, t_tack b, t_word *start)
 {
 	int width;
 
+	push_start(&a, &b, start);
 	while (!ordered(a.stack, a.length))
 	{
-		push_start(&a, &b, start);
-		width = 2;
+		width = 4;
 		while (width < a.length && needs_split(width, a.stack, a.length))
 			width *= 2;
-		while (width > 2 && !ordered(a.stack, a.length) &&
+		while (width > 4 && !ordered(a.stack, a.length) &&
 		needs_split(width, a.stack, a.length))
 		{
 			width /= 2;

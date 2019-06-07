@@ -43,14 +43,12 @@ int		swap_a_maybe(t_tack a, t_word *start)
 	stk = a.stack;
 	low = find_lowest(stk, l);
 	big = find_biggest(stk, l);
-	if (l < 2 ||
-	(l > 2 &&
+	if (l < 2 || (l > 2 &&
 	(stk[0] + 1 == stk[1] || stk[1] + 1 == stk[2] || stk[l - 1] + 1 == stk[0]
 	|| (stk[0] == big && stk[1] == low) || (stk[1] == big && stk[2] == low) ||
 	(stk[l - 1] == big && stk[0] == low))))
 		return (0);
-	if ((l == 2 && stk[0] > stk[1]) ||
-	(l > 2 &&
+	if ((l == 2 && stk[0] > stk[1]) || (l > 2 &&
 	(stk[0] - 1 == stk[1] || stk[1] - 1 == stk[2] || stk[l - 1] - 1 == stk[0]
 	|| (stk[0] == low && stk[1] == big) || (stk[1] == low && stk[2] == big) ||
 	(stk[l - 1] == low && stk[0] == big))))
@@ -72,14 +70,12 @@ int		swap_b_maybe(t_tack b, t_word *start)
 	stk = b.stack;
 	low = find_lowest(stk, l);
 	big = find_biggest(stk, l);
-	if (l < 2 ||
-	(l > 2 &&
+	if (l < 2 || (l > 2 &&
 	(stk[0] - 1 == stk[1] || stk[1] - 1 == stk[2] || stk[l - 1] - 1 == stk[0]
 	|| (stk[0] == low && stk[1] == big) || (stk[1] == low && stk[2] == big) ||
 	(stk[l - 1] == low && stk[0] == big))))
 		return (0);
-	if ((l == 2 && stk[0] < stk[1]) ||
-	(l > 2 &&
+	if ((l == 2 && stk[0] < stk[1]) || (l > 2 &&
 	(stk[0] + 1 == stk[1] || stk[1] + 1 == stk[2] || stk[l - 1] + 1 == stk[0]
 	|| (stk[0] == big && stk[1] == low) || (stk[1] == big && stk[2] == low) ||
 	(stk[l - 1] == big && stk[0] == low))))

@@ -92,7 +92,6 @@ static int	push_ss(t_tack *a, t_tack *b, int pivot, t_word *start)
 {
 	if (a->length >= 4 && a->stack[0] >= pivot && a->stack[1] >= pivot)
 	{
-		write(1, "hey\n", 4);
 		while (a->stack[0] >= pivot && a->stack[1] >= pivot)
 		{
 			do_thing_b("pb", start, a, b);
@@ -122,7 +121,6 @@ void		split(t_tack *a, t_tack *b, int width, t_word *start)
 	if (width > a_len)
 		width = a_len;
 	pivot = find_lowest(stack, a_len) + (width / 2);
-	printf("pivot %d\n", pivot);
 	i = 0;
 	if (ordered(a->stack + 4, a->length - 4))
 	{
@@ -132,7 +130,7 @@ void		split(t_tack *a, t_tack *b, int width, t_word *start)
 	}
 	while (i < width && i < a_len && !ordered(a->stack, a->length))
 	{
-		if (stack[0] >= pivot)
+		if (stack[0] >= pivot && a->length > 3)
 			do_thing_b("pb", start, a, b);
 		else
 			do_thing_a("ra", start, a, b);
