@@ -30,26 +30,33 @@ int			find_lowest(int *stk, int len)
 	return (lowest);
 }
 
+/*
+** find = 0 will work on stack a any other number will work on stack b.
+*/
 
-int			tail(int *stk, int len)
+int			tail_a_or_b(int *stk, int len, int find)
 {
 	int i;
 	int zero;
 
 	i = 0;
-	while (i < len && stk[i] != 0)
+	while (i < len && stk[i] != find)
 		i++;
 	if (stk[i] != 0)
 		return (0);
 	zero = i;
-	while (i + 1 < len && stk[i] + 1 == stk[i + 1])
-		i++;
+	if (find == 0)
+		while (i + 1 < len && stk[i] + 1 == stk[i + 1])
+			i++;
+	else
+		while (i + 1 < len && stk[i] - 1 == stk[i + 1])
+			i++;		
 	if (i + 1 == len)
 		return (zero);
 	return (0);
 }
 
-static int	needs_split(int width, int *stk, int len)
+static int	needs_split_a(int width, int *stk, int len)
 {
 	int i;
 	int biggest;
@@ -64,6 +71,24 @@ static int	needs_split(int width, int *stk, int len)
 	}
 	return (0);
 }
+
+/*
+static int	needs_split_b(int width, int *stk, int len)
+{
+	int i;
+	int biggest;
+
+	biggest = find_lowest(stk, len) + (width / 2) - 1;
+	i = 0;
+	while (i < width)
+	{
+		if (stk[i] <= biggest)
+			return (1);
+		i++;		
+	}
+	return (0);
+}
+*/
 
 int			ordered(int *stk, int len)
 {
@@ -189,13 +214,13 @@ void		solver(t_tack a, t_tack b, t_word *start)
 	while (!ordered(a.stack, a.length))
 	{
 		width = 4;
-		while (width < a.length && needs_split(width, a.stack, a.length))
+		while (width < a.length && needs_split_a(width, a.stack, a.length))
 			width *= 2;
 		while (width > 4 && !ordered(a.stack, a.length) &&
-		needs_split(width, a.stack, a.length))
+		needs_split_a(width, a.stack, a.length))
 		{
 			width /= 2;
-			split(&a, &b, width, start);
+			split_a(&a, &b, width, start);
 		}
 	}
 	insert_all(&a, &b, start);

@@ -88,7 +88,7 @@ static int	tailles(int *stk, int len)
 ** or before half the width being smaller than everything after half the width.
 */
 
-static int	push_ss(t_tack *a, t_tack *b, int pivot, t_word *start)
+static int	push_ss_a(t_tack *a, t_tack *b, int pivot, t_word *start)
 {
 	if (a->length >= 4 && a->stack[0] >= pivot && a->stack[1] >= pivot)
 	{
@@ -109,7 +109,28 @@ static int	push_ss(t_tack *a, t_tack *b, int pivot, t_word *start)
 	return (0);
 }
 
-void		split(t_tack *a, t_tack *b, int width, t_word *start)
+static int	push_ss_b(t_tack *a, t_tack *b, int pivot, t_word *start)
+{
+	if (b->length >= 4 && b->stack[0] >= pivot && b->stack[1] >= pivot)
+	{
+		while (b->stack[0] >= pivot && b->stack[1] >= pivot)
+		{
+			do_thing_a("pa", start, a, b);
+			do_thing_a("pa", start, a, b);
+			swap_b_maybe(*b, start);
+			swap_a_maybe(*a, start);
+			if (b->stack[0] >= pivot && b->stack[1] >= pivot)
+			{
+				do_thing_a("pa", start, a, b);
+				do_thing_a("pa", start, a, b);
+			}
+		}
+		return (1);
+	}
+	return (0);
+}
+
+void		split_a(t_tack *a, t_tack *b, int width, t_word *start)
 {
 	int	i;
 	int	*stack;
@@ -124,7 +145,7 @@ void		split(t_tack *a, t_tack *b, int width, t_word *start)
 	i = 0;
 	if (ordered(a->stack + 4, a->length - 4))
 	{
-		push_ss(a, b, pivot, start);
+		push_ss_a(a, b, pivot, start);
 		swap_a_maybe(*a, start);
 		swap_b_maybe(*b, start);
 	}
@@ -134,9 +155,41 @@ void		split(t_tack *a, t_tack *b, int width, t_word *start)
 			do_thing_b("pb", start, a, b);
 		else
 			do_thing_a("ra", start, a, b);
-		push_ss(a, b, pivot, start);
+		push_ss_a(a, b, pivot, start);
 		swap_a_maybe(*a, start);
 		swap_b_maybe(*b, start);
+		i++;
+	}
+}
+
+void		split_b(t_tack *a, t_tack *b, int width, t_word *start)
+{
+	int	i;
+	int	*stack;
+	int pivot;
+	int b_len;
+
+	stack = b->stack;
+	b_len = b->length;
+	if (width > b_len)
+		width = b_len;
+	pivot = find_lowest(stack, b_len) + (width / 2);
+	i = 0;
+	if (ordered(b->stack + 4, b->length - 4))
+	{
+		push_ss_b(a, b, pivot, start);
+		swap_b_maybe(*b, start);
+		swap_a_maybe(*a, start);
+	}
+	while (i < width && i < b_len && !ordered(b->stack, b->length))
+	{
+		if (stack[0] < pivot && b->length > 3)
+			do_thing_a("pa", start, a, b);
+		else
+			do_thing_b("rb", start, a, b);
+		push_ss_b(a, b, pivot, start);
+		swap_b_maybe(*b, start);
+		swap_a_maybe(*a, start);
 		i++;
 	}
 }

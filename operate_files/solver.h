@@ -25,7 +25,7 @@ typedef struct		s_tack
 	int				*stack;
 	int				length;
 }					t_tack;
-void				split(t_tack *a, t_tack *b, int width, t_word *start);
+void				split_a(t_tack *a, t_tack *b, int width, t_word *start);
 void				optimal_rotation(t_tack a, t_word *list, char name);
 char				*ft_strfajoin(char **s1, char const *s2);
 t_word				*new_to_list(t_word *start, char s[3]);
