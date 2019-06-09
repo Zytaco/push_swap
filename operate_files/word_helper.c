@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-t_word	*make_word(char s[3])
+t_word		*make_word(char s[3])
 {
 	t_word *new;
 
@@ -27,7 +27,7 @@ t_word	*make_word(char s[3])
 	return (new);
 }
 
-t_word	*new_to_list(t_word *start, char s[3])
+t_word		*new_to_list(t_word *start, char s[3])
 {
 	t_word *new;
 
@@ -111,38 +111,4 @@ static int	ss_checks(char a[3], char b[3])
 		return (1);
 	}
 	return (0);
-}
-
-void		improve_solution(t_word *start)
-{
-	t_word *one;
-	t_word *two;
-	t_word *three;
-
-	one = start;
-	while (one != NULL)
-	{
-		while (one->word[0] == '.' && one->next)
-			one = one->next;
-		if (one)
-			two = one->next;
-		while (one && two && two->word[0] == '.')
-			two = two->next;
-		three = NULL;
-		if (two != NULL)
-			three = two->next;
-		while (three && three->word[0] == '.')
-			three = three->next;
-		if ((one && two && two_checks(one->word, two->word)) ||
-		(one && two && ss_checks(one->word, two->word)) ||
-		(one && two && three && three_checks(one->word, two->word, three->word)))
-		{
-			if (one->prev)
-				one = one->prev;
-			while (one->prev && one->word[0] == '.')
-				one = one->prev;
-		}
-		else
-			one = one ->next;
-	}
 }

@@ -13,54 +13,6 @@
 #include "split.h"
 #include <stdio.h>
 
-void		do_thing_a(char *s, t_word *start, t_tack *a, t_tack *b)
-{
-	if (s[0] == 'r' && s[1] == 'a')
-	{
-		new_to_list(start, "ra.");
-		rotate(a->stack, a->length);
-	}
-	else if (s[0] == 'p' && s[1] == 'a')
-	{
-		new_to_list(start, "pa.");
-		push(a, b);
-	}
-	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'a')
-	{
-		new_to_list(start, "rra");
-		reverse_rotate(a->stack, a->length);
-	}
-	else if (s[0] == 's' && s[1] == 'a')
-	{
-		new_to_list(start, "sa.");
-		swap(*a);
-	}
-}
-
-void		do_thing_b(char *s, t_word *start, t_tack *a, t_tack *b)
-{
-	if (s[0] == 'r' && s[1] == 'b')
-	{
-		new_to_list(start, "rb.");
-		rotate(b->stack, b->length);
-	}
-	else if (s[0] == 'p' && s[1] == 'b')
-	{
-		new_to_list(start, "pb.");
-		push(b, a);
-	}
-	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'b')
-	{
-		new_to_list(start, "rrb");
-		reverse_rotate(b->stack, b->length);
-	}
-	else if (s[0] == 's' && s[1] == 'b')
-	{
-		new_to_list(start, "sb.");
-		swap(*b);
-	}
-}
-
 /*
 static int	tailles(int *stk, int len)
 {
@@ -88,7 +40,7 @@ static int	tailles(int *stk, int len)
 ** or before half the width being smaller than everything after half the width.
 */
 
-static int	push_ss_a(t_tack *a, t_tack *b, int pivot, t_word *start)
+static void	push_swaps_a(t_tack *a, t_tack *b, int pivot, t_word *start)
 {
 	if (a->length >= 4 && a->stack[0] >= pivot && a->stack[1] >= pivot)
 	{
@@ -104,12 +56,12 @@ static int	push_ss_a(t_tack *a, t_tack *b, int pivot, t_word *start)
 				do_thing_b("pb", start, a, b);
 			}
 		}
-		return (1);
 	}
-	return (0);
+	swap_a_maybe(*a, start);
+	swap_b_maybe(*b, start);
 }
 
-static int	push_ss_b(t_tack *a, t_tack *b, int pivot, t_word *start)
+static void	push_swaps_b(t_tack *a, t_tack *b, int pivot, t_word *start)
 {
 	if (b->length >= 4 && b->stack[0] >= pivot && b->stack[1] >= pivot)
 	{
@@ -125,9 +77,9 @@ static int	push_ss_b(t_tack *a, t_tack *b, int pivot, t_word *start)
 				do_thing_a("pa", start, a, b);
 			}
 		}
-		return (1);
 	}
-	return (0);
+	swap_b_maybe(*b, start);
+	swap_a_maybe(*a, start);
 }
 
 void		split_a(t_tack *a, t_tack *b, int width, t_word *start)
@@ -144,11 +96,7 @@ void		split_a(t_tack *a, t_tack *b, int width, t_word *start)
 	pivot = find_lowest(stack, a_len) + (width / 2);
 	i = 0;
 	if (ordered(a->stack + 4, a->length - 4))
-	{
 		push_ss_a(a, b, pivot, start);
-		swap_a_maybe(*a, start);
-		swap_b_maybe(*b, start);
-	}
 	while (i < width && i < a_len && !ordered(a->stack, a->length))
 	{
 		if (stack[0] >= pivot && a->length > 3)
@@ -156,8 +104,6 @@ void		split_a(t_tack *a, t_tack *b, int width, t_word *start)
 		else
 			do_thing_a("ra", start, a, b);
 		push_ss_a(a, b, pivot, start);
-		swap_a_maybe(*a, start);
-		swap_b_maybe(*b, start);
 		i++;
 	}
 }
@@ -176,11 +122,7 @@ void		split_b(t_tack *a, t_tack *b, int width, t_word *start)
 	pivot = find_lowest(stack, b_len) + (width / 2);
 	i = 0;
 	if (ordered(b->stack + 4, b->length - 4))
-	{
 		push_ss_b(a, b, pivot, start);
-		swap_b_maybe(*b, start);
-		swap_a_maybe(*a, start);
-	}
 	while (i < width && i < b_len && !ordered(b->stack, b->length))
 	{
 		if (stack[0] < pivot && b->length > 3)
@@ -188,8 +130,6 @@ void		split_b(t_tack *a, t_tack *b, int width, t_word *start)
 		else
 			do_thing_b("rb", start, a, b);
 		push_ss_b(a, b, pivot, start);
-		swap_b_maybe(*b, start);
-		swap_a_maybe(*a, start);
 		i++;
 	}
 }

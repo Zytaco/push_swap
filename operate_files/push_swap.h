@@ -40,5 +40,4 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 void				solver(t_tack a, t_tack b, t_word *start);
 
-
 #endif

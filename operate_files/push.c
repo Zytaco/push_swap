@@ -31,7 +31,7 @@ void		rotate_to_front(t_tack *a, t_word *start)
 	i = 0;
 	while (a->stack[i] != 0)
 		i++;
-	rotation(*a, i, start, 'a');
+	rotation_a(*a, i, start);
 }
 
 void		push_four(t_tack *a, t_tack *b, t_word *start)

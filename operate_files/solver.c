@@ -14,125 +14,18 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int			find_lowest(int *stk, int len)
-{
-	int lowest;
-	int i;
-
-	lowest = stk[0];
-	i = 1;
-	while (i < len)
-	{
-		if (stk[i] < lowest)
-			lowest = stk[i];
-		i++;
-	}
-	return (lowest);
-}
-
 /*
-** find = 0 will work on stack a any other number will work on stack b.
-*/
-
-int			tail_a_or_b(int *stk, int len, int find)
-{
-	int i;
-	int zero;
-
-	i = 0;
-	while (i < len && stk[i] != find)
-		i++;
-	if (stk[i] != 0)
-		return (0);
-	zero = i;
-	if (find == 0)
-		while (i + 1 < len && stk[i] + 1 == stk[i + 1])
-			i++;
-	else
-		while (i + 1 < len && stk[i] - 1 == stk[i + 1])
-			i++;		
-	if (i + 1 == len)
-		return (zero);
-	return (0);
-}
-
-static int	needs_split_a(int width, int *stk, int len)
-{
-	int i;
-	int biggest;
-
-	biggest = find_lowest(stk, len) + (width / 2) - 1;
-	i = 0;
-	while (i < width)
-	{
-		if (stk[i] > biggest)
-			return (1);
-		i++;		
-	}
-	return (0);
-}
-
-/*
-static int	needs_split_b(int width, int *stk, int len)
-{
-	int i;
-	int biggest;
-
-	biggest = find_lowest(stk, len) + (width / 2) - 1;
-	i = 0;
-	while (i < width)
-	{
-		if (stk[i] <= biggest)
-			return (1);
-		i++;		
-	}
-	return (0);
-}
-*/
-
-int			ordered(int *stk, int len)
-{
-	int i;
-	int lowest;
-
-	lowest = find_lowest(stk, len);
-	if (len <= 0)
-		return (0);
-	i = len - 1;
-	if (len > 2 && stk[i] > stk[0] && stk[0] != lowest)
-		return (0);
-	while (i > 0)
-	{
-		i--;
-		if (stk[i] > stk[i + 1] && !(stk[i + 1] == lowest))
-			return(0);
-	}
-	return (1);
-}
-
-static void	lowest_to_front(t_tack a, t_word *start)
-{
-	int i;
-	int lowest;
-	int *stk;
-	int len;
-
-	stk = a.stack;
-	len = a.length;
-	lowest = find_lowest(stk, len);
-	i = 0;
-	while (i < len && stk[i] != lowest)
-		i++;
-	rotation(a, i, start, 'a');
-}
-
-/*
-** width means how muc hsplit will go over while pa-ing and ra-ing
+** width means how much split will go over while pa-ing and ra-ing
 ** The plan of solver is as follows:
-** First rotate the already ordered part of A to the tail of A where it will be ignored untill the very end.
-** Repeatedly push the four lowest values in A (ignoring the tail) to B and order them with swaps while doing so.
-** to get the lowest and second lowest pairs to the front of A splits are repeatedly done on A when neccesary.
-** Finally push everything back to A after rotating it correctly and then rotating A correctly again to get 0 in front.
+** First rotate the already ordered part of A to the tail of A
+** where it will be ignored untill the very end.
+**
+** Repeatedly push the four lowest values in A (ignoring the tail) to B
+** and order them with swaps while doing so.
+** to get the lowest and second lowest pairs to the front of A,
+** splits are repeatedly done on A when neccesary.
+** Finally push everything back to A after rotating it correctly
+** and then rotating A correctly again to get 0 in front.
 */
 
 /*
@@ -167,7 +60,7 @@ static void	insert_to_a(t_tack *a, t_tack *b, int insert, t_word *start)
 	if (i == 0)
 		lowest_to_front(*a, start);
 	else
-		rotation(*a, i, start, 'a');
+		rotation_a(*a, i, start);
 	do_thing_a("pa.", start, a, b);
 }
 
@@ -184,7 +77,7 @@ static void	insert_all(t_tack *a, t_tack *b, t_word *start)
 
 static void	push_start(t_tack *a, t_tack *b, t_word *start)
 {
-	while (a->length >= 2 && (a->stack[0] == b->length || 
+	while (a->length >= 2 && (a->stack[0] == b->length ||
 	a->stack[1] == b->length))
 	{
 		if (a->stack[0] == b->length + 1 && a->stack[1] == b->length)
@@ -224,5 +117,4 @@ void		solver(t_tack a, t_tack b, t_word *start)
 		}
 	}
 	insert_all(&a, &b, start);
-//	printf("%d %d %d %d %d %d\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3], a.stack[4], a.stack[5]);
 }

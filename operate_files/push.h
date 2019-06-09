@@ -24,7 +24,8 @@ typedef struct		s_tack
 	int				*stack;
 	int				length;
 }					t_tack;
-void				rotation(t_tack a, int i, t_word *list, char name);
+void				rotation_a(t_tack a, int i, t_word *list);
+void				rotation_b(t_tack st, int i, t_word *list);
 t_word				*new_to_list(t_word *start, char s[3]);
 int					push(t_tack *a, t_tack *b);
 void				swap(t_tack stk);
