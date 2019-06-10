@@ -38,10 +38,6 @@ void		push_four(t_tack *a, t_tack *b, t_word *start)
 {
 	do_thing_b("pb.", start, a, b);
 	do_thing_b("pb.", start, a, b);
-	if (b->length >= 2 && b->stack[1] > b->stack[0])
-		do_thing_b("sb.", start, a, b);
-	if (a->length >= 2 && a->stack[0] > a->stack[1])
-		do_thing_a("sa.", start, a, b);
 	do_thing_b("pb.", start, a, b);
 	do_thing_b("pb.", start, a, b);
 }

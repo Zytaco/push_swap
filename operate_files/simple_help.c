@@ -12,6 +12,20 @@
 
 #include "simple_help.h"
 
+void	shuffle_swap(t_tack stk, char name, t_word *start)
+{
+	if (stk.length < 2)
+		return;
+	if (stk.stack[0] > stk.stack[1])
+	{
+		swap(stk);
+		if (name == 'a')
+				new_to_list("sa.", start);
+		if (name == 'b')
+				new_to_list("sb.", start);
+	}
+}
+
 int			find_lowest(int *stk, int len)
 {
 	int lowest;

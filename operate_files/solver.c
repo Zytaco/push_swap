@@ -99,22 +99,111 @@ static void	push_start(t_tack *a, t_tack *b, t_word *start)
 	}
 }
 
+int			next_four(int seed, int *stk, int offset)
+{
+	if (stk[0 + offset] >= seed || stk[0 + offset] < seed - 4 ||
+	stk[1 + offset] >= seed || stk[1 + offset] < seed - 4 ||
+	stk[2 + offset] >= seed || stk[2 + offset] < seed - 4 ||
+	stk[3 + offset] >= seed || stk[3 + offset] < seed - 4)
+		return (0);
+	return (1);
+}
+
+int			get_power_of_two(int target)
+{
+	int i;
+
+	i = 1;
+	while (i < target)
+		i *= 2;
+	return (i);
+}
+
 void		solver(t_tack a, t_tack b, t_word *start)
 {
 	int width;
 
 	push_start(&a, &b, start);
+	width = get_power_of_two(a.length);
+	while (a.length > 4 && !ordered(a.stack, a.length))
+	{
+		split_a(&a, &b, width, start);
+		get_power_of_two(a.length);
+	}
 	while (!ordered(a.stack, a.length))
 	{
-		width = 4;
-		while (width < a.length && needs_split_a(width, a.stack, a.length))
-			width *= 2;
-		while (width > 4 && !ordered(a.stack, a.length) &&
-		needs_split_a(width, a.stack, a.length))
-		{
-			width /= 2;
-			split_a(&a, &b, width, start);
-		}
+
 	}
 	insert_all(&a, &b, start);
 }
+
+/*
+** 2:
+** 1: AAAAAAAAAAAAAAAA
+**
+** 2: AAAAAAAA
+** 1: BBBBBBBB
+**
+** 2: BBBBAAAAAAAA
+** 1: CCCC
+**
+** 2: CCBBBBAAAAAAAA
+** 1: DD
+**
+** 2: EDCCBBBBAAAAAAAA
+** 1:
+**
+** 2: FEDDCCCCBBBB
+** 1: AAAA
+**
+** 2: GFEEDDDDCC
+** 1: BBAAAA
+**
+** 2: GFEEDDDDCC
+** 1: BBAAAA
+**
+** 2:
+** 1:
+**
+**
+**
+**
+** 2:
+** 1: AAAAAAAA
+**
+** 2: AAAA
+** 1: BBBB
+**
+** 2: BBAAAA
+** 1: CC
+**
+** 2: CBBAAAA
+** 1: D
+**
+** 2: DCBBAAAA
+** 1:
+**
+** 2: BBAAAA
+** 1: CD
+**
+** 2: BAAAA
+** 1: CDE
+**
+** 2: AAAA
+** 1: BCDE
+**
+** 2: AA
+** 1: BBCDEF
+**
+** 2: BAA
+** 1: CDEFG
+**
+** 2: AA
+** 1: BCDEDFG
+**
+** 2: A
+** 1: BCDEFGH
+**
+** 2:
+** 1: ABCDEFGH
+*/

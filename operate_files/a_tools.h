@@ -25,5 +25,8 @@ typedef struct		s_tack
 	int				*stack;
 	int				length;
 }					t_tack;
+void				swap(t_tack stk);
+t_word				*new_to_list(t_word *start, char s[3]);
+void				shuffle_swap(t_tack stk, char name, t_word *start);
 
 #endif

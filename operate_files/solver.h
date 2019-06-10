@@ -46,5 +46,9 @@ int					rotate_b_maybe(t_tack b, t_word *list, int biggest);
 int					find_biggest(int *stk, int len);
 void				do_thing_a(char *s, t_word *start, t_tack *a, t_tack *b);
 void				do_thing_b(char *s, t_word *start, t_tack *a, t_tack *b);
+void				shuffle_sort_a(int len, t_tack *a, t_tack *b,
+					t_word *start);
+void				shuffle_four(int len, t_tack *a, t_tack *b, t_word *start);
+void				shuffle_sort_a(int len, t_tack *a, t_tack *b, t_word *start);
 
 #endif

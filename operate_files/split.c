@@ -99,7 +99,7 @@ void		split_a(t_tack *a, t_tack *b, int width, t_word *start)
 		push_ss_a(a, b, pivot, start);
 	while (i < width && i < a_len && !ordered(a->stack, a->length))
 	{
-		if (stack[0] >= pivot && a->length > 3)
+		if (stack[0] < pivot)
 			do_thing_b("pb", start, a, b);
 		else
 			do_thing_a("ra", start, a, b);
@@ -125,7 +125,7 @@ void		split_b(t_tack *a, t_tack *b, int width, t_word *start)
 		push_ss_b(a, b, pivot, start);
 	while (i < width && i < b_len && !ordered(b->stack, b->length))
 	{
-		if (stack[0] < pivot && b->length > 3)
+		if (stack[0] >= pivot)
 			do_thing_a("pa", start, a, b);
 		else
 			do_thing_b("rb", start, a, b);

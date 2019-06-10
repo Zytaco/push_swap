@@ -92,22 +92,56 @@ int		rotate_a_maybe(t_tack a, t_word *list)
 	return (0);
 }
 
-void	order_three_a(int *stk, t_tack *a, t_tack *b, t_word *start)
-{
-	int low;
-	int big;
+/*
+** shuffle sort is best when there's a tail and the stack <= 4
+*/
 
-	low = find_lowest(stk, 3);
-	big = find_biggest(stk, 3);
-	if (stk[0] != low && stk[1] != big)
-		do_thing_a("sa.", start, a, b);
-	if (stk[2] == big)
+void	shuffle_four(int len, t_tack *a, t_tack *b, t_word *start)
+{
+	int i;
+
+	if (len <= 1)
 		return ;
-	do_thing_a("ra.", start, a, b);
-	do_thing_a("sa.", start, a, b);
-	do_thing_a("rra", start, a, b);
-	if (stk[0] != low)
-		do_thing_a("sa.", start, a, b);
+	shuffle_swap(*a, 'a', start);
+	shuffle_swap(*b, 'b', start);
+	i = 0;
+	while (i < len - 1)
+	{
+		do_thing_a("ra.", start, a, b);
+		do_thing_b("rb.", start, a, b);
+		shuffle_swap(*a, 'a', start);
+		shuffle_swap(*b, 'b', start);
+		i++;
+	}
+	while (i >= 0)
+	{
+		i--;
+		do_thing_a("rra", start, a, b);
+		do_thing_b("rrb", start, a, b);
+		shuffle_swap(*a, 'a', start);
+		shuffle_swap(*b, 'b', start);
+	}
+}
+
+void	shuffle_sort_a(int len, t_tack *a, t_tack *b, t_word *start)
+{
+	int init;
+
+	if (len >= 2)
+		shuffle_swap(*a, 'a', start);
+	init = len;
+	while (len >= 3)
+	{
+		do_thing_a("ra.", start, a, b);
+		len--;
+		shuffle_swap(*a, 'a', start);
+	}
+	while (len < init)
+	{
+		do_thing_a("rra", start, a, b);
+		len++;
+		shuffle_swap(*a, 'a', start);
+	}
 }
 
 int		needs_split_a(int width, int *stk, int len)

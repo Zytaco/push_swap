@@ -87,23 +87,32 @@ int		rotate_b_maybe(t_tack b, t_word *list, int biggest)
 	return (0);
 }
 
-void	order_three_b(int *stk, t_tack *a, t_tack *b, t_word *start)
-{
-	int low;
-	int big;
+/*
+** shuffle sort is best when there's a tail and the stack <= 4
+*/
 
-	low = find_lowest(stk, 3);
-	big = find_bigest(stk, 3);
-	if (stk[0] != low && stk[1] != big)
-		do_thing_b("sb.", start, a, b);
-	if (stk[2] == big)
-		return ;
-	do_thing_b("rb.", start, a, b);
-	do_thing_b("sb.", start, a, b);
-	do_thing_b("rrb", start, a, b);
-	if (stk[0] != low)
-		do_thing_b("sb.", start, a, b);
+/*
+void	shuffle_sort_b(int len, t_tack *a, t_tack *b, t_word *start)
+{
+	int init;
+
+	if (len >= 2)
+		shuffle_swap(*a, 'b', start);
+	init = len;
+	while (len >= 3)
+	{
+		do_thing_b("rb.", start, a, b);
+		len--;
+		shuffle_swap(*a, 'b', start);
+	}
+	while (len < init)
+	{
+		do_thing_b("rrb", start, a, b);
+		len++;
+		shuffle_swap(*a, 'b', start);
+	}
 }
+*/
 
 int		needs_split_b(int width, int *stk, int len)
 {
