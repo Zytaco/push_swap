@@ -41,7 +41,6 @@ static int bigger_than_stack(int bigger, int *stk, int len)
 	else
 		return (0);
 }
-*/
 
 static void	insert_to_a(t_tack *a, t_tack *b, int insert, t_word *start)
 {
@@ -74,29 +73,27 @@ static void	insert_all(t_tack *a, t_tack *b, t_word *start)
 	}
 	lowest_to_front(*a, start);
 }
+*/
 
 static void	push_start(t_tack *a, t_tack *b, t_word *start)
 {
-	while (a->length >= 2 && (a->stack[0] == b->length ||
-	a->stack[1] == b->length))
+	if (a->stack[1] == b->length)
+		swap_a_maybe(*a, start);
+	while (a->length > 3 && (a->stack[0] == b->length ||
+	(a->stack[0] == b->length + 1 && a->stack[1] == b->length)))
 	{
-		if (a->stack[0] == b->length + 1 && a->stack[1] == b->length)
-		{
+		if (a->stack[0] == b->length)
 			do_thing_b("pb.", start, a, b);
-			do_thing_b("pb.", start, a, b);
-			swap_a_maybe(*a, start);
-			swap_b_maybe(*b, start);
-		}
 		else
 		{
+			do_thing_b("pb.", start, a, b);
+			do_thing_b("pb.", start, a, b);
+			swap_b_maybe(*b, start);
 			swap_a_maybe(*a, start);
-			if (a->stack[0] == 0)
-			{
-				do_thing_b("pb.", start, a, b);
-				swap_a_maybe(*a, start);
-			}
 		}
 	}
+	swap_b_maybe(*b, start);
+	swap_a_maybe(*a, start);
 }
 
 int			next_four(int seed, int *stk, int offset)
@@ -119,22 +116,83 @@ int			get_power_of_two(int target)
 	return (i);
 }
 
-void		solver(t_tack a, t_tack b, t_word *start)
+/*
+** makes a sorted mostly by splitting things to stack b
+*/
+
+void		sort_a(t_tack *a, t_tack *b, t_word *start)
 {
 	int width;
+	int tail;
 
+	if (a->length <= 4)
+	{
+		shuffle_sort_a(a->length, a, b, start);
+		return ;
+	}
+	tail = tail_a(a->stack, a->length);
+	width = get_power_of_two(a->length - tail);
+	while (a->length - tail > 4)
+	{
+		split_a(a, b, width, start);
+		tail = tail_a(a->stack, a->length);
+		get_power_of_two(a->length - tail);
+	}
+	shuffle_sort_a(a->length - tail, a, b, start);
+}
+
+int			check_range(int *stk, int seed, int range)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < range)
+	{
+		j = 0;
+		while (j < range && stk[j] != seed - i)
+			j++;
+		if (j == range)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int			find_width_b(t_tack b)
+{
+	int width;
+	int tail;
+
+	tail = tail_b(b.stack, b.length);
+	width = 8;
+	while (width <= b.length &&
+	check_range(b.stack, b.length, width))
+		width *= 2;
+	return (width);
+}
+
+void		solver(t_tack a, t_tack b, t_word *start)
+{
 	push_start(&a, &b, start);
-	width = get_power_of_two(a.length);
-	while (a.length > 4 && !ordered(a.stack, a.length))
+	while (!ordered_a(a.stack, a.length) || !ordered_b(b.stack, b.length))
 	{
-		split_a(&a, &b, width, start);
-		get_power_of_two(a.length);
+		sort_a(&a, &b, start);
+		while ((b.length >= 1 && b.stack[0] == a.length) ||
+		(b.length >= 4 && next_four(a.length, b.stack, 0)))
+		{
+			if (b.length >= 1 && b.stack[0] == a.length)
+				do_thing_a("pa.", start, &a, &b);
+			else
+			{
+				push_four(&a, &b, start);
+				shuffle_sort_a(4, &a, &b, start);
+			}
+		}
+		split_b(&a, &b, find_width_b(b), start);
 	}
-	while (!ordered(a.stack, a.length))
-	{
-
-	}
-	insert_all(&a, &b, start);
+	rotate_to_front(&a, start);
+	push_all(&a, &b, start);
 }
 
 /*
@@ -206,4 +264,39 @@ void		solver(t_tack a, t_tack b, t_word *start)
 **
 ** 2:
 ** 1: ABCDEFGH
+**
+**
+**
+** 2:
+** 1: AAAAAAAAAAAA
+**
+** 2: AAAA
+** 1: BBBBBBBB
+**
+** 2: BBBBAAAA
+** 1: CCCC
+**
+** 2: CCBBBBAAAA
+** 1: DD
+**
+** 2: DCBBBBAAAA
+** 1: E
+**
+** 2: CBBBBAAAA
+** 1: DE
+**
+** 2: BBBBAAAA
+** 1: CDE
+**
+** 2: BBAAAA
+** 1: CCDEF
+**
+** 2:CBBAAAA
+** 1:DEFG
+**
+** 2:BBAAAA
+** 1:CDEFG
+**
+** 2:
+**
 */

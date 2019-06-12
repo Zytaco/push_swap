@@ -24,5 +24,9 @@ typedef struct		s_tack
 	int				*stack;
 	int				length;
 }					t_tack;
+int					find_biggest(int *stk, int len);
+void				swap(t_tack stk);
+t_word				*new_to_list(t_word *start, char s[3]);
+void				rotation_a(t_tack a, int i, t_word *list);
 
 #endif

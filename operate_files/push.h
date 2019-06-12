@@ -32,5 +32,6 @@ void				swap(t_tack stk);
 int					swap_a_maybe(t_tack stack, t_word *start);
 void				do_thing_a(char *s, t_word *start, t_tack *a, t_tack *b);
 void				do_thing_b(char *s, t_word *start, t_tack *a, t_tack *b);
+int					find_lowest(int *stk, int len);
 
 #endif

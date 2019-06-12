@@ -50,7 +50,7 @@ t_word		*new_to_list(t_word *start, char s[3])
 	return (new);
 }
 
-static int	two_checks(char a[3], char b[3])
+int			two_checks(char a[3], char b[3])
 {
 	if ((a[0] == 'p' && a[1] == 'b' && b[0] == 'p' && b[1] == 'a')
 	|| (a[0] == 'p' && a[1] == 'a' && b[0] == 'p' && b[1] == 'b') ||
@@ -70,7 +70,7 @@ static int	two_checks(char a[3], char b[3])
 	return (0);
 }
 
-static int	three_checks(char a[3], char b[3], char c[3])
+int			three_checks(char a[3], char b[3], char c[3])
 {
 	if (a[0] == 'p' && a[1] == 'b' && b[0] == 'r' &&
 	b[1] == 'a' && c[0] == 'p' && c[1] == 'a')
@@ -99,7 +99,7 @@ static int	three_checks(char a[3], char b[3], char c[3])
 	return (1);
 }
 
-static int	ss_checks(char a[3], char b[3])
+int			ss_checks(char a[3], char b[3])
 {
 	if ((a[0] == 's' && a[1] == 'a' &&
 	b[0] == 's' && b[1] == 'b') ||

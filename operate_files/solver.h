@@ -26,6 +26,7 @@ typedef struct		s_tack
 	int				length;
 }					t_tack;
 void				split_a(t_tack *a, t_tack *b, int width, t_word *start);
+void				split_b(t_tack *a, t_tack *b, int width, t_word *start);
 void				optimal_rotation(t_tack a, t_word *list, char name);
 char				*ft_strfajoin(char **s1, char const *s2);
 t_word				*new_to_list(t_word *start, char s[3]);
@@ -50,5 +51,11 @@ void				shuffle_sort_a(int len, t_tack *a, t_tack *b,
 					t_word *start);
 void				shuffle_four(int len, t_tack *a, t_tack *b, t_word *start);
 void				shuffle_sort_a(int len, t_tack *a, t_tack *b, t_word *start);
+int					ordered_a(int *stk, int len);
+int					tail_a(int *stk, int len);
+int					tail_b(int *stk, int len);
+int					ordered_b(int *stk, int len);
+void				lowest_to_front(t_tack a, t_word *start);
+
 
 #endif

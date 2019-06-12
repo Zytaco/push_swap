@@ -129,3 +129,41 @@ int		needs_split_b(int width, int *stk, int len)
 	}
 	return (0);
 }
+
+/*
+** b_maybes comes with integrated push_biggest.
+*/
+
+int		push_b_maybe(t_tack *a, t_tack *b, t_word *start)
+{
+	int ret;
+
+	ret = 0;
+	if (b->stack[0] == b->length - 1 || (b->stack[0] == b->length - 2 &&
+	b->stack[1] == b->length - 1))
+		ret = 1;
+	while (b->stack[0] == b->length - 1 || (b->stack[0] == b->length - 2 &&
+	b->stack[1] == b->length - 1))
+	{
+		if (b->stack[0] == b->length - 1)
+			do_thing_a("pa.", start, a, b);
+		else
+		{
+			do_thing_a("pa.", start, a, b);
+			do_thing_a("pa.", start, a, b);
+			swap_b_maybe(*b, start);
+			swap_a_maybe(*a, start);
+		}
+	}
+	return (ret);
+}
+
+int		b_maybes(t_tack *a, t_tack *b, t_word *start)
+{
+	int ret;
+
+	ret = 0;
+	while (push_b_maybe(a, b, start) || swap_b_maybe(*b, start))
+		ret = 1;
+	return (ret);
+}

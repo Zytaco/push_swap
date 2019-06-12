@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push.h"
+#include <stdio.h>
 
 void		push_all(t_tack *a, t_tack *b, t_word *start)
 {
@@ -27,9 +28,11 @@ void		push_all(t_tack *a, t_tack *b, t_word *start)
 void		rotate_to_front(t_tack *a, t_word *start)
 {
 	int i;
+	int lowest;
 
 	i = 0;
-	while (a->stack[i] != 0)
+	lowest = find_lowest(a->stack, a->length);
+	while (a->stack[i] != lowest)
 		i++;
 	rotation_a(*a, i, start);
 }

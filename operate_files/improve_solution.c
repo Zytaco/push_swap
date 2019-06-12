@@ -12,27 +12,16 @@
 
 #include "improve_solution.h"
 
-t_word		*get_three(t_word *one, t_word *two)
+t_word		*get_next(t_word *seed)
 {
-	t_word *three;
+	t_word *ret;
 
-	three = NULL;
-	if (two)
-		three = two->next;
-	while (three && three->word[0] == '.')
-		three = three->next;
-}
-
-t_word		*get_two(t_word *one)
-{
-	t_word *two;
-
-	two = NULL;
-	if (one)
-		two = one->next;
-	while (one && two && two->word[0] == '.')
-		two = two->next;
-	return (two);
+	ret = NULL;
+	if (seed)
+		ret = seed->next;
+	while (ret && ret->word[0] == '.')
+		ret = ret->next;
+	return (ret);		
 }
 
 void		improve_solution(t_word *start)
@@ -46,8 +35,8 @@ void		improve_solution(t_word *start)
 	{
 		while (one->word[0] == '.' && one->next)
 			one = one->next;
-		two = get_two(one);
-		three = get_three(one, two);
+		two = get_next(one);
+		three = get_next(two);
 		if ((one && two && two_checks(one->word, two->word)) ||
 		(one && two && ss_checks(one->word, two->word)) ||
 		(one && two && three &&

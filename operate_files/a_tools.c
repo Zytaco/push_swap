@@ -107,6 +107,7 @@ void	shuffle_four(int len, t_tack *a, t_tack *b, t_word *start)
 	i = 0;
 	while (i < len - 1)
 	{
+		b_maybes(a, b, start);
 		do_thing_a("ra.", start, a, b);
 		do_thing_b("rb.", start, a, b);
 		shuffle_swap(*a, 'a', start);
@@ -127,6 +128,13 @@ void	shuffle_sort_a(int len, t_tack *a, t_tack *b, t_word *start)
 {
 	int init;
 
+	if (a->length <= 3)
+	{
+		if (a->stack[0] == 0 && !ordered_a(a->stack, a->length))
+			do_thing_a("ra.", start, a, b);
+		rotate_to_front(a, start);
+		return ;
+	}
 	if (len >= 2)
 		shuffle_swap(*a, 'a', start);
 	init = len;

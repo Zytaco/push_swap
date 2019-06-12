@@ -25,5 +25,8 @@ typedef struct		s_tack
 	int				*stack;
 	int				length;
 }					t_tack;
+int					two_checks(char a[3], char b[3]);
+int					three_checks(char a[3], char b[3], char c[3]);
+int					ss_checks(char a[3], char b[3]);
 
 #endif

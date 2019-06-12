@@ -41,62 +41,66 @@ void	rotation_a(t_tack st, int i, t_word *list)
 		i -= st.length;
 	while (i > 0)
 	{
-		swap_a_maybe(st, list);
+		if (st.length > 2)
+			swap_a_maybe(st, list);
 		do_thing_a("ra.", list, &st, NULL);
 		i--;
 	}
 	while (i < 0)
 	{
-		swap_a_maybe(st, list);
+		if (st.length > 2)
+			swap_a_maybe(st, list);
 		do_thing_a("rra", list, &st, NULL);
 		i++;
 	}
 }
 
-void	rotation_b(t_tack st, int i, t_word *list)
+void	rotation_b(t_tack *a, t_tack *b, int i, t_word *start)
 {
 	int *stk;
 
-	stk = st.stack;
-	if (i > st.length / 2)
-		i -= st.length;
+	stk = b->stack;
+	if (i > b->length / 2)
+		i -= b->length;
 	while (i > 0)
 	{
-		swap_b_maybe(st, list);
-		do_thing_b("rb.", list, NULL, &st);
+		b_maybes(a, b, start);
+		swap_b_maybe(*b, start);
+		do_thing_b("rb.", start, a, b);
 		i--;
 	}
 	while (i < 0)
 	{
-		swap_b_maybe(st, list);
-		do_thing_b("rrb", list, NULL, &st);
+		b_maybes(a, b, start);
+		swap_b_maybe(*b, start);
+		do_thing_b("rrb", start, a, b);
 		i++;
 	}
 }
 
-void	optimal_rotation(t_tack a, t_word *list, char name)
+void	optimal_rotation(t_tack *a, t_tack *b, t_word *list, char name)
 {
 	int i;
 	int *stk;
 	int start;
 
-	if (a.length <= 0)
+	if (a->length <= 0)
 		return ;
-	stk = a.stack;
+	stk = a->stack;
 	i = 0;
 	while (stk[i] != 0)
 		i++;
 	start = i;
-	if (a.length > 1 && stk[(i + 1) % a.length] == stk[i % a.length] + 1)
+	if (a->length > 1 && stk[(i + 1) % a->length] == stk[i % a->length] + 1)
 		i++;
-	while (stk[(i + 1) % a.length] % a.length ==
-	(stk[i % a.length] + 1) % a.length &&
-	stk[(i - 1) % a.length] != 0)
+	while (stk[(i + 1) % a->length] % a->length ==
+	(stk[i % a->length] + 1) % a->length &&
+	stk[(i - 1) % a->length] != 0)
 		i++;
 	i++;
-	i %= a.length;
+	i %= a->length;
 	if (name == 'a')
-		rotation_a(a, i, list);
+		rotation_a(*a, i, list);
 	if (name == 'b')
-		rotation_b(a, i, list);
+		rotation_b(a, b, i, list);
 }

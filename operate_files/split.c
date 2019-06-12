@@ -95,15 +95,15 @@ void		split_a(t_tack *a, t_tack *b, int width, t_word *start)
 		width = a_len;
 	pivot = find_lowest(stack, a_len) + (width / 2);
 	i = 0;
-	if (ordered(a->stack + 4, a->length - 4))
-		push_ss_a(a, b, pivot, start);
-	while (i < width && i < a_len && !ordered(a->stack, a->length))
+	if (ordered_a(a->stack + 4, a->length - 4))
+		push_swaps_a(a, b, pivot, start);
+	while (i < width && i < a_len && !ordered_a(a->stack, a->length))
 	{
 		if (stack[0] < pivot)
 			do_thing_b("pb", start, a, b);
 		else
 			do_thing_a("ra", start, a, b);
-		push_ss_a(a, b, pivot, start);
+		push_swaps_a(a, b, pivot, start);
 		i++;
 	}
 }
@@ -121,15 +121,16 @@ void		split_b(t_tack *a, t_tack *b, int width, t_word *start)
 		width = b_len;
 	pivot = find_lowest(stack, b_len) + (width / 2);
 	i = 0;
-	if (ordered(b->stack + 4, b->length - 4))
-		push_ss_b(a, b, pivot, start);
-	while (i < width && i < b_len && !ordered(b->stack, b->length))
+	if (ordered_a(b->stack + 4, b->length - 4))
+		push_swaps_b(a, b, pivot, start);
+	while (i < width && i < b_len && !ordered_a(b->stack, b->length))
 	{
+		b_maybes(a, b, start);
 		if (stack[0] >= pivot)
 			do_thing_a("pa", start, a, b);
 		else
 			do_thing_b("rb", start, a, b);
-		push_ss_b(a, b, pivot, start);
+		push_swaps_b(a, b, pivot, start);
 		i++;
 	}
 }
