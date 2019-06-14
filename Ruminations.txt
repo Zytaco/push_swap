@@ -504,3 +504,22 @@ rra
 4 1 3 2		ra pb sa pa
 4 2 1 3		ra sa rra
 4 2 3 1		rra pb ra pa
+
+
+
+0. Start heeft afstand 0 tot start en End heeft afstand 0 tot end.
+1a. Doe 1 stap van een BFS vanuit start, sla alleen de levels tot op in de nodes. Ga naar 2 als een node afstand heeft zowel naar start als end.
+1b. Doe 1 stap van een BFS vanuit start, sla alleen de levels tot op in de nodes. Ga naar 2 als een node afstand heeft zowel naar start als end.
+2. Noem de lengte van de kortste paden N.
+3. Doe een goeie schatting van de bottleneck value zonder paden te vinden.
+4. Als de bottleneck keer twee niet tenminste het aantal mieren is ga dan door met stap 1a of 1b afhankelijk van bij welke je gestopt bent.
+5. Als de bottleneck goed genoeg is 
+
+Bottleneck schatten:
+Om de bottleneck te schatten voor een bepaalde tijd T checken we dat voor elk tijdstip t kleiner dan T er genoeg kamers zijn waar een mier in zou kunnen zitten.
+Als de bottleneck x is dan moet het zijn dat voor elke t < T de groep nodes waarvoor geldt dat
+hun afstand van start is maximaal t, want anders kunnen ze er nog niet gekomen zijn,
+en dat hunafstand van end tenminste T - t moet zijn, want anders kunnen de mieren nooit meer op tijd bij het einde komen.
+Zodra een groep gevonden is waarvoor het niet waar is dat de groote keer twee het aantal mieren is kunnen we meteen ophouden met dit proces.
+Deze groepen kunnen 
+

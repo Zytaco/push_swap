@@ -37,5 +37,7 @@ void				reverse_rotate(int *stk, int len);
 void				do_thing_a(char *s, t_word *start, t_tack *a, t_tack *b);
 int					push(t_tack *a, t_tack *b);
 void				rotation_b(t_tack a, int i, t_word *list);
+int					swap_a_maybe(t_tack stack, t_word *start);
+int					swap_b_maybe(t_tack stack, t_word *start);
 
 #endif

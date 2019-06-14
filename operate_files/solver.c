@@ -79,21 +79,25 @@ static void	push_start(t_tack *a, t_tack *b, t_word *start)
 {
 	if (a->stack[1] == b->length)
 		swap_a_maybe(*a, start);
-	while (a->length > 3 && (a->stack[0] == b->length ||
+	if (a->length > 3 && (a->stack[0] == b->length ||
 	(a->stack[0] == b->length + 1 && a->stack[1] == b->length)))
 	{
-		if (a->stack[0] == b->length)
-			do_thing_b("pb.", start, a, b);
-		else
+		while (a->length > 3 && (a->stack[0] == b->length ||
+		(a->stack[0] == b->length + 1 && a->stack[1] == b->length)))
 		{
-			do_thing_b("pb.", start, a, b);
-			do_thing_b("pb.", start, a, b);
-			swap_b_maybe(*b, start);
-			swap_a_maybe(*a, start);
+			if (a->stack[0] == b->length)
+				do_thing_b("pb.", start, a, b);
+			else
+			{
+				do_thing_b("pb.", start, a, b);
+				do_thing_b("pb.", start, a, b);
+				swap_b_maybe(*b, start);
+				swap_a_maybe(*a, start);
+			}
 		}
+		swap_b_maybe(*b, start);
+		swap_a_maybe(*a, start);
 	}
-	swap_b_maybe(*b, start);
-	swap_a_maybe(*a, start);
 }
 
 int			next_four(int seed, int *stk, int offset)
@@ -138,7 +142,9 @@ void		sort_a(t_tack *a, t_tack *b, t_word *start)
 		tail = tail_a(a->stack, a->length);
 		get_power_of_two(a->length - tail);
 	}
-	shuffle_sort_a(a->length - tail, a, b, start);
+	if (!ordered_a(a->stack, a->length))
+		shuffle_sort_a(a->length - tail, a, b, start);
+	rotate_to_front(a, start);
 }
 
 int			check_range(int *stk, int seed, int range)
@@ -178,6 +184,8 @@ void		solver(t_tack a, t_tack b, t_word *start)
 	while (!ordered_a(a.stack, a.length) || !ordered_b(b.stack, b.length))
 	{
 		sort_a(&a, &b, start);
+		printf("length %d\n", a.length);
+		printf("%d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3]);
 		while ((b.length >= 1 && b.stack[0] == a.length) ||
 		(b.length >= 4 && next_four(a.length, b.stack, 0)))
 		{
@@ -193,6 +201,9 @@ void		solver(t_tack a, t_tack b, t_word *start)
 	}
 	rotate_to_front(&a, start);
 	push_all(&a, &b, start);
+	rotate_to_front(&a, start);
+	printf("length %d\n", a.length);
+	printf("%d %d %d %d %d %d\n\n", a.stack[0], a.stack[1], a.stack[2], a.stack[3], a.stack[4], a.stack[5]);
 }
 
 /*

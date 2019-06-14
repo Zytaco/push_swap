@@ -94,12 +94,14 @@ void		split_a(t_tack *a, t_tack *b, int width, t_word *start)
 	if (width > a_len)
 		width = a_len;
 	pivot = find_lowest(stack, a_len) + (width / 2);
+	if (pivot <= 3)
+		pivot = 4;
 	i = 0;
 	if (ordered_a(a->stack + 4, a->length - 4))
 		push_swaps_a(a, b, pivot, start);
 	while (i < width && i < a_len && !ordered_a(a->stack, a->length))
 	{
-		if (stack[0] < pivot)
+		if (stack[0] >= pivot)
 			do_thing_b("pb", start, a, b);
 		else
 			do_thing_a("ra", start, a, b);
@@ -126,7 +128,7 @@ void		split_b(t_tack *a, t_tack *b, int width, t_word *start)
 	while (i < width && i < b_len && !ordered_a(b->stack, b->length))
 	{
 		b_maybes(a, b, start);
-		if (stack[0] >= pivot)
+		if (stack[0] < pivot)
 			do_thing_a("pa", start, a, b);
 		else
 			do_thing_b("rb", start, a, b);
