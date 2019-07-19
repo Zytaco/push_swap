@@ -19,6 +19,7 @@ typedef struct	s_tack
 {
 	int			*stack;
 	int			length;
+	int			tail;
 }				t_tack;
 int				ft_atoi(const char *str);
 

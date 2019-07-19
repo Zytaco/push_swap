@@ -25,32 +25,55 @@ void		push_all(t_tack *a, t_tack *b, t_word *start)
 	}
 }
 
-void		rotate_to_front(t_tack *a, t_word *start)
+void		rotate_to_front(t_tack *stk, t_word *start, int target, char stack)
 {
 	int i;
-	int lowest;
 
 	i = 0;
-	lowest = find_lowest(a->stack, a->length);
-	while (a->stack[i] != lowest)
+	while (i < stk->length && stk->stack[i] != target)
 		i++;
-	rotation_a(*a, i, start);
+	if (stack == 'a')
+		rotation_a(*stk, i, start);
+	if (stack == 'b')
+		rotation_b(*stk, i, start);
 }
 
-void		push_four(t_tack *a, t_tack *b, t_word *start)
+int			ordered_seq_a(int *stack, int len)
 {
-	do_thing_b("pb.", start, a, b);
-	do_thing_b("pb.", start, a, b);
-	do_thing_b("pb.", start, a, b);
-	do_thing_b("pb.", start, a, b);
+	int i;
+	int jump;
+
+	jump = 0;
+	i = 0;
+	while (i + 1 < len)
+	{
+		if (stack[i] + 1 != stack[i + 1])
+		{
+			if (jump == 0 && stack[i + 1] - stack[i] == len - 1)
+				jump = 1;
+			else
+				return (0);
+		}
+		i++;
+	}
+	return (1);
 }
 
-void		push_remainder(t_tack *a, t_tack *b, t_word *start)
+void		insertion_push_a(t_tack *a, t_tack *b, t_word *start)
 {
-	swap_a_maybe(*a, start);
-	do_thing_b("pb.", start, a, b);
-	if (a->length >= 2 && a->stack[0] + 1 == a->stack[1])
-		do_thing_a("sa.", start, a, b);
-	while (a->length > 0)
+	int init;
+
+	init = a->length;
+	while (a->length > 0 && !(ordered_seq_a(a->stack, a->length)))
+	{
+		a_rotate_x_to(find_lowest(a->stack, a->length, BLOCK), 0, *a, start);
 		do_thing_b("pb.", start, a, b);
+		b->tail++;
+	}
+	while (a->length > 0)
+	{
+		do_thing_b("pb.", start, a, b);
+		b->tail++;
+	}
+	b_rotate_x_to(a->length + b->length - 1, b->length - b->tail, *b, start);
 }

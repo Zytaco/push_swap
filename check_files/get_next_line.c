@@ -34,7 +34,8 @@ static int		assign_line(char **line, char *buf, long int rd, \
 		return (-1);
 	temp = *line;
 	*line = ft_strjoin(*line, buf);
-	ft_strdel(&temp);
+	if (temp != NULL)
+		ft_strdel(&temp);
 	if (*line == NULL)
 		return (-1);
 	eol = ft_strnchr(*line, '\n');

@@ -17,6 +17,7 @@ typedef struct	s_tack
 {
 	int			*stack;
 	int			length;
+	int			tail;
 }				t_tack;
 int				make_stack(int argc, char **argv, t_tack *stk_one,
 				t_tack *stk_two);

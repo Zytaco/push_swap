@@ -17,6 +17,7 @@ typedef struct	s_tack
 {
 	int			*stack;
 	int			length;
+	int			tail;
 }				t_tack;
 int				ft_strcmp(const char *s1, const char *s2);
 void			operate_helper(char *line, int i, t_tack *a, t_tack *b);

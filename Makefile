@@ -31,7 +31,7 @@ NAME2 = push_swap
 
 OPERATE = a_tools.c b_tools.c improve_solution.c operations.c
 OPERATE += optimal_rotation.c push_swap.c push.c simple_help.c
-OPERATE += simplify_stack.c solver.c split.c word_helper.c
+OPERATE += simplify_stack.c solver.c split.c word_helper.c sort_a.c
 
 LIBFT2 = ft_strnew.c ft_strjoin.c ft_atoi.c ft_strcmp.c ft_strfajoin.c
 LIBFT2 += ft_strncmp.c ft_strncpy.c

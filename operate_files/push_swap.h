@@ -25,6 +25,7 @@ typedef struct		s_tack
 {
 	int				*stack;
 	int				length;
+	int				tail;
 }					t_tack;
 t_word				*make_word(char s[3]);
 void				improve_solution(t_word *start);

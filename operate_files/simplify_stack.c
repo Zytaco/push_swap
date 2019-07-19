@@ -20,7 +20,7 @@ void		simplify_stack(t_tack *a)
 	int lowest;
 
 	new = (int*)malloc(sizeof(int) * a->length);
-	lowest = find_lowest(a->stack, a->length);
+	lowest = find_lowest(a->stack, a->length, a->length);
 	i = 0;
 	j = 0;
 	while (j < a->length)

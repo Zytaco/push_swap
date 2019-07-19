@@ -14,7 +14,56 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int		find_biggest(int *stk, int len)
+void	a_rotate_x_to(int target, int pos, t_tack a, t_word *start)
+{
+	int i;
+
+	while (pos < 0)
+		pos += a.length;
+	while (pos >= a.length)
+		pos -= a.length;
+	if (a.stack[pos] != target)
+	{
+		i = pos;
+		while (i <= pos + a.length && a.stack[i % a.length] != target)
+			i++;
+		if (a.stack[i] != target)
+			return ;
+		if (i > a.length / 2)
+			while (a.stack[pos] != target)
+				do_thing_a("rra", start, &a, NULL);
+		else
+			while (a.stack[pos] != target)
+				do_thing_a("ra.", start, &a, NULL);
+	}
+}
+
+void	b_rotate_x_to(int target, int pos, t_tack b, t_word *start)
+{
+	int i;
+
+	while (pos < 0)
+		pos += b.length;
+	while (pos >= b.length)
+		pos -= b.length;
+	if (b.stack[pos] != target)
+	{
+		i = 0;
+		while (i < b.length && b.stack[i] != target)
+			i++;
+		if (b.stack[i] != target)
+			return ;
+		i = (i - pos + b.length) % b.length;
+		if (i > b.length / 2)
+			while (b.stack[pos] != target)
+				do_thing_b("rrb", start, NULL, &b);
+		else
+			while (b.stack[pos] != target)
+				do_thing_b("rb.", start, NULL, &b);
+	}
+}
+
+int		find_biggest(int *stk, int len, int length)
 {
 	int i;
 	int biggest;
@@ -23,7 +72,7 @@ int		find_biggest(int *stk, int len)
 		return (-1);
 	biggest = stk[0];
 	i = 1;
-	while (i < len)
+	while (i < len && i < length)
 	{
 		if (stk[i] > biggest)
 			biggest = stk[i];
@@ -55,52 +104,25 @@ void	rotation_a(t_tack st, int i, t_word *list)
 	}
 }
 
-void	rotation_b(t_tack *a, t_tack *b, int i, t_word *start)
+void	rotation_b(t_tack st, int i, t_word *list)
 {
 	int *stk;
 
-	stk = b->stack;
-	if (i > b->length / 2)
-		i -= b->length;
+	stk = st.stack;
+	if (i > st.length / 2)
+		i -= st.length;
 	while (i > 0)
 	{
-		b_maybes(a, b, start);
-		swap_b_maybe(*b, start);
-		do_thing_b("rb.", start, a, b);
+		if (st.length > 2)
+			swap_b_maybe(st, list);
+		do_thing_b("rb.", list, NULL, &st);
 		i--;
 	}
 	while (i < 0)
 	{
-		b_maybes(a, b, start);
-		swap_b_maybe(*b, start);
-		do_thing_b("rrb", start, a, b);
+		if (st.length > 2)
+			swap_b_maybe(st, list);
+		do_thing_b("rrb", list, NULL, &st);
 		i++;
 	}
-}
-
-void	optimal_rotation(t_tack *a, t_tack *b, t_word *list, char name)
-{
-	int i;
-	int *stk;
-	int start;
-
-	if (a->length <= 0)
-		return ;
-	stk = a->stack;
-	i = 0;
-	while (stk[i] != 0)
-		i++;
-	start = i;
-	if (a->length > 1 && stk[(i + 1) % a->length] == stk[i % a->length] + 1)
-		i++;
-	while (stk[(i + 1) % a->length] % a->length ==
-	(stk[i % a->length] + 1) % a->length &&
-	stk[(i - 1) % a->length] != 0)
-		i++;
-	i++;
-	i %= a->length;
-	if (name == 'a')
-		rotation_a(*a, i, list);
-	if (name == 'b')
-		rotation_b(a, b, i, list);
 }

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "b_tools.h"
+#include <stdio.h>
 
 void	do_thing_b(char *s, t_word *start, t_tack *a, t_tack *b)
 {
@@ -45,8 +46,8 @@ int		swap_b_maybe(t_tack b, t_word *start)
 
 	l = b.length;
 	stk = b.stack;
-	low = find_lowest(stk, l);
-	big = find_biggest(stk, l);
+	low = find_lowest(stk, l, l);
+	big = find_biggest(stk, l, l);
 	if (l < 2 || (l > 2 &&
 	(stk[0] - 1 == stk[1] || stk[1] - 1 == stk[2] || stk[l - 1] - 1 == stk[0]
 	|| (stk[0] == low && stk[1] == big) || (stk[1] == low && stk[2] == big) ||
@@ -87,65 +88,25 @@ int		rotate_b_maybe(t_tack b, t_word *list, int biggest)
 	return (0);
 }
 
-/*
-** shuffle sort is best when there's a tail and the stack <= 4
-*/
-
-/*
-void	shuffle_sort_b(int len, t_tack *a, t_tack *b, t_word *start)
+int		x_less(int x, int minus, t_tack a, t_tack b)
 {
-	int init;
-
-	if (len >= 2)
-		shuffle_swap(*a, 'b', start);
-	init = len;
-	while (len >= 3)
-	{
-		do_thing_b("rb.", start, a, b);
-		len--;
-		shuffle_swap(*a, 'b', start);
-	}
-	while (len < init)
-	{
-		do_thing_b("rrb", start, a, b);
-		len++;
-		shuffle_swap(*a, 'b', start);
-	}
+	return ((x + a.length + b.length - minus) % (a.length + b.length));
 }
-*/
-
-int		needs_split_b(int width, int *stk, int len)
-{
-	int i;
-	int biggest;
-
-	biggest = find_lowest(stk, len) + (width / 2) - 1;
-	i = 0;
-	while (i < width)
-	{
-		if (stk[i] <= biggest)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-/*
-** b_maybes comes with integrated push_biggest.
-*/
 
 int		push_b_maybe(t_tack *a, t_tack *b, t_word *start)
 {
 	int ret;
 
 	ret = 0;
-	if (b->stack[0] == b->length - 1 || (b->stack[0] == b->length - 2 &&
-	b->stack[1] == b->length - 1))
+	if ((b->length >= 1 && b->stack[0] == x_less(a->stack[0], 1, *a, *b)) ||
+	(b->length >= 2 && (b->stack[0] == x_less(a->stack[0], 2, *a, *b) &&
+	b->stack[1] == x_less(a->stack[0], 1, *a, *b))))
 		ret = 1;
-	while (b->stack[0] == b->length - 1 || (b->stack[0] == b->length - 2 &&
-	b->stack[1] == b->length - 1))
+	while ((b->length >= 1 && b->stack[0] == x_less(a->stack[0], 1, *a, *b)) ||
+	(b->length >= 2 && (b->stack[0] == x_less(a->stack[0], 2, *a, *b) &&
+	b->stack[1] == x_less(a->stack[0], 1, *a, *b))))
 	{
-		if (b->stack[0] == b->length - 1)
+		if (b->stack[0] == x_less(a->stack[0], 1, *a, *b))
 			do_thing_a("pa.", start, a, b);
 		else
 		{
@@ -155,15 +116,5 @@ int		push_b_maybe(t_tack *a, t_tack *b, t_word *start)
 			swap_a_maybe(*a, start);
 		}
 	}
-	return (ret);
-}
-
-int		b_maybes(t_tack *a, t_tack *b, t_word *start)
-{
-	int ret;
-
-	ret = 0;
-	while (push_b_maybe(a, b, start) || swap_b_maybe(*b, start))
-		ret = 1;
 	return (ret);
 }

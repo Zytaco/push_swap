@@ -78,11 +78,13 @@ int			make_stack(int argc, char **argv, t_tack *a, t_tack *b)
 {
 	int i;
 
-	b->length = 0;
+	i = 0;
 	b->stack = (int*)malloc(sizeof(int) * (argc - 1));
 	a->stack = (int*)malloc(sizeof(int) * (argc - 1));
-	if (a->stack == (int*)0 && a->stack == (int*)0)
-		return (0);
+	if (a->stack == (int*)0 || b->stack == (int*)0)
+		make_stack(argc, argv, a, b);
+	b->tail = 0;
+	b->length = 0;
 	a->length = argc - 1;
 	i = 1;
 	while (i < argc)

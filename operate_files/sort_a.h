@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   display_stacks.c                                   :+:    :+:            */
+/*   sort_a.h                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/26 12:28:56 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/04/26 12:28:57 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/07/04 14:15:23 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/07/04 14:15:23 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef SORT_A_H
+# define SORT_A_H
+# include "solver.h"
 
-void	display_stacks(t_tack a, t_tack b)
-{
-	int i;
+int			get_width_a(int length);
+void		insertion_push_a(t_tack *a, t_tack *b, t_word *start);
 
-	printf("a, length %d\n", a.length);
-	i = 0;
-	while (i < a.length)
-	{
-		printf("%d\n", a.stack[i]);
-		i++;
-	}
-	printf("b, length %d\n", b.length);
-	i = 0;
-	while (i < b.length)
-	{
-		printf("%d\n", b.stack[i]);
-		i++;
-	}
-}
+#endif

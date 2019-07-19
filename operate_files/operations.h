@@ -23,6 +23,7 @@ typedef struct		s_tack
 {
 	int				*stack;
 	int				length;
+	int				tail;
 }					t_tack;
 
 #endif

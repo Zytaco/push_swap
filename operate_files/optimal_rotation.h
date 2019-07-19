@@ -23,6 +23,7 @@ typedef struct		s_tack
 {
 	int				*stack;
 	int				length;
+	int				tail;
 }					t_tack;
 char				*ft_strfajoin(char **s1, char const *s2);
 t_word				*new_to_list(t_word *start, char s[3]);
@@ -32,10 +33,9 @@ void				swap(t_tack stk);
 void				do_thing_a(char *s, t_word *start, t_tack *a, t_tack *b);
 void				do_thing_b(char *s, t_word *start, t_tack *a, t_tack *b);
 int					ordered_a(int *stk, int len);
-int					find_lowest(int *stk, int len);
+int					find_lowest(int *stk, int len, int length);
 int					push_biggest_maybe(t_tack *a, t_tack *b, t_word *start);
 int					swap_a_maybe(t_tack stack, t_word *start);
 int					swap_b_maybe(t_tack stack, t_word *start);
-int					b_maybes(t_tack *a, t_tack *b, t_word *start);
 
 #endif

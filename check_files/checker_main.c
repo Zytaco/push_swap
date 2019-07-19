@@ -13,6 +13,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "checker_main.h"
+#include <stdio.h>
+
+int			wait_a_bit(void)
+{
+	int i;
+
+	i = 0;
+	while (i < 100000000)
+		i++;
+	return (1);
+}
 
 static int	check_operation(char *line)
 {
@@ -48,6 +59,9 @@ static int	get_operations(t_tack *a, t_tack *b)
 	int		ret;
 
 	line = (char*)malloc(sizeof(char));
+	while (line == NULL)
+		line = (char*)malloc(sizeof(char));
+	*line = 0;
 	ret = get_next_line(0, &line);
 	while (ret == 1 && line != NULL)
 	{
@@ -80,7 +94,7 @@ int			main(int argc, char **argv)
 		write(1, "Error\n", 6);
 		return (1);
 	}
-	if (get_operations(&a, &b) <= -1)
+	if (wait_a_bit() && get_operations(&a, &b) <= -1)
 	{
 		free(a.stack);
 		free(b.stack);

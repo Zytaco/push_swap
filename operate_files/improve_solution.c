@@ -21,7 +21,7 @@ t_word		*get_next(t_word *seed)
 		ret = seed->next;
 	while (ret && ret->word[0] == '.')
 		ret = ret->next;
-	return (ret);		
+	return (ret);
 }
 
 void		improve_solution(t_word *start)
@@ -37,11 +37,12 @@ void		improve_solution(t_word *start)
 			one = one->next;
 		two = get_next(one);
 		three = get_next(two);
-		if ((one && two && two_checks(one->word, two->word)) ||
-		(one && two && ss_checks(one->word, two->word)) ||
-		(one && two && three &&
+		if ((one && two && two_checks(one->word, two->word)) || (one && two &&
+		ss_checks(one->word, two->word)) || (one && two && three &&
 		three_checks(one->word, two->word, three->word)))
 		{
+			if (one->prev)
+				one = one->prev;
 			if (one->prev)
 				one = one->prev;
 			while (one->prev && one->word[0] == '.')

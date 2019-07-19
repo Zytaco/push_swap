@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "a_tools.h"
+#include <stdio.h>
 
 void	do_thing_a(char *s, t_word *start, t_tack *a, t_tack *b)
 {
@@ -45,8 +46,8 @@ int		swap_a_maybe(t_tack a, t_word *start)
 
 	l = a.length;
 	stk = a.stack;
-	low = find_lowest(stk, l);
-	big = find_biggest(stk, l);
+	low = find_lowest(stk, l, l);
+	big = find_biggest(stk, l, l);
 	if (l < 2 || (l > 2 &&
 	(stk[0] + 1 == stk[1] || stk[1] + 1 == stk[2] || stk[l - 1] + 1 == stk[0]
 	|| (stk[0] == big && stk[1] == low) || (stk[1] == big && stk[2] == low) ||
@@ -94,76 +95,5 @@ int		rotate_a_maybe(t_tack a, t_word *list)
 
 /*
 ** shuffle sort is best when there's a tail and the stack <= 4
+** for an unsorted length of L it needs to be done L / 2 to sort it.
 */
-
-void	shuffle_four(int len, t_tack *a, t_tack *b, t_word *start)
-{
-	int i;
-
-	if (len <= 1)
-		return ;
-	shuffle_swap(*a, 'a', start);
-	shuffle_swap(*b, 'b', start);
-	i = 0;
-	while (i < len - 1)
-	{
-		b_maybes(a, b, start);
-		do_thing_a("ra.", start, a, b);
-		do_thing_b("rb.", start, a, b);
-		shuffle_swap(*a, 'a', start);
-		shuffle_swap(*b, 'b', start);
-		i++;
-	}
-	while (i >= 0)
-	{
-		i--;
-		do_thing_a("rra", start, a, b);
-		do_thing_b("rrb", start, a, b);
-		shuffle_swap(*a, 'a', start);
-		shuffle_swap(*b, 'b', start);
-	}
-}
-
-void	shuffle_sort_a(int len, t_tack *a, t_tack *b, t_word *start)
-{
-	int init;
-
-	if (a->length <= 3)
-	{
-		if (a->stack[0] == 0 && !ordered_a(a->stack, a->length))
-			do_thing_a("ra.", start, a, b);
-		rotate_to_front(a, start);
-		return ;
-	}
-	if (len >= 2)
-		shuffle_swap(*a, 'a', start);
-	init = len;
-	while (len >= 3)
-	{
-		do_thing_a("ra.", start, a, b);
-		len--;
-		shuffle_swap(*a, 'a', start);
-	}
-	while (len < init)
-	{
-		do_thing_a("rra", start, a, b);
-		len++;
-		shuffle_swap(*a, 'a', start);
-	}
-}
-
-int		needs_split_a(int width, int *stk, int len)
-{
-	int i;
-	int biggest;
-
-	biggest = find_lowest(stk, len) + (width / 2) - 1;
-	i = 0;
-	while (i < width)
-	{
-		if (stk[i] > biggest)
-			return (1);
-		i++;
-	}
-	return (0);
-}
