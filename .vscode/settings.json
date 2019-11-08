@@ -1,8 +1,0 @@
-{
-	"files.associations": {
-		"checker_main.h": "c",
-		"check_and_make.h": "c",
-		"unistd.h": "c",
-		"push_swap.h": "c"
-	}
-}
