@@ -5,19 +5,17 @@
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/08 17:54:59 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/11/08 17:55:00 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/11/12 13:04:54 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/11/12 13:04:55 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void		rr(t_data *data)
+void				rr(t_data data, int bool)
 {
-	if (data->a->size <= 0 || data->b->size <= 0)
-		return ;
-	ra(data);
-	rb(data);
-	data->solution[ft_strlen(data->solution) - 6] = '\0';
-	add_operation(data, "rr\n");
+	ra(data, 0);
+	rb(data, 0);
+	if (bool)
+		add_operation(data, "rr\n");
 }

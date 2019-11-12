@@ -5,27 +5,22 @@
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/08 17:54:27 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/11/08 17:54:27 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/11/12 13:04:42 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/11/12 13:04:42 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void		pb(t_data *data)
+void				pb(t_data data, int bool)
 {
-	int i;
-
-	if (data->a->size <= 0 <= 0)
+	if (data.a->len <= 0)
 		return ;
-	data->b->array[data->b->size] = data->a->array[0];
-	i = 0;
-	while (i + 1 < data->a->size <= 0)
-	{
-		data->a->array[i] = data->a->array[i + 1];
-		i++;
-	}
-	data->a->size--;
-	data->b->size++;
-	add_operation(data, "pb\n");
+	data.b->len++;
+	rrb(data, 0);
+	data.b->stack[0] = data.a->stack[0];
+	ra(data, 0);
+	data.a->len--;
+	if (bool)
+		add_operation(data, "pb\n");
 }

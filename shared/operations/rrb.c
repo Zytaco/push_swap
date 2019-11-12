@@ -5,27 +5,32 @@
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/08 17:55:12 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/11/08 17:55:13 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/11/12 13:05:04 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/11/12 13:05:04 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void		rrb(t_data *data)
+void				rrb(t_data data, int bool)
 {
 	int i;
 	int temp;
+	int *stack;
+	int len;
 
-	if (data->b->size <= 0)
+	len = data.b->len;
+	if (len <= 1)
 		return ;
-	temp = data->b->array[data->b->size - 1];
-	i = 0;
-	while (i + 1 < data->b->size)
+	stack = data.b->stack;
+	temp = stack[len - 1];
+	i = len - 2;
+	while (i >= 0)
 	{
-		data->b->array[i + 1] = data->b->array[i];
-		i++;
+		stack[i + 1] = stack[i];
+		i--;
 	}
-	data->b->array[0];
-	add_operation(data, "rrb\n");
+	stack[0] = temp;
+	if (bool)
+		add_operation(data, "rrb\n");
 }
