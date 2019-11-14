@@ -16,14 +16,14 @@ NAME2		 =	checker
 
 CW_NAME		 =	corewar
 
-OPERATIONS	 =	pa pb ra rb rr rra rrb rrr sa sb ss
+OPERATIONS	 =	pa pb ra rb rr rra rrb rrr sa sb ss add_operation
 
-SHARED_FILES =	add_operation array_help parse_input display\
+SHARED_FILES =	array_help parse_input\
 				$(OPERATIONS:%=operations/%)
 
 SRCS_CHECK	 =	
 
-SRCS_PUSH	 =	longest_subseq main rotations solver
+SRCS_PUSH	 =	main
 
 PUSH_C		 =	$(SHARED_FILES:%=shared/%.c)\
 				$(SRCS_PUSH:%=srcs_push/%.c)

@@ -36,14 +36,14 @@ typedef struct		s_solution
 
 typedef struct		s_data
 {
-	t_array			*a;
-	t_array			*b;
-	char			*solution;
+	t_array			a;
+	t_array			b;
 	t_flags			flags;
 	t_solution		*sol;
 }					t_data;
 
-t_data				*parse_input(t_data data, int argc, char **argv);
+void				check_int_put_in_stack(t_array a, int argc, char **argv);
+int					parse_input(t_data *data, int argc, char **argv);
 void				add_operation(t_data data, char *op);
 t_array				*new_array(int len);
 void				free_t_array(t_array *a);
