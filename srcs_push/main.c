@@ -12,7 +12,33 @@
 
 #include "../includes/push_swap.h"
 
-int		main(int argc, char **argv)
+void		error_int(char *message, int x)
+{
+	ft_putendl(message);
+	ft_putnbr(x);
+	exit(0);
+}
+
+void		duplicate_check(t_array a)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < a.len - 1)
+	{
+		j = 1;
+		while (j < a.len)
+		{
+			if (a.stack[i] == a.stack[j])
+				error_int("ERROR: duplicate int", a.stack[i]);
+			j++;
+		}
+		i++;
+	}
+}
+
+int			main(int argc, char **argv)
 {
 	t_data	data;
 	t_array a;
@@ -28,10 +54,10 @@ int		main(int argc, char **argv)
 	data.a.len = size;
 	data.b.stack = malloc(sizeof(int) * size);
 	data.b.len = 0;
+	put_int_in_stack(data.a, argc, argv);
 	duplicate_check(a);
-	check_int_put_in_stack(data.a, argc, argv);
 	normalise_stack(a);
-	if (ordered(a), 'a')
+	if (ordered(a, 'a'))
 		return (1);
 	solver(data);
 }

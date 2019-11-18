@@ -25,74 +25,59 @@ static void	parse_error(char *line, char *message)
 	exit(0);
 }
 
-static int	get_stack_size(int argc, char **argv, int arg)
+static int	store_flag(t_data *data, char *arg)
+{
+	if (arg[0] == '-' && arg[1] == 'v' && arg[2] == '\0')
+		data->flags.v = 1;
+	else
+		parse_error(arg, "Bad flag\n");
+}
+
+static int	count_ints(char *arg)
 {
 	int i;
 	int size;
+	int len;
 
 	size = 0;
-	while (arg < argc)
+	i = 0;
+	while (arg[i])
 	{
-		i = 0;
-		if (argv[arg][0] == '-')
-		{
-			arg++;
-			continue ;
-		}
-		while (argv[arg][i] && !ft_isdigit(argv[arg][i]))
-			i++;
-		if (ft_isdigit(argv[arg][i]))
+		i = ft_skip_whitespace(arg + i);
+		len = 0;
+		if (arg[i] == '-')
+			len++;
+		len = ft_skipstr(arg + i + len, "1234567890");
+		if (ft_isint(arg + i, len))
 			size++;
-		while (argv[arg][i] && !ft_isdigit(argv[arg][i]))
-			i++;
-		if (argv[arg][i] == '\0')
-			arg++;
+		else
+			parse_error(arg, "ERROR: bad int");
+		i += len;
 	}
 	return (size);
 }
 
 void		put_int_in_stack(t_array a, int argc, char **argv)
 {
-	int i;
-	int pos;
 	int arg;
+	int i;
+	int len;
 
-	pos = 0;
-	arg = 0;
-	while (arg < argc && argv[arg][0] == '-')
-		arg++;
+	arg = 1;
 	while (arg < argc)
 	{
-		i = 0;
-		while (argv[arg][i] && !ft_isdigit(argv[arg][i]))
-			i++;
-		if (ft_isint(argv[arg] + i, -1))
+		if (!(argv[arg][0] == '-' && !ft_isdigit(argv[arg][1])))
 		{
-			a.stack[pos] = ft_atoi(argv[arg] + i);
-			pos++;
+			i = 0;
+			while (ft_iswhitespace(argv[arg][i]))
+				i++;
+			len = 0;
+			if (argv[arg][i] == '-')
+				len++;
+			while (ft_isdigit(argv[arg][i + len]))
+				len++;
 		}
-		else
-			parse_error(argv[arg] + i, "Bad integer");
-		while (argv[arg][i] && !ft_isdigit(argv[arg][i]))
-			i++;
-		if (argv[arg][i] == '\0')
-			arg++;
 	}
-}
-
-static int	if_flag_then_store(char *arg, t_data *data)
-{
-	if (arg[0] == '-')
-	{
-		if (ft_strequ("-h", arg) || ft_strequ("--help", arg))
-			display_help();
-		else if (ft_strequ("-v", arg))
-			data->flags.v = 1;
-		else
-			ft_error("ERROR: option not recognised");
-		return (1);
-	}
-	return (0);
 }
 
 int			parse_input(t_data *data, int argc, char **argv)
@@ -101,8 +86,14 @@ int			parse_input(t_data *data, int argc, char **argv)
 	int		size;
 
 	i = 1;
-	while (argv[i] && if_flag_then_store(argv[i], data))
+	size = 0;
+	while (i < argc)
+	{
+		if (argv[i][0] == '-' && !ft_isdigit(argv[i][1]))
+			store_flag(data, argv[i]);
+		else
+			size += count_ints(argv[i]);
 		i++;
-	size = get_stack_size(argc, argv, i);
+	}
 	return (size);
 }
