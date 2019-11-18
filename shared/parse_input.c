@@ -33,7 +33,7 @@ static int	store_flag(t_data *data, char *arg)
 		parse_error(arg, "Bad flag\n");
 }
 
-static int	count_ints(char *arg)
+static int	count_ints_store_flags(char *arg)
 {
 	int i;
 	int size;
@@ -80,7 +80,7 @@ void		put_int_in_stack(t_array a, int argc, char **argv)
 	}
 }
 
-int			parse_input(t_data *data, int argc, char **argv)
+int			count_ints_store_flags(t_data *data, int argc, char **argv)
 {
 	int		i;
 	int		size;
@@ -92,7 +92,7 @@ int			parse_input(t_data *data, int argc, char **argv)
 		if (argv[i][0] == '-' && !ft_isdigit(argv[i][1]))
 			store_flag(data, argv[i]);
 		else
-			size += count_ints(argv[i]);
+			size += count_ints_store_flags(argv[i]);
 		i++;
 	}
 	return (size);

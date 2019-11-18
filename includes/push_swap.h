@@ -55,7 +55,8 @@ int					is_ordered(t_array a, char stack);
 ** parse_input.c
 */
 void				put_int_in_stack(t_array a, int argc, char **argv);
-int					parse_input(t_data *data, int argc, char **argv);
+int					count_ints_store_flags(t_data *data, int argc,
+																char **argv);
 
 /*
 ** array_help.c

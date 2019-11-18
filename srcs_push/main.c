@@ -47,7 +47,7 @@ int			main(int argc, char **argv)
 
 	data.flags.v = 0;
 	data.sol->solution = ft_strnew(0);
-	size = parse_input(&data, argc, argv);
+	size = count_ints_store_flags(&data, argc, argv);
 	if (size >= INT32_MAX)
 		ft_error("ERROR: Too much input\n");
 	data.a.stack = malloc(sizeof(int) * size);
