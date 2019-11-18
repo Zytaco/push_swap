@@ -12,17 +12,17 @@
 
 #include "../../includes/push_swap.h"
 
-void				rrb(t_data data, int bool)
+void				rrb(t_data *data, int bool)
 {
 	int i;
 	int temp;
 	int *stack;
 	int len;
 
-	len = data.b->len;
+	len = data->b.len;
 	if (len <= 1)
 		return ;
-	stack = data.b->stack;
+	stack = data->b.stack;
 	temp = stack[len - 1];
 	i = len - 2;
 	while (i >= 0)

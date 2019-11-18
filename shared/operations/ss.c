@@ -12,7 +12,7 @@
 
 #include "../../includes/push_swap.h"
 
-void				ss(t_data data, int bool)
+void				ss(t_data *data, int bool)
 {
 	sa(data, 0);
 	sb(data, 0);

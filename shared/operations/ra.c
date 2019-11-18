@@ -12,17 +12,17 @@
 
 #include "../../includes/push_swap.h"
 
-void		ra(t_data data, int bool)
+void		ra(t_data *data, int bool)
 {
 	int i;
 	int temp;
 	int *stack;
 	int len;
 
-	len = data.a->len;
+	len = data->a.len;
 	if (len <= 1)
 		return ;
-	stack = data.a->stack;
+	stack = data->a.stack;
 	temp = stack[0];
 	i = 0;
 	while (i + 1 < len)

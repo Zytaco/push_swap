@@ -42,32 +42,46 @@ typedef struct		s_data
 	t_solution		*sol;
 }					t_data;
 
-void				check_int_put_in_stack(t_array a, int argc, char **argv);
-int					parse_input(t_data *data, int argc, char **argv);
-void				add_operation(t_data data, char *op);
-t_array				*new_array(int len);
-void				free_t_array(t_array *a);
-t_array				*get_longest_subseq(t_data data, t_array arr);
-void				rotations(t_data data, int a_rot, int b_rot, int rot_both);
-void				rev_rotations(t_data data, int a_rot, int b_rot,
-																int rot_both);
 void				display(t_data data);
 void				display_help(void);
 void				solver(t_data data);
+void				duplicate_check(t_array a);
+
+/*
+** parse_input.c
+*/
+void				put_int_in_stack(t_array a, int argc, char **argv);
+int					parse_input(t_data *data, int argc, char **argv);
+
+
+/*
+** array_help.c
+*/
+void				free_t_array(t_array *a);
+t_array				*new_array(int len);
+int					get_pos(t_array *a, int x);
+
+/*
+** normalise_stack.c
+*/
+int					get_min_pos(t_array a);
+int					get_max_pos(t_array a);
+void				normalise_stack(t_array a);
 
 /*
 ** operations.
 */
-void				pa(t_data data, int bool);
-void				pb(t_data data, int bool);
-void				ra(t_data data, int bool);
-void				rb(t_data data, int bool);
-void				rr(t_data data, int bool);
-void				rra(t_data data, int bool);
-void				rrb(t_data data, int bool);
-void				rrr(t_data data, int bool);
-void				sa(t_data data, int bool);
-void				sb(t_data data, int bool);
-void				ss(t_data data, int bool);
+void				add_operation(t_data *data, char *op);
+void				pa(t_data *data, int bool);
+void				pb(t_data *data, int bool);
+void				ra(t_data *data, int bool);
+void				rb(t_data *data, int bool);
+void				rr(t_data *data, int bool);
+void				rra(t_data *data, int bool);
+void				rrb(t_data *data, int bool);
+void				rrr(t_data *data, int bool);
+void				sa(t_data *data, int bool);
+void				sb(t_data *data, int bool);
+void				ss(t_data *data, int bool);
 
 #endif

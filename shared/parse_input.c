@@ -51,7 +51,7 @@ static int	get_stack_size(int argc, char **argv, int arg)
 	return (size);
 }
 
-void		check_int_put_in_stack(t_array a, int argc, char **argv)
+void		put_int_in_stack(t_array a, int argc, char **argv)
 {
 	int i;
 	int pos;

@@ -12,15 +12,15 @@
 
 #include "../../includes/push_swap.h"
 
-void				sa(t_data data, int bool)
+void				sa(t_data *data, int bool)
 {
 	int temp;
 
-	if (data.a->len <= 1)
+	if (data->a.len <= 1)
 		return ;
-	temp = data.a->stack[0];
-	data.a->stack[0] = data.a->stack[1];
-	data.a->stack[1] = temp;
+	temp = data->a.stack[0];
+	data->a.stack[0] = data->a.stack[1];
+	data->a.stack[1] = temp;
 	if (bool)
 		add_operation(data, "sa\n");
 }
