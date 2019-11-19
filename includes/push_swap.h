@@ -15,8 +15,15 @@
 
 # include "../c_libraries/libft/includes/libft.h"
 
-# define PART_SIZE 5
-# define M(x) ft_modulo(x, data.a->len + data.b->len)
+/*
+** longest subsequence defines
+*/
+# define IND(x) (x + subseq.offset) % arr.len
+
+# define SIZE(x) (x + arr.len - subseq.start) % arr.len
+# define SIZE_CMP_A SIZE(arr.stack[IND(j)]) < SIZE(arr.stack[IND(i)])
+# define SIZE_CMP_B SIZE(arr.stack[IND(j)]) > SIZE(arr.stack[IND(i)])
+# define SIZE_CMP stack == 'a' ? SIZE_CMP_A : SIZE_CMP_B
 
 typedef struct		s_array
 {
@@ -42,6 +49,14 @@ typedef struct		s_data
 	t_solution		*sol;
 }					t_data;
 
+typedef struct		s_subseq
+{
+	int				*steps;
+	int				*prev;
+	int				offset;
+	int				start;
+}					t_subseq;
+
 void				display(t_data data);
 void				display_help(void);
 
@@ -50,6 +65,7 @@ void				display_help(void);
 */
 void				solver(t_data data);
 int					is_ordered(t_array a, char stack);
+int					ordered(t_array a, char stack);
 
 /*
 ** parse_input.c

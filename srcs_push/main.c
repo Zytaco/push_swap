@@ -50,6 +50,8 @@ int			main(int argc, char **argv)
 	size = count_ints_store_flags(&data, argc, argv);
 	if (size >= INT32_MAX)
 		ft_error("ERROR: Too much input\n");
+	if (size <= 1)
+		exit(0);
 	data.a.stack = malloc(sizeof(int) * size);
 	data.a.len = size;
 	data.b.stack = malloc(sizeof(int) * size);
@@ -57,7 +59,7 @@ int			main(int argc, char **argv)
 	put_int_in_stack(data.a, argc, argv);
 	duplicate_check(a);
 	normalise_stack(a);
-	if (ordered(a, 'a'))
+	if (ordered(a, 'a') && a.stack[0] == 0)
 		return (1);
 	solver(data);
 }
