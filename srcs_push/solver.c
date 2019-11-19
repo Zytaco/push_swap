@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-int			ordered(t_array a, char stack)
+int		ordered(t_array a, char stack)
 {
 	int i;
 

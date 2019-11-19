@@ -82,7 +82,7 @@ t_array		*find_longest_subseq(t_array arr, char stack)
 		temp = make_longest_subseq(arr, subseq);
 		if (!ret || temp->len > ret->len)
 		{
-			if(ret)
+			if (ret)
 				free(ret);
 			ret = temp;
 		}
