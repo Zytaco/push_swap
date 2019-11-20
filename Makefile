@@ -18,12 +18,12 @@ CW_NAME		 =	corewar
 
 OPERATIONS	 =	pa pb ra rb rr rra rrb rrr sa sb ss add_operation
 
-SHARED_FILES =	array_help parse_input\
+SHARED_FILES =	array_help display normalise_stack parse_input\
 				$(OPERATIONS:%=operations/%)
 
-SRCS_CHECK	 =	
+SRCS_CHECK	 =	main
 
-SRCS_PUSH	 =	main
+SRCS_PUSH	 =	longest_subseq main solver
 
 PUSH_C		 =	$(SHARED_FILES:%=shared/%.c)\
 				$(SRCS_PUSH:%=srcs_push/%.c)
@@ -35,38 +35,41 @@ CHECK_C		 =	$(SHARED_FILES:%=shared/%.c)\
 
 CHECK_O		 =	$(CHECK_C:.c=.o)
 
-LIBFT		 =	c_libraries/libft/libft.a
+LIBFT		 =	./c_libraries/libft/libft.a
 LIBDIR		 =	./c_libraries/libft/
 
 FLAGS		 =	-g -Wall -Wextra -Werror
 
-all : $(NAME1) $(NAME2)
+all			:$(NAME1) $(NAME2)
 
 $(NAME1)	:$(PUSH_O) $(LIBFT)
-				@ gcc $(FLAGS) -o $@ $(PUSH_O) -L . $(LIBFT)
+				@ gcc $(FLAGS) -o $@ $(PUSH_O) -L $(LIBDIR) -lft
 				@ echo "\033[32mPUSH_SWAP READY\033[0m"
 
 $(NAME2)	:$(CHECK_O) $(LIBFT)
-				@ gcc $(FLAGS) -o $@ $(CHECK_O) -L . $(LIBFT)
+				@ gcc $(FLAGS) -o $@ $(CHECK_O) -L $(LIBDIR) -lft
 				@ echo "\033[32mCHECKER READY\033[0m"
 
 $(LIBFT)	:
 	 			@ make -C $(LIBDIR)
 
-%.o			:	%.c includes/push_swap.h
-					@ gcc $(FLAGS) $< -c -o $@
+%.o			:%.c includes/push_swap.h
+				@ gcc $(FLAGS) $< -c -o $@
 
 clean		:
-				@ make clean -C $(LIBDIR) \
-				@ rm -f $(PUSH_O) \
-				@ rm -f $(CHECK_O)
+				@ make clean -C $(LIBDIR); \
+				rm -f $(SHARED_FILES:%=shared/%.o) \
+				$(SRCS_PUSH:%=srcs_push/%.o) \
+				$(SRCS_CHECK:%=srcs_check/%.o) \
+				$(NAME1) $(NAME2)
 
 fclean		:
-				make fclean -C $(LIBDIR); \
-				@ rm -f $(PUSH_O); \
-				@ rm -f $(CHECK_O);
-
-
+				@ make clean -C $(LIBDIR); \
+				rm -f $(SHARED_FILES:%=shared/%.o) \
+				$(SRCS_PUSH:%=srcs_push/%.o) \
+				$(SRCS_CHECK:%=srcs_check/%.o) \
+				$(NAME1) $(NAME2)
+				
 re			:fclean all
 
-.PHONY: clean fclean all re
+.PHONY		:clean fclean all re

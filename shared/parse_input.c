@@ -25,7 +25,7 @@ static void	parse_error(char *line, char *message)
 	exit(0);
 }
 
-static int	store_flag(t_data *data, char *arg)
+static void	store_flag(t_data *data, char *arg)
 {
 	if (arg[0] == '-' && arg[1] == 'v' && arg[2] == '\0')
 		data->flags.v = 1;
@@ -48,7 +48,9 @@ static int	count_ints(char *arg)
 		if (arg[i] == '-')
 			len++;
 		len = ft_skipstr(arg + i + len, "1234567890");
-		if (ft_isint(arg + i, len))
+		if (len == 0)
+			parse_error(arg, "ERROR: bad arg");
+		else if (ft_isint(arg + i, len))
 			size++;
 		else
 			parse_error(arg, "ERROR: bad int");
@@ -61,22 +63,26 @@ void		put_int_in_stack(t_array a, int argc, char **argv)
 {
 	int arg;
 	int i;
-	int len;
+	int pos;
 
+	pos = 0;
 	arg = 1;
 	while (arg < argc)
 	{
 		if (!(argv[arg][0] == '-' && !ft_isdigit(argv[arg][1])))
 		{
 			i = 0;
-			while (ft_iswhitespace(argv[arg][i]))
-				i++;
-			len = 0;
-			if (argv[arg][i] == '-')
-				len++;
-			while (ft_isdigit(argv[arg][i + len]))
-				len++;
+			while (argv[arg][i])
+			{
+				i = ft_skip_whitespace(argv[arg] + i);
+				a.stack[pos] = ft_atoi(argv[arg] + i);
+				pos++;
+				if (argv[arg][i] == '-')
+					i++;
+				i = ft_skipstr(argv[arg] + i, "1234567890");
+			}
 		}
+		arg++;
 	}
 }
 

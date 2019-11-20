@@ -19,7 +19,7 @@
 ** Prev stores the index of the previous int in an increasing subseq.
 */
 
-t_array		*make_longest_subseq(t_array arr, t_subseq subseq)
+static t_array	*make_longest_subseq(t_array arr, t_subseq subseq)
 {
 	int		pos;
 	int		i;
@@ -42,7 +42,7 @@ t_array		*make_longest_subseq(t_array arr, t_subseq subseq)
 	return (ret);
 }
 
-void		analyze_stack(t_array arr, t_subseq subseq, char stack)
+static void		analyze_stack(t_array arr, t_subseq subseq, char stack)
 {
 	int i;
 	int j;
@@ -65,7 +65,7 @@ void		analyze_stack(t_array arr, t_subseq subseq, char stack)
 	}
 }
 
-t_array		*find_longest_subseq(t_array arr, char stack)
+t_array			*find_longest_subseq(t_array arr, char stack)
 {
 	t_subseq	subseq;
 	t_array		*temp;

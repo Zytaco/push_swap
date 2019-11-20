@@ -52,14 +52,6 @@ void	solver(t_data data)
 {
 	t_array *longest_subseq;
 
-	longest_subseq = get_longest_subseq(&data, &(data.a));
-	make_a_ordered();
-	free_t_array(longest_subseq);
-	while (data.b.len > 0)
-	{
-		longest_subseq = get_longest_subseq(&data, &(data.b));
-		allign_stacks(&data, longest_subseq);
-		merge_stacks(&data, longest_subseq);
-		free_t_array(longest_subseq);
-	}
+	longest_subseq = find_longest_subseq(data.a, 'a');
+	display_array(*longest_subseq, "longest subseq");
 }

@@ -41,8 +41,6 @@ void		duplicate_check(t_array a)
 int			main(int argc, char **argv)
 {
 	t_data	data;
-	t_array a;
-	t_array b;
 	int		size;
 
 	data.flags.v = 0;
@@ -57,9 +55,9 @@ int			main(int argc, char **argv)
 	data.b.stack = malloc(sizeof(int) * size);
 	data.b.len = 0;
 	put_int_in_stack(data.a, argc, argv);
-	duplicate_check(a);
-	normalise_stack(a);
-	if (ordered(a, 'a') && a.stack[0] == 0)
+	duplicate_check(data.a);
+	normalise_stack(data.a);
+	if (ordered(data.a, 'a') && data.a.stack[0] == 0)
 		return (1);
 	solver(data);
 }

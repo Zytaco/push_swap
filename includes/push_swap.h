@@ -57,8 +57,10 @@ typedef struct		s_subseq
 	int				start;
 }					t_subseq;
 
-void				display(t_data data);
-void				display_help(void);
+/*
+** display.c
+*/
+void				display_array(t_array a, char *name);
 
 /*
 ** solver.c
@@ -87,6 +89,11 @@ int					get_pos(t_array *a, int x);
 int					get_min_pos(t_array a);
 int					get_max_pos(t_array a);
 void				normalise_stack(t_array a);
+
+/*
+** longest_subsequence.c
+*/
+t_array				*find_longest_subseq(t_array arr, char stack);
 
 /*
 ** operations.
