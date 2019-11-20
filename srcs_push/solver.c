@@ -53,5 +53,4 @@ void	solver(t_data data)
 	t_array *longest_subseq;
 
 	longest_subseq = find_longest_subseq(data.a, 'a');
-	display_array(*longest_subseq, "longest subseq");
 }

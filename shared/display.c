@@ -47,4 +47,5 @@ void	display_array(t_array a, char *name)
 		i++;
 	}
 	ft_putchar('\n');
+	ft_putchar('\n');
 }

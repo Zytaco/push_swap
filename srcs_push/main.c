@@ -60,7 +60,5 @@ int			main(int argc, char **argv)
 	put_int_in_stack(data.a, argc, argv);
 	duplicate_check(data.a);
 	normalise_stack(data.a);
-	display_array(data.a, "a");
-	if (ordered(data.a, 'a') && data.a.stack[0] == 0)
-		return (1);
+	solver(data);
 }

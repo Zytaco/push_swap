@@ -19,11 +19,8 @@
 ** longest subsequence defines
 */
 # define IND(x) (x + subseq.offset) % arr.len
-
+# define REV_IND(x) (x + arr.len - subseq.offset) % arr.len
 # define SIZE(x) (x + arr.len - subseq.start) % arr.len
-# define SIZE_CMP_A SIZE(arr.stack[IND(j)]) < SIZE(arr.stack[IND(i)])
-# define SIZE_CMP_B SIZE(arr.stack[IND(j)]) > SIZE(arr.stack[IND(i)])
-# define SIZE_CMP stack == 'a' ? SIZE_CMP_A : SIZE_CMP_B
 
 typedef struct		s_array
 {

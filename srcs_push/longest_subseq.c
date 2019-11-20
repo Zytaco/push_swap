@@ -24,20 +24,18 @@ static t_array	*make_longest_subseq(t_array arr, t_subseq subseq)
 	int		pos;
 	int		i;
 	t_array	*ret;
+	t_array steps;
 
-	i = 0;
-	pos = arr.len - 1;
-	while (i < arr.len)
+	steps.stack = subseq.steps;
+	steps.len = arr.len;
+	pos = get_max_pos(steps);
+	ret = new_array(subseq.steps[pos] + 1);
+	i = subseq.steps[pos];
+	while (i >= 0)
 	{
-		if (subseq.steps[IND(i)] > subseq.steps[IND(pos)])
-			pos = i;
-		i++;
-	}
-	ret = new_array(subseq.steps[IND(pos)] + 1);
-	while (pos >= 0)
-	{
-		ret->stack[pos] = arr.stack[IND(pos)];
-		pos = subseq.prev[IND(pos)];
+		ret->stack[i] = arr.stack[pos];
+		i--;
+		pos = subseq.prev[pos];
 	}
 	return (ret);
 }
@@ -50,16 +48,20 @@ static void		analyze_stack(t_array arr, t_subseq subseq, char stack)
 	i = 0;
 	while (i < arr.len)
 	{
-		subseq.steps[IND(i)] = 0;
-		j = i - 1;
-		while (j >= 0)
+		subseq.prev[i] = -1;
+		subseq.steps[i] = 0;
+		j = 0;
+		while (j < i)
 		{
-			if (SIZE_CMP && subseq.steps[IND(j)] + 1 > subseq.steps[IND(i)])
+			if (subseq.steps[j] + 1 > subseq.steps[i] &&
+			((stack == 'a' && SIZE(arr.stack[IND(j)]) < SIZE(arr.stack[IND(i)]))
+			||
+			(stack == 'b' && SIZE(arr.stack[IND(j)]) > SIZE(arr.stack[IND(i)]))))
 			{
-				subseq.steps[IND(i)] = subseq.steps[IND(j)] + 1;
-				subseq.prev[IND(i)] = j;
+				subseq.steps[i] = subseq.steps[j] + 1;
+				subseq.prev[i] = j;
 			}
-			j--;
+			j++;
 		}
 		i++;
 	}
@@ -70,16 +72,35 @@ t_array			*find_longest_subseq(t_array arr, char stack)
 	t_subseq	subseq;
 	t_array		*temp;
 	t_array		*ret;
+	t_array		dummy;
 
-	subseq.offset = 0;
 	ret = NULL;
 	subseq.steps = malloc(sizeof(int) * arr.len);
 	subseq.prev = malloc(sizeof(int) * arr.len);
-	subseq.prev[0] = -1;
+	subseq.offset = 0;
 	while (subseq.offset < arr.len)
 	{
+		subseq.start = arr.stack[subseq.offset];
 		analyze_stack(arr, subseq, stack);
+
+		dummy.stack = subseq.steps;
+		dummy.len = arr.len;
+		display_array(dummy, "Steps");
+
+		dummy.stack = subseq.prev;
+		dummy.len = arr.len;
+		display_array(dummy, "Prev");
+
+
 		temp = make_longest_subseq(arr, subseq);
+
+
+		dummy.stack = temp->stack;
+		dummy.len = temp->len;
+		display_array(dummy, "Subseq");
+		ft_putstr("\n\n");
+
+
 		if (!ret || temp->len > ret->len)
 		{
 			if (ret)

@@ -43,7 +43,7 @@ static int	count_ints(char *arg)
 	i = 0;
 	while (arg[i])
 	{
-		i = ft_skip_whitespace(arg + i);
+		i += ft_skip_whitespace(arg + i);
 		len = 0;
 		if (arg[i] == '-')
 			len++;
@@ -74,12 +74,12 @@ void		put_int_in_stack(t_array a, int argc, char **argv)
 			i = 0;
 			while (argv[arg][i])
 			{
-				i = ft_skip_whitespace(argv[arg] + i);
+				i += ft_skip_whitespace(argv[arg] + i);
 				a.stack[pos] = ft_atoi(argv[arg] + i);
 				pos++;
 				if (argv[arg][i] == '-')
 					i++;
-				i = ft_skipstr(argv[arg] + i, "1234567890");
+				i += ft_skipstr(argv[arg] + i, "1234567890");
 			}
 		}
 		arg++;
