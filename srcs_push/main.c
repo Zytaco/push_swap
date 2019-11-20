@@ -16,6 +16,7 @@ void		error_int(char *message, int x)
 {
 	ft_putendl(message);
 	ft_putnbr(x);
+	ft_putchar('\n');
 	exit(0);
 }
 
@@ -24,11 +25,11 @@ void		duplicate_check(t_array a)
 	int i;
 	int j;
 
-	i = 0;
-	while (i < a.len - 1)
+	i = 1;
+	while (i < a.len)
 	{
-		j = 1;
-		while (j < a.len)
+		j = 0;
+		while (j < i)
 		{
 			if (a.stack[i] == a.stack[j])
 				error_int("ERROR: duplicate int", a.stack[i]);
@@ -40,10 +41,12 @@ void		duplicate_check(t_array a)
 
 int			main(int argc, char **argv)
 {
-	t_data	data;
-	int		size;
+	t_data		data;
+	t_solution	solution;
+	int			size;
 
 	data.flags.v = 0;
+	data.sol = &solution;
 	data.sol->solution = ft_strnew(0);
 	size = count_ints_store_flags(&data, argc, argv);
 	if (size >= INT32_MAX)
@@ -57,7 +60,7 @@ int			main(int argc, char **argv)
 	put_int_in_stack(data.a, argc, argv);
 	duplicate_check(data.a);
 	normalise_stack(data.a);
+	display_array(data.a, "a");
 	if (ordered(data.a, 'a') && data.a.stack[0] == 0)
 		return (1);
-	solver(data);
 }

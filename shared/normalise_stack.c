@@ -21,7 +21,7 @@ int		get_min_pos(t_array a)
 	i = 1;
 	while (i < a.len)
 	{
-		if (a.stack[i] > a.stack[min_pos])
+		if (a.stack[i] < a.stack[min_pos])
 			min_pos = i;
 		i++;
 	}
@@ -60,6 +60,11 @@ void	normalise_stack(t_array a)
 		a.stack[min_pos] = INT32_MAX;
 		min++;
 	}
-	free(a.stack);
-	a.stack = new_stack;
+	min = 0;
+	while (min < a.len)
+	{
+		a.stack[min] = new_stack[min];
+		min++;
+	}
+	free(new_stack);
 }

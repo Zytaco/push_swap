@@ -18,7 +18,10 @@ void	diplay_seperator(int len)
 
 	i = 0;
 	while (i < len)
+	{
 		ft_putchar('-');
+		i++;
+	}
 	ft_putchar('\n');
 }
 
@@ -41,6 +44,7 @@ void	display_array(t_array a, char *name)
 	{
 		ft_putchar(' ');
 		ft_putnbr(a.stack[i]);
+		i++;
 	}
 	ft_putchar('\n');
 }
