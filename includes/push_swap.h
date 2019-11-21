@@ -22,6 +22,18 @@
 # define REV_IND(x) (x + arr.len - subseq.offset) % arr.len
 # define SIZE(x) (x + arr.len - subseq.start) % arr.len
 
+/*
+** merge/split defines
+*/
+# define STACK (_stack == 'a' ? data->a : data->b)
+# define OTHER_STACK (_stack == 'b' ? data->a : data->b)
+
+# define PUSH (_stack == 'a' ? pb(data, 1) : pa(data, 1))
+# define OTHER_PUSH (_stack == 'b' ? pb(data, 1) : pa(data, 1))
+
+# define ROTATE (_stack == 'a' ? ra(data, 1) : rb(data, 1))
+# define OTHER_ROTATE (_stack == 'b' ? ra(data, 1) : rb(data, 1))
+
 typedef struct		s_array
 {
 	int				*stack;
@@ -78,7 +90,7 @@ int					count_ints_store_flags(t_data *data, int argc,
 */
 void				free_t_array(t_array *a);
 t_array				*new_array(int len);
-int					get_pos(t_array *a, int x);
+int					get_pos(t_array a, int x);
 
 /*
 ** normalise_stack.c

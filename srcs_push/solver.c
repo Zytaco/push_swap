@@ -48,9 +48,51 @@ int		is_ordered(t_array a, char stack)
 	return (1);
 }
 
+void	split(t_array dump, t_data *data, char _stack)
+{
+	int pos;
+	int len;
+
+	len = dump.len;
+	while (len > 0)
+	{
+		pos = get_pos(dump, STACK.stack[0]);
+		if (pos == -1)
+		{
+			PUSH;
+			dump.stack[pos] = INT32_MIN;
+			len--;
+		}
+		else
+			ROTATE;
+	}
+}
+
+void	allign(t_array dump, t_data *data, char _stack)
+{
+	int first_pos;
+
+	while (get_pos(dump, STACK.stack[0]) == -1)
+		ROTATE;
+		
+}
+
+void	merge(t_array dump, t_data *data, char _stack)
+{
+	allign(dump, data, _stack);
+}
+
 void	solver(t_data data)
 {
 	t_array *longest_subseq;
 
 	longest_subseq = find_longest_subseq(data.a, 'a');
+	split(*longest_subseq, &data, 'a');
+	free(longest_subseq);
+	while (data.b.len > 0)
+	{
+		longest_subseq = find_longest_subseq(data.b, 'b');
+		merge(*longest_subseq, &data, 'b');
+		free(longest_subseq);
+	}
 }

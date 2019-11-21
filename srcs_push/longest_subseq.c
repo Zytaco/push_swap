@@ -40,7 +40,7 @@ static t_array	*make_longest_subseq(t_array arr, t_subseq subseq)
 	return (ret);
 }
 
-static void		analyze_stack(t_array arr, t_subseq subseq, char stack)
+static void		analyze_stack(t_array arr, t_subseq subseq, char _stack)
 {
 	int i;
 	int j;
@@ -54,9 +54,9 @@ static void		analyze_stack(t_array arr, t_subseq subseq, char stack)
 		while (j < i)
 		{
 			if (subseq.steps[j] + 1 > subseq.steps[i] &&
-			((stack == 'a' && SIZE(arr.stack[IND(j)]) < SIZE(arr.stack[IND(i)]))
+			((_stack == 'a' && SIZE(arr.stack[IND(j)]) < SIZE(arr.stack[IND(i)]))
 			||
-			(stack == 'b' && SIZE(arr.stack[IND(j)]) > SIZE(arr.stack[IND(i)]))))
+			(_stack == 'b' && SIZE(arr.stack[IND(j)]) > SIZE(arr.stack[IND(i)]))))
 			{
 				subseq.steps[i] = subseq.steps[j] + 1;
 				subseq.prev[i] = j;
@@ -67,7 +67,7 @@ static void		analyze_stack(t_array arr, t_subseq subseq, char stack)
 	}
 }
 
-t_array			*find_longest_subseq(t_array arr, char stack)
+t_array			*find_longest_subseq(t_array arr, char _stack)
 {
 	t_subseq	subseq;
 	t_array		*temp;
@@ -80,7 +80,7 @@ t_array			*find_longest_subseq(t_array arr, char stack)
 	while (subseq.offset < arr.len)
 	{
 		subseq.start = arr.stack[subseq.offset];
-		analyze_stack(arr, subseq, stack);
+		analyze_stack(arr, subseq, _stack);
 		temp = make_longest_subseq(arr, subseq);
 		if (!ret || temp->len > ret->len)
 		{

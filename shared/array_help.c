@@ -36,25 +36,19 @@ t_array	*new_array(int len)
 	return (new);
 }
 
-int		get_pos(t_array *a, int x)
+int		get_pos(t_array a, int x)
 {
 	int i;
-	int *stack;
-	int len;
 
-	if (!a)
+	if (!a.stack)
 		ft_error("ERROR: get_pos() called without array");
-	stack = a->stack;
-	len = a->len;
 	i = 0;
-	while (i < len / 2)
+	while (i < a.len)
 	{
-		if (stack[i] == x)
+		if (a.stack[i] == x)
 			return (i);
-		if (stack[-i] == x)
-			return (-i);
 		i++;
 	}
 	ft_error("ERROR: get_pos() called but int not in array.");
-	return (0);
+	return (-1);
 }
