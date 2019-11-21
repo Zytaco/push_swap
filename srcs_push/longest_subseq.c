@@ -33,7 +33,7 @@ static t_array	*make_longest_subseq(t_array arr, t_subseq subseq)
 	i = subseq.steps[pos];
 	while (i >= 0)
 	{
-		ret->stack[i] = arr.stack[pos];
+		ret->stack[i] = arr.stack[IND(pos)];
 		i--;
 		pos = subseq.prev[pos];
 	}
@@ -72,7 +72,6 @@ t_array			*find_longest_subseq(t_array arr, char stack)
 	t_subseq	subseq;
 	t_array		*temp;
 	t_array		*ret;
-	t_array		dummy;
 
 	ret = NULL;
 	subseq.steps = malloc(sizeof(int) * arr.len);
@@ -82,25 +81,7 @@ t_array			*find_longest_subseq(t_array arr, char stack)
 	{
 		subseq.start = arr.stack[subseq.offset];
 		analyze_stack(arr, subseq, stack);
-
-		dummy.stack = subseq.steps;
-		dummy.len = arr.len;
-		display_array(dummy, "Steps");
-
-		dummy.stack = subseq.prev;
-		dummy.len = arr.len;
-		display_array(dummy, "Prev");
-
-
 		temp = make_longest_subseq(arr, subseq);
-
-
-		dummy.stack = temp->stack;
-		dummy.len = temp->len;
-		display_array(dummy, "Subseq");
-		ft_putstr("\n\n");
-
-
 		if (!ret || temp->len > ret->len)
 		{
 			if (ret)
