@@ -25,14 +25,17 @@
 /*
 ** merge/split defines
 */
-# define STACK (_stack == 'a' ? data->a : data->b)
-# define OTHER_STACK (_stack == 'b' ? data->a : data->b)
-
+# define ARRAY (_stack == 'a' ? data->a : data->b)
+# define STACK (_stack == 'a' ? data->a.stack : data->b.stack)
+# define LEN (_stack == 'a' ? data->a.len : data->b.len)
 # define PUSH (_stack == 'a' ? pb(data, 1) : pa(data, 1))
-# define OTHER_PUSH (_stack == 'b' ? pb(data, 1) : pa(data, 1))
-
 # define ROTATE (_stack == 'a' ? ra(data, 1) : rb(data, 1))
-# define OTHER_ROTATE (_stack == 'b' ? ra(data, 1) : rb(data, 1))
+
+# define O_ARRAY (_stack == 'b' ? data->a : data->b)
+# define O_STACK (_stack == 'b' ? data->a.stack : data->b.stack)
+# define O_LEN (_stack == 'b' ? data->a.len : data->b.len)
+# define O_PUSH (_stack == 'b' ? pb(data, 1) : pa(data, 1))
+# define O_ROTATE (_stack == 'b' ? ra(data, 1) : rb(data, 1))
 
 typedef struct		s_array
 {
@@ -70,6 +73,7 @@ typedef struct		s_subseq
 ** display.c
 */
 void				display_array(t_array a, char *name);
+void				display_solution(char *solution);
 
 /*
 ** solver.c

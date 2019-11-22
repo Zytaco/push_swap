@@ -49,6 +49,5 @@ int		get_pos(t_array a, int x)
 			return (i);
 		i++;
 	}
-	ft_error("ERROR: get_pos() called but int not in array.");
 	return (-1);
 }

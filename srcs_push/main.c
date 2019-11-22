@@ -61,4 +61,5 @@ int			main(int argc, char **argv)
 	duplicate_check(data.a);
 	normalise_stack(data.a);
 	solver(data);
+	display_solution(data.sol->solution);
 }

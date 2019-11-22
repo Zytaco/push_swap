@@ -12,6 +12,12 @@
 
 #include "../includes/push_swap.h"
 
+void	display_solution(char *solution)
+{
+	ft_putstr(solution);
+	free(solution);
+}
+
 void	diplay_seperator(int len)
 {
 	int i;

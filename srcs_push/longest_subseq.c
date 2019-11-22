@@ -29,7 +29,8 @@ static t_array	*make_longest_subseq(t_array arr, t_subseq subseq)
 	steps.stack = subseq.steps;
 	steps.len = arr.len;
 	pos = get_max_pos(steps);
-	ret = new_array(subseq.steps[pos] + 1);
+	ret = new_array(arr.len);
+	ret->len = subseq.steps[pos] + 1;
 	i = subseq.steps[pos];
 	while (i >= 0)
 	{
