@@ -59,7 +59,7 @@ static int	count_ints(char *arg)
 	return (size);
 }
 
-void		put_int_in_stack(t_array a, int argc, char **argv)
+void		put_int_instck(t_array a, int argc, char **argv)
 {
 	int arg;
 	int i;

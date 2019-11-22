@@ -57,9 +57,9 @@ int			main(int argc, char **argv)
 	data.a.len = size;
 	data.b.stack = malloc(sizeof(int) * size);
 	data.b.len = 0;
-	put_int_in_stack(data.a, argc, argv);
+	put_int_instck(data.a, argc, argv);
 	duplicate_check(data.a);
-	normalise_stack(data.a);
+	normalisestck(data.a);
 	solver(data);
 	display_solution(data.sol->solution);
 }

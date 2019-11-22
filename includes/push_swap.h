@@ -25,17 +25,17 @@
 /*
 ** merge/split defines
 */
-# define ARRAY (_stack == 'a' ? data->a : data->b)
-# define STACK (_stack == 'a' ? data->a.stack : data->b.stack)
-# define LEN (_stack == 'a' ? data->a.len : data->b.len)
-# define PUSH (_stack == 'a' ? pb(data, 1) : pa(data, 1))
-# define ROTATE (_stack == 'a' ? ra(data, 1) : rb(data, 1))
+# define ARRAY (stck == 'a' ? data->a : data->b)
+# define STACK (stck == 'a' ? data->a.stack : data->b.stack)
+# define LEN (stck == 'a' ? data->a.len : data->b.len)
+# define PUSH (stck == 'a' ? pb(data, 1) : pa(data, 1))
+# define ROTATE (stck == 'a' ? ra(data, 1) : rb(data, 1))
 
-# define O_ARRAY (_stack == 'b' ? data->a : data->b)
-# define O_STACK (_stack == 'b' ? data->a.stack : data->b.stack)
-# define O_LEN (_stack == 'b' ? data->a.len : data->b.len)
-# define O_PUSH (_stack == 'b' ? pb(data, 1) : pa(data, 1))
-# define O_ROTATE (_stack == 'b' ? ra(data, 1) : rb(data, 1))
+# define O_ARRAY (stck == 'b' ? data->a : data->b)
+# define O_STACK (stck == 'b' ? data->a.stack : data->b.stack)
+# define O_LEN (stck == 'b' ? data->a.len : data->b.len)
+# define O_PUSH (stck == 'b' ? pb(data, 1) : pa(data, 1))
+# define O_ROTATE (stck == 'b' ? ra(data, 1) : rb(data, 1))
 
 typedef struct		s_array
 {
@@ -76,6 +76,12 @@ void				display_array(t_array a, char *name);
 void				display_solution(char *solution);
 
 /*
+** merge_split
+*/
+void				split(t_array dump, t_data *data, char stck);
+void				merge(t_array dump, t_data *data, char stck);
+
+/*
 ** solver.c
 */
 void				solver(t_data data);
@@ -85,7 +91,7 @@ int					ordered(t_array a, char stack);
 /*
 ** parse_input.c
 */
-void				put_int_in_stack(t_array a, int argc, char **argv);
+void				put_int_instck(t_array a, int argc, char **argv);
 int					count_ints_store_flags(t_data *data, int argc,
 																char **argv);
 
@@ -97,11 +103,11 @@ t_array				*new_array(int len);
 int					get_pos(t_array a, int x);
 
 /*
-** normalise_stack.c
+** normalisestck.c
 */
 int					get_min_pos(t_array a);
 int					get_max_pos(t_array a);
-void				normalise_stack(t_array a);
+void				normalisestck(t_array a);
 
 /*
 ** longest_subsequence.c

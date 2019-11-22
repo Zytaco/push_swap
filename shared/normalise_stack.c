@@ -44,27 +44,27 @@ int		get_max_pos(t_array a)
 	return (max_pos);
 }
 
-void	normalise_stack(t_array a)
+void	normalisestck(t_array a)
 {
-	int *new_stack;
+	int *newstck;
 	int min;
 	int min_pos;
 
-	new_stack = malloc(sizeof(int) * a.len);
-	new_stack[get_max_pos(a)] = a.len - 1;
+	newstck = malloc(sizeof(int) * a.len);
+	newstck[get_max_pos(a)] = a.len - 1;
 	min = 0;
 	while (min < a.len - 1)
 	{
 		min_pos = get_min_pos(a);
-		new_stack[min_pos] = min;
+		newstck[min_pos] = min;
 		a.stack[min_pos] = INT32_MAX;
 		min++;
 	}
 	min = 0;
 	while (min < a.len)
 	{
-		a.stack[min] = new_stack[min];
+		a.stack[min] = newstck[min];
 		min++;
 	}
-	free(new_stack);
+	free(newstck);
 }

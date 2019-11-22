@@ -23,7 +23,7 @@ SHARED_FILES =	array_help display normalise_stack parse_input\
 
 SRCS_CHECK	 =	main
 
-SRCS_PUSH	 =	longest_subseq main solver
+SRCS_PUSH	 =	longest_subseq main merge_split solver
 
 PUSH_C		 =	$(SHARED_FILES:%=shared/%.c)\
 				$(SRCS_PUSH:%=srcs_push/%.c)

@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-void	split(t_array dump, t_data *data, char _stack)
+void	split(t_array dump, t_data *data, char stck)
 {
 	int pos;
 	int len;
@@ -31,7 +31,7 @@ void	split(t_array dump, t_data *data, char _stack)
 	}
 }
 
-void	merge(t_array dump, t_data *data, char _stack)
+void	merge(t_array dump, t_data *data, char stck)
 {
 	int len;
 
