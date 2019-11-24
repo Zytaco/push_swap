@@ -30,12 +30,21 @@
 # define LEN (stck == 'a' ? data->a.len : data->b.len)
 # define PUSH (stck == 'a' ? pb(data, 1) : pa(data, 1))
 # define ROTATE (stck == 'a' ? ra(data, 1) : rb(data, 1))
+# define ELE(x) STACK[(x + LEN) % LEN]
 
 # define O_ARRAY (stck == 'b' ? data->a : data->b)
 # define O_STACK (stck == 'b' ? data->a.stack : data->b.stack)
 # define O_LEN (stck == 'b' ? data->a.len : data->b.len)
 # define O_PUSH (stck == 'b' ? pb(data, 1) : pa(data, 1))
 # define O_ROTATE (stck == 'b' ? ra(data, 1) : rb(data, 1))
+# define O_ELE(x) O_STACK[(x + O_LEN) % O_LEN]
+
+/*
+** swap defines
+*/
+# define S_STACK (subseq->stack)
+# define S_LEN (subseq->len)
+# define S_ELE(x) (subseq->stack[(x) % subseq->len])
 
 typedef struct		s_array
 {
@@ -78,7 +87,7 @@ void				display_solution(char *solution);
 /*
 ** merge_split
 */
-void				split(t_array dump, t_data *data, char stck);
+void				split(t_array *dump, t_data *data, char stck);
 void				merge(t_array dump, t_data *data, char stck);
 
 /*

@@ -1,0 +1,17 @@
+
+Object:
+{
+	char		*instructions;
+	int			instr_count;
+	t_array		a;
+	t_array		b;
+	int			array_score;
+	int			weight;
+	t_object	(*children)[11];
+}
+instrucitons will be a string of all the instructions required to reach this state.
+Intr_count will just keep track of how many instrucitons are in that string.
+Array a and b make up the state.
+Array_score Will assign a score based on the state and how far that state is estimated to be from being finished.
+Score is the sum of instr_count and array_score and determines when this state will be examined.
+Children stores links to descendant objects.
