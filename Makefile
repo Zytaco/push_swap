@@ -14,8 +14,6 @@ NAME1		 =	push_swap
 
 NAME2		 =	checker
 
-CW_NAME		 =	corewar
-
 OPERATIONS	 =	pa pb ra rb rr rra rrb rrr sa sb ss add_operation
 
 SHARED_FILES =	array_help display normalise_stack parse_input\
@@ -23,7 +21,10 @@ SHARED_FILES =	array_help display normalise_stack parse_input\
 
 SRCS_CHECK	 =	main
 
-SRCS_PUSH	 =	longest_subseq main merge_split solver
+ALT_OPERATIONS	 =	pa pb ra rb rr rra rrb rrr sa sb ss
+
+SRCS_PUSH	 =	get_state_score main queue solver\
+				$(ALT_OPERATIONS:%=alt_operations/alt_%)
 
 PUSH_C		 =	$(SHARED_FILES:%=shared/%.c)\
 				$(SRCS_PUSH:%=srcs_push/%.c)
@@ -60,8 +61,8 @@ clean		:
 				@ make clean -C $(LIBDIR); \
 				rm -f $(SHARED_FILES:%=shared/%.o) \
 				$(SRCS_PUSH:%=srcs_push/%.o) \
-				$(SRCS_CHECK:%=srcs_check/%.o) \
-				$(NAME1) $(NAME2)
+				$(SRCS_CHECK:%=srcs_check/%.o)
+				@ echo "\033[33mCLEANED\033[0m"
 
 fclean		:
 				@ make clean -C $(LIBDIR); \
@@ -69,6 +70,7 @@ fclean		:
 				$(SRCS_PUSH:%=srcs_push/%.o) \
 				$(SRCS_CHECK:%=srcs_check/%.o) \
 				$(NAME1) $(NAME2)
+				@ echo "\033[91mFULL CLEANED\033[0m"
 				
 re			:fclean all
 

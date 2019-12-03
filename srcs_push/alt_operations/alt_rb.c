@@ -12,25 +12,30 @@
 
 #include "../../includes/push_swap.h"
 
-void		rb(t_data *data, int bool)
+t_node				*alt_rb(t_node node)
 {
-	int i;
-	int temp;
-	int *stack;
-	int len;
+	t_array *new_a;
+	t_array *new_b;
+	int		i;
 
-	len = data->b->len;
-	if (len <= 1)
-		return ;
-	stack = data->b->stack;
-	temp = stack[0];
+	if (node.b->len <= 1)
+		return (NULL);
+	new_a = new_array(node.a->len);
+	new_b = new_array(node.b->len);
 	i = 0;
-	while (i + 1 < len)
+	while (i < new_a->len)
 	{
-		stack[i] = stack[i + 1];
+		new_a->stack[i] = node.a->stack[i];
 		i++;
 	}
-	stack[len - 1] = temp;
-	if (bool)
-		add_operation(data, "rb\n");
+	if (new_b->len > 0)
+		new_b->stack[new_b->len - 1] = node.b->stack[0];
+	i = 1;
+	while (i < new_b->len)
+	{
+		new_b->stack[i - 1] = node.b->stack[i];
+		i++;
+	}
+	return (new_node(new_a, new_b, ft_strjoin(node.instr, "rb\n"),
+															node.n_instr + 1));
 }

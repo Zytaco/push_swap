@@ -18,33 +18,9 @@
 /*
 ** longest subsequence defines
 */
-# define IND(x) (x + subseq.offset) % arr.len
-# define REV_IND(x) (x + arr.len - subseq.offset) % arr.len
-# define SIZE(x) (x + arr.len - subseq.start) % arr.len
-
-/*
-** merge/split defines
-*/
-# define ARRAY (stck == 'a' ? data->a : data->b)
-# define STACK (stck == 'a' ? data->a.stack : data->b.stack)
-# define LEN (stck == 'a' ? data->a.len : data->b.len)
-# define PUSH (stck == 'a' ? pb(data, 1) : pa(data, 1))
-# define ROTATE (stck == 'a' ? ra(data, 1) : rb(data, 1))
-# define ELE(x) STACK[(x + LEN) % LEN]
-
-# define O_ARRAY (stck == 'b' ? data->a : data->b)
-# define O_STACK (stck == 'b' ? data->a.stack : data->b.stack)
-# define O_LEN (stck == 'b' ? data->a.len : data->b.len)
-# define O_PUSH (stck == 'b' ? pb(data, 1) : pa(data, 1))
-# define O_ROTATE (stck == 'b' ? ra(data, 1) : rb(data, 1))
-# define O_ELE(x) O_STACK[(x + O_LEN) % O_LEN]
-
-/*
-** swap defines
-*/
-# define S_STACK (subseq->stack)
-# define S_LEN (subseq->len)
-# define S_ELE(x) (subseq->stack[(x) % subseq->len])
+# define TRY_OUT_RANGE 1
+# define INVERSE_WEIGHT 1
+# define ROT_INS_WEIGHT 1
 
 typedef struct		s_array
 {
@@ -64,8 +40,8 @@ typedef struct		s_solution
 
 typedef struct		s_data
 {
-	t_array			a;
-	t_array			b;
+	t_array			*a;
+	t_array			*b;
 	t_flags			flags;
 	t_solution		*sol;
 }					t_data;
@@ -77,6 +53,20 @@ typedef struct		s_subseq
 	int				offset;
 	int				start;
 }					t_subseq;
+
+typedef struct		s_node
+{
+	struct s_node	*parent;
+	struct s_node	*next;
+	struct s_node	*prev;
+	struct s_node	*child;
+	int				descendants;
+	char			*instr;
+	int				n_instr;
+	t_array			*a;
+	t_array			*b;
+	int				weight;
+}					t_node;
 
 /*
 ** display.c
@@ -119,12 +109,12 @@ int					get_max_pos(t_array a);
 void				normalisestck(t_array a);
 
 /*
-** longest_subsequence.c
+** get_state_score.c
 */
-t_array				*find_longest_subseq(t_array arr, char stack);
+void				get_state_score(t_node *node);
 
 /*
-** operations.
+** operations
 */
 void				add_operation(t_data *data, char *op);
 void				pa(t_data *data, int bool);
@@ -138,5 +128,34 @@ void				rrr(t_data *data, int bool);
 void				sa(t_data *data, int bool);
 void				sb(t_data *data, int bool);
 void				ss(t_data *data, int bool);
+
+/*
+** alt_operations
+*/
+t_node				*alt_pa(t_node node);
+t_node				*alt_pb(t_node node);
+t_node				*alt_ra(t_node node);
+t_node				*alt_rb(t_node node);
+t_node				*alt_rr(t_node node);
+t_node				*alt_rra(t_node node);
+t_node				*alt_rrb(t_node node);
+t_node				*alt_rrr(t_node node);
+t_node				*alt_sa(t_node node);
+t_node				*alt_sb(t_node node);
+t_node				*alt_ss(t_node node);
+
+/*
+** alt_operations
+*/
+t_node				*new_node(t_array *a, t_array *b, char *instr,
+																int n_instr);
+
+/*
+** queue.c
+*/
+void				insert_new(t_node **start, t_node *new);
+t_node				*pop_min(t_node **queue);
+t_node				*new_node(t_array *a, t_array *b, char *instr, int n_instr);
+
 
 #endif

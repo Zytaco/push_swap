@@ -12,15 +12,31 @@
 
 #include "../../includes/push_swap.h"
 
-void				pa(t_data *data, int bool)
+t_node				*alt_pa(t_node node)
 {
-	if (data->b->len <= 0)
-		return ;
-	data->a->len++;
-	rra(data, 0);
-	data->a->stack[0] = data->b->stack[0];
-	rb(data, 0);
-	data->b->len--;
-	if (bool)
-		add_operation(data, "pa\n");
+	t_array *new_a;
+	t_array *new_b;
+	int		i;
+
+	if (node.b->len > 0)
+	{
+		new_a = new_array(node.a->len + 1);
+		new_b = new_array(node.b->len - 1);
+		new_a->stack[0] = node.b->stack[0];
+		i = 1;
+		while (i < new_a->len)
+		{
+			new_a->stack[i] = node.a->stack[i - 1];
+			i++;
+		}
+		i = 0;
+		while (i < new_b->len)
+		{
+			new_b->stack[i] = node.b->stack[i + 1];
+			i++;
+		}
+		return (new_node(new_a, new_b, ft_strjoin(node.instr, "pa\n"),
+															node.n_instr + 1));
+	}
+	return (NULL);
 }

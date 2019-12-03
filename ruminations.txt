@@ -9,7 +9,7 @@ Object:
 	int			weight;
 	t_object	(*children)[11];
 }
-instrucitons will be a string of all the instructions required to reach this state.
+instructions will be a string of all the instructions required to reach this state.
 Intr_count will just keep track of how many instrucitons are in that string.
 Array a and b make up the state.
 Array_score Will assign a score based on the state and how far that state is estimated to be from being finished.

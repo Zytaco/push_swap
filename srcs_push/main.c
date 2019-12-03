@@ -53,13 +53,11 @@ int			main(int argc, char **argv)
 		ft_error("ERROR: Too much input\n");
 	if (size <= 1)
 		exit(0);
-	data.a.stack = malloc(sizeof(int) * size);
-	data.a.len = size;
-	data.b.stack = malloc(sizeof(int) * size);
-	data.b.len = 0;
-	put_int_instck(data.a, argc, argv);
-	duplicate_check(data.a);
-	normalisestck(data.a);
+	data.a = new_array(size);
+	data.b = new_array(size);
+	put_int_instck(*data.a, argc, argv);
+	duplicate_check(*data.a);
+	normalisestck(*data.a);
 	solver(data);
 	display_solution(data.sol->solution);
 }
