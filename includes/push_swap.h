@@ -172,4 +172,9 @@ void				insert_new(t_node **start, t_node *new);
 t_node				*pop_min(t_node **queue);
 t_node				*new_node(t_array *a, t_array *b, char *instr, int n_instr);
 
+/*
+** op_dispatch.c
+*/
+void				op_dispatch(t_ops op, t_node node, t_node **root, char *instr);
+
 #endif

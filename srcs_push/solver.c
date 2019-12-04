@@ -24,17 +24,17 @@ void	solver(t_data data)
 	current = root;
 	while (current->weight > 0)
 	{
-		insert_new(&root, alt_pa(*current));
-		insert_new(&root, alt_pb(*current));
-		insert_new(&root, alt_ra(*current));
-		insert_new(&root, alt_rb(*current));
-		insert_new(&root, alt_rr(*current));
-		insert_new(&root, alt_rra(*current));
-		insert_new(&root, alt_rrb(*current));
-		insert_new(&root, alt_rrr(*current));
-		insert_new(&root, alt_sa(*current));
-		insert_new(&root, alt_sb(*current));
-		insert_new(&root, alt_ss(*current));
+		op_dispatch(op_sa, *current, &root, current->instr);
+		op_dispatch(op_sb, *current, &root, current->instr);
+		op_dispatch(op_ss, *current, &root, current->instr);
+		op_dispatch(op_pa, *current, &root, current->instr);
+		op_dispatch(op_pb, *current, &root, current->instr);
+		op_dispatch(op_ra, *current, &root, current->instr);
+		op_dispatch(op_rb, *current, &root, current->instr);
+		op_dispatch(op_rr, *current, &root, current->instr);
+		op_dispatch(op_rra, *current, &root, current->instr);
+		op_dispatch(op_rrb, *current, &root, current->instr);
+		op_dispatch(op_rrr, *current, &root, current->instr);
 		current = pop_min(&root);
 	}
 	ft_putstr(current->instr);

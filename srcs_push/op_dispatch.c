@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 void		op_dispatch(t_ops op, t_node node, t_node **root, char *instr)
 {

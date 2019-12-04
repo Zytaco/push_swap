@@ -23,7 +23,7 @@ SRCS_CHECK	 =	main
 
 ALT_OPERATIONS	 =	pa pb ra rb rr rra rrb rrr sa sb ss
 
-SRCS_PUSH	 =	get_state_score main queue solver\
+SRCS_PUSH	 =	get_state_score main queue solver op_dispatch\
 				$(ALT_OPERATIONS:%=alt_operations/alt_%)
 
 PUSH_C		 =	$(SHARED_FILES:%=shared/%.c)\
