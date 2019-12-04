@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_state_score.c                                   :+:    :+:            */
+/*   get_state_score.c                                   :+:    :+:           */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -75,7 +75,7 @@
 ** Justification: every int in b needs to be pushed to a and
 ** rotated out of the way.
 ** When dealing with big stacks it is likely the entire stack will
-** need to be rotated through. 
+** need to be rotated through.
 */
 
 static int	merge_score(t_node node)

@@ -97,7 +97,6 @@ t_node	*pop_min(t_node **queue)
 	t_node			*current;
 	t_node			*min;
 
-
 	if (!queue || !*queue)
 		return (NULL);
 	current = *queue;

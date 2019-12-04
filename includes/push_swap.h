@@ -22,6 +22,21 @@
 # define INVERSE_WEIGHT 1
 # define ROT_INS_WEIGHT 1
 
+typedef enum		e_ops
+{
+	op_sa = 0,
+	op_sb = 1,
+	op_ss = 2,
+	op_pa = 3,
+	op_pb = 4,
+	op_ra = 5,
+	op_rb = 6,
+	op_rr = 7,
+	op_rra = 8,
+	op_rrb = 9,
+	op_rrr = 10
+}					t_ops;
+
 typedef struct		s_array
 {
 	int				*stack;
@@ -156,6 +171,5 @@ t_node				*new_node(t_array *a, t_array *b, char *instr,
 void				insert_new(t_node **start, t_node *new);
 t_node				*pop_min(t_node **queue);
 t_node				*new_node(t_array *a, t_array *b, char *instr, int n_instr);
-
 
 #endif

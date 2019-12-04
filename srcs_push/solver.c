@@ -39,4 +39,3 @@ void	solver(t_data data)
 	}
 	ft_putstr(current->instr);
 }
-
