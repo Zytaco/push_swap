@@ -14,7 +14,7 @@ NAME1		 =	push_swap
 
 NAME2		 =	checker
 
-OPERATIONS	 =	pa pb ra rb rr rra rrb rrr sa sb ss add_operation
+OPERATIONS	 =	pa pb ra rb rr rra rrb rrr sa sb ss
 
 SHARED_FILES =	array_help display normalise_stack parse_input\
 				$(OPERATIONS:%=operations/%)

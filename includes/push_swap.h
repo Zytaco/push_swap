@@ -48,17 +48,11 @@ typedef struct		s_flags
 	char			v;
 }					t_flags;
 
-typedef struct		s_solution
-{
-	char			*solution;
-}					t_solution;
-
 typedef struct		s_data
 {
 	t_array			*a;
 	t_array			*b;
 	t_flags			flags;
-	t_solution		*sol;
 }					t_data;
 
 typedef struct		s_subseq
@@ -75,11 +69,13 @@ typedef struct		s_node
 	struct s_node	*next;
 	struct s_node	*prev;
 	struct s_node	*child;
-	int				descendants;
+	int				members;
 	char			*instr;
 	int				n_instr;
 	t_array			*a;
 	t_array			*b;
+	int				score_a;
+	int				score_b;
 	int				weight;
 }					t_node;
 
@@ -88,6 +84,8 @@ typedef struct		s_node
 */
 void				display_array(t_array a, char *name);
 void				display_solution(char *solution);
+void				display_node(t_node node);
+void				display_forest(t_node *root);
 
 /*
 ** merge_split
@@ -132,17 +130,17 @@ void				get_state_score(t_node *node);
 ** operations
 */
 void				add_operation(t_data *data, char *op);
-void				pa(t_data *data, int bool);
-void				pb(t_data *data, int bool);
-void				ra(t_data *data, int bool);
-void				rb(t_data *data, int bool);
-void				rr(t_data *data, int bool);
-void				rra(t_data *data, int bool);
-void				rrb(t_data *data, int bool);
-void				rrr(t_data *data, int bool);
-void				sa(t_data *data, int bool);
-void				sb(t_data *data, int bool);
-void				ss(t_data *data, int bool);
+void				pa(t_data *data);
+void				pb(t_data *data);
+void				ra(t_data *data);
+void				rb(t_data *data);
+void				rr(t_data *data);
+void				rra(t_data *data);
+void				rrb(t_data *data);
+void				rrr(t_data *data);
+void				sa(t_data *data);
+void				sb(t_data *data);
+void				ss(t_data *data);
 
 /*
 ** alt_operations

@@ -78,26 +78,38 @@
 ** need to be rotated through.
 */
 
+// int			select_score(t_array a, char stck, int mod)
+// {
+// 	int *j;
+// 	int i;
+// 	int ofs;
+// 	int min;
+
+// 	if (a.len <= 2)
+// 		return (0);
+// 	min = INT32_MAX;
+// 	j = malloc(sizeof(int) * a.len);
+// 	if (!j)
+// 		ft_error("MALLOC FAILED\n");
+// 	i = 0;
+// 	while (i < a.len)
+// 	{
+// 		j[i] = 2;
+// 		ofs = mod - a.stack[i];
+// 		while (j[i] < a.len && ((stck == 'a' &&
+// 		(a.stack[j[i] - 1] + ofs) % mod < a.stack[j[i]] % mod) || (stck == 'b'
+// 		&& (a.stack[j[i] - 1] + ofs) % mod < a.stack[j[i]] % mod)))
+// 			j[i]++;
+// 		if (j[i] < min)
+// 			min = j[i];
+// 		i++;
+// 	}
+// 	return ((a.len - min) * 3);
+// }
+
 static int	merge_score(t_node node)
 {
-	int i;
-	int a_max;
-	int a_min;
-	int score;
-
-	score = 0;
-	a_min = node.a->stack[get_min_pos(*(node.a))];
-	a_max = node.a->stack[get_max_pos(*(node.a))];
-	i = 0;
-	while (i < node.b->len)
-	{
-		if (node.b->stack[i] < a_min || node.b->stack[i] > a_max)
-			score += 1;
-		i++;
-	}
-	if (score < node.b->len)
-		score = node.b->len + node.a->len;
-	return (node.a->len + 2 * node.b->len);
+	return (node.b->len);
 }
 
 int			inversion_score(t_array arr, char stck)
@@ -108,46 +120,20 @@ int			inversion_score(t_array arr, char stck)
 
 	inver = 0;
 	i = 0;
-	while (i < arr.len)
+	while (i + 1 < arr.len)
 	{
-		j = 1;
+		j = i + 1;
 		while (j < arr.len)
 		{
-			if (stck == 'a' && arr.stack[i] > arr.stack[(i + j) % arr.len])
+			if (stck == 'a' && arr.stack[i] > arr.stack[j])
 				inver++;
-			else if (stck == 'b' && arr.stack[i] < arr.stack[(i + j) % arr.len])
+			else if (stck == 'b' && arr.stack[i] < arr.stack[j])
 				inver++;
 			j++;
 		}
 		i++;
 	}
-	return (inver * arr.len);
-}
-
-int			select_score(t_array a, char stck)
-{
-	int *j;
-	int i;
-	int mod;
-	int min;
-
-	if (a.len <= 2)
-		return (0);
-	min = INT32_MAX;
-	j = malloc(sizeof(int) * a.len);
-	i = 0;
-	while (i < a.len)
-	{
-		j[i] = 2;
-		mod = a.stack[i];
-		while (j[i] < a.len &&
-		((stck == 'a' && a.stack[j[i] - 1] % mod < a.stack[j[i]] % mod) ||
-		(stck == 'b' && a.stack[j[i] - 1] % mod < a.stack[j[i]] % mod)))
-			j[i]++;
-		if (j[i] < min)
-			min = j[i];
-	}
-	return ((a.len - min) * 3);
+	return (inver);
 }
 
 void		get_state_score(t_node *node)
@@ -155,10 +141,11 @@ void		get_state_score(t_node *node)
 	int score;
 
 	score = 0;
-	node->weight =
-	(inversion_score(*(node->a), 'a') +
-	inversion_score(*(node->b), 'b'));
-	node->weight = ft_min(node->weight, select_score(*(node->a), 'a') +
-	select_score(*(node->b), 'b'));
-	node->weight += merge_score(*node) + node->n_instr;
+	node->score_a = inversion_score(*(node->a), 'a');
+	node->score_b = inversion_score(*(node->b), 'b');
+	if (node->b->len > 0 || node->score_a > 0)
+		node->weight = node->score_a + node->score_b +
+											merge_score(*node) + node->n_instr;
+	else
+		node->weight = 0;
 }

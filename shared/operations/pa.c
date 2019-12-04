@@ -12,15 +12,13 @@
 
 #include "../../includes/push_swap.h"
 
-void				pa(t_data *data, int bool)
+void				pa(t_data *data)
 {
 	if (data->b->len <= 0)
 		return ;
 	data->a->len++;
-	rra(data, 0);
+	rra(data);
 	data->a->stack[0] = data->b->stack[0];
-	rb(data, 0);
+	rb(data);
 	data->b->len--;
-	if (bool)
-		add_operation(data, "pa\n");
 }

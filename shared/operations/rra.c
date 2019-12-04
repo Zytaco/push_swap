@@ -12,7 +12,7 @@
 
 #include "../../includes/push_swap.h"
 
-void				rra(t_data *data, int bool)
+void				rra(t_data *data)
 {
 	int i;
 	int temp;
@@ -31,6 +31,4 @@ void				rra(t_data *data, int bool)
 		i--;
 	}
 	stack[0] = temp;
-	if (bool)
-		add_operation(data, "rra\n");
 }

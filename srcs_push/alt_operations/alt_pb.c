@@ -22,7 +22,7 @@ t_node				*alt_pb(t_node node)
 	{
 		new_a = new_array(node.a->len - 1);
 		new_b = new_array(node.b->len + 1);
-		new_a->stack[0] = node.b->stack[0];
+		new_b->stack[0] = node.a->stack[0];
 		i = 1;
 		while (i < new_b->len)
 		{

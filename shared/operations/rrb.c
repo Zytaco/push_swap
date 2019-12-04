@@ -12,7 +12,7 @@
 
 #include "../../includes/push_swap.h"
 
-void				rrb(t_data *data, int bool)
+void				rrb(t_data *data)
 {
 	int i;
 	int temp;
@@ -31,6 +31,4 @@ void				rrb(t_data *data, int bool)
 		i--;
 	}
 	stack[0] = temp;
-	if (bool)
-		add_operation(data, "rrb\n");
 }

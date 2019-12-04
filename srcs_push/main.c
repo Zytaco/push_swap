@@ -42,22 +42,18 @@ void		duplicate_check(t_array a)
 int			main(int argc, char **argv)
 {
 	t_data		data;
-	t_solution	solution;
 	int			size;
 
 	data.flags.v = 0;
-	data.sol = &solution;
-	data.sol->solution = ft_strnew(0);
 	size = count_ints_store_flags(&data, argc, argv);
 	if (size >= INT32_MAX)
 		ft_error("ERROR: Too much input\n");
 	if (size <= 1)
 		exit(0);
 	data.a = new_array(size);
-	data.b = new_array(size);
+	data.b = new_array(0);
 	put_int_instck(*data.a, argc, argv);
 	duplicate_check(*data.a);
 	normalisestck(*data.a);
 	solver(data);
-	display_solution(data.sol->solution);
 }

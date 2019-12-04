@@ -12,10 +12,8 @@
 
 #include "../../includes/push_swap.h"
 
-void				rr(t_data *data, int bool)
+void				rr(t_data *data)
 {
-	ra(data, 0);
-	rb(data, 0);
-	if (bool)
-		add_operation(data, "rr\n");
+	ra(data);
+	rb(data);
 }

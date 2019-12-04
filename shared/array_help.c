@@ -24,7 +24,7 @@ t_array	*new_array(int len)
 {
 	t_array *new;
 
-	if (len <= 0)
+	if (len < 0)
 		ft_error("ERROR: new_array() called with len <= 0");
 	new = malloc(sizeof(t_array));
 	if (!new)

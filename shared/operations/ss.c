@@ -12,10 +12,8 @@
 
 #include "../../includes/push_swap.h"
 
-void				ss(t_data *data, int bool)
+void				ss(t_data *data)
 {
-	sa(data, 0);
-	sb(data, 0);
-	if (bool)
-		add_operation(data, "ss\n");
+	sa(data);
+	sb(data);
 }
