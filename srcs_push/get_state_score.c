@@ -12,140 +12,58 @@
 
 #include "../includes/push_swap.h"
 
-/*
-** Steps stores the maximum amount of steps that can be taken from start
-** to the index in the context of making an increasing subsequence.
-**
-** Prev stores the index of the previous int in an increasing subseq.
-*/
-/*
-**static void	get_distances(t_array a, char name, int *distances)
-**{
-**	int i;
-**
-**	i = 0;
-**	while (i < a.len)
-**	{
-**		if (name == 'a')
-**			distances[i] = i - count_smaller(a.stack[i]);
-**		else if (name == 'b')
-**			distances[i] = (a.len - 1 - i) - count_smaller(a.stack[i]);
-**		i++;
-**	}
-**}
-**
-**static int	rotation_score(int *distances, int len)
-**{
-**	int i;
-**	int sum;
-**	int average;
-**
-**	sum = 0;
-**	i = 0;
-**	while (i < len)
-**	{
-**		sum += distances[i];
-**		i++;
-**	}
-**	average = (sum + (len / 2)) / len;
-**	while (i >= 0)
-**	{
-**		distances[i] -= average;
-**		i--;
-**	}
-**	return (average);
-**}
-**
-**static int	distance_score(int *distances, int len)
-**{
-**	int i;
-**	int sum;
-**
-**	sum = 0;
-**	i = 0;
-**	while (i < len)
-**	{
-**		sum += ft_abs(distances[i]) + 2;
-**		i++;
-**	}
-**	return (sum);
-**}
-*/
-/*
-** Justification: every int in b needs to be pushed to a and
-** rotated out of the way.
-** When dealing with big stacks it is likely the entire stack will
-** need to be rotated through.
-*/
-
-// int			select_score(t_array a, char stck, int mod)
-// {
-// 	int *j;
-// 	int i;
-// 	int ofs;
-// 	int min;
-
-// 	if (a.len <= 2)
-// 		return (0);
-// 	min = INT32_MAX;
-// 	j = malloc(sizeof(int) * a.len);
-// 	if (!j)
-// 		ft_error("MALLOC FAILED\n");
-// 	i = 0;
-// 	while (i < a.len)
-// 	{
-// 		j[i] = 2;
-// 		ofs = mod - a.stack[i];
-// 		while (j[i] < a.len && ((stck == 'a' &&
-// 		(a.stack[j[i] - 1] + ofs) % mod < a.stack[j[i]] % mod) || (stck == 'b'
-// 		&& (a.stack[j[i] - 1] + ofs) % mod < a.stack[j[i]] % mod)))
-// 			j[i]++;
-// 		if (j[i] < min)
-// 			min = j[i];
-// 		i++;
-// 	}
-// 	return ((a.len - min) * 3);
-// }
-
-static int	merge_score(t_node node)
+int			rot_distance(int dist, int len)
 {
-	return (node.b->len);
+	return ((len - ft_abs((2 * ft_abs(dist)) - len)) / 2);
 }
 
-int			inversion_score(t_array arr, char stck)
+static int	merge_score(t_array a, t_array b)
 {
-	int i;
-	int j;
-	int inver;
+	const int	a_min = a.stack[get_min_pos(a.stack, a.len)];
+	int			i;
+	int			merge_score;
 
-	inver = 0;
+	merge_score = 0;
 	i = 0;
-	while (i + 1 < arr.len)
+	while (i < b.len)
 	{
-		j = i + 1;
-		while (j < arr.len)
-		{
-			if (stck == 'a' && arr.stack[i] > arr.stack[j])
-				inver++;
-			else if (stck == 'b' && arr.stack[i] < arr.stack[j])
-				inver++;
-			j++;
-		}
+		if (b.stack[i] < a_min)
+			merge_score += 1;
+		else
+			merge_score += 2;
 		i++;
 	}
-	return (inver);
+	return (merge_score);
 }
 
-void		get_state_score(t_node *node)
+void		get_state_score(t_node *node, t_array a, t_array b)
 {
-	int score;
-
-	score = 0;
-	node->score_a = inversion_score(*(node->a), 'a');
-	node->score_b = inversion_score(*(node->b), 'b');
-	if (node->b->len > 0 || node->score_a > 0)
+	node->score_a = 0;
+	node->score_b = 0;
+	node->weight = 0;
+	if (a.len > 1)
+	{
+		node->score_a = inversion_score(a.stack, a.len, 'a');
+		if (node->score_a <= 0)
+			node->weight +=
+			rot_distance(get_min_pos(a.stack, a.len) - 0, a.len);
+		else
+			node->score_a += a.len / 2;
+	}
+	if (b.len > 1)
+	{
+		node->score_b = inversion_score(b.stack, b.len, 'b');
+		if (node->score_b <= 0)
+			node->weight +=
+			rot_distance(get_max_pos(b.stack, b.len) - 0, b.len);
+		else
+			node->score_b += b.len / 2;
+	}
+	if (b.len > 0 || node->score_a > 0 || node->weight > 0)
+	{
 		node->weight = node->score_a + node->score_b +
-											merge_score(*node) + node->n_instr;
+		node->n_instr + merge_score(a, b);
+	}
 	else
-		node->weight = 0;
+		node->weight = INT32_MIN + node->n_instr;
 }

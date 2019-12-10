@@ -12,33 +12,24 @@
 
 #include "../../includes/push_swap.h"
 
-t_node				*alt_sa(t_node node)
+t_node				*alt_sa(t_node node, t_array a, t_array b)
 {
 	t_array *new_a;
 	t_array *new_b;
-	int		i;
+	char	*new_instr;
 
-	if (node.a->len <= 1)
+	if (a.len < 2)
 		return (NULL);
-	new_a = new_array(node.a->len);
-	new_b = new_array(node.b->len);
-	if (new_a->len > 1)
-	{
-		new_a->stack[0] = node.a->stack[1];
-		new_a->stack[1] = node.a->stack[0];
-	}
-	i = 2;
-	while (i < new_a->len)
-	{
-		new_a->stack[i] = node.a->stack[i];
-		i++;
-	}
-	i = 0;
-	while (i < new_b->len)
-	{
-		new_b->stack[i] = node.b->stack[i];
-		i++;
-	}
-	return (new_node(new_a, new_b, ft_strjoin(node.instr, "sa\n"),
-															node.n_instr + 1));
+	new_a = new_array(a.len);
+	new_b = new_array(b.len);
+	if (!new_a || !new_b)
+		ft_error("array not allocated");
+	new_a->stack[0] = a.stack[1];
+	new_a->stack[1] = a.stack[0];
+	copy_array(new_a->stack + 2, a.stack + 2, a.len - 2);
+	copy_array(new_b->stack, b.stack, b.len);
+	new_instr = ft_strjoin(node.instr, "sa\n");
+	if (!new_instr)
+		ft_error("alt_pa() failed to malloc");
+	return (new_node(new_a, new_b, new_instr, node.n_instr + 1));
 }

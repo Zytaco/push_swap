@@ -30,21 +30,6 @@ void	slip_in(t_node *new, t_node *bef, t_node *aft)
 	}
 }
 
-void	pop(t_node *n, t_node **start)
-{
-	if (start && *start == n)
-		*start = n->next;
-	if (n->prev)
-		n->prev->next = n->next;
-	if (n->next)
-		n->next->prev = n->prev;
-	if (n->parent && n->parent->child == n)
-		n->parent->child = n->next;
-	n->next = NULL;
-	n->prev = NULL;
-	n->parent = NULL;
-}
-
 t_node	*make_tree(t_node *top, t_node *bot)
 {
 	if (top->weight > bot->weight)
@@ -61,9 +46,11 @@ void	insert_new(t_node **start, t_node *new)
 	t_node *bef;
 	t_node *aft;
 
+	if (!new)
+		return ;
 	bef = NULL;
 	aft = *start;
-	while (aft && new->weight > aft->weight)
+	while (aft && new->members > aft->members)
 	{
 		bef = aft;
 		aft = aft->next;
@@ -75,50 +62,36 @@ void	insert_new(t_node **start, t_node *new)
 		*start = new;
 }
 
-t_node	*pop_min(t_node **queue)
+int		state_match(t_node n, t_node m)
 {
-	t_node *min;
-	t_node *n;
+	int i;
 
-	min = *queue;
-	n = *queue;
-	while (n)
+	if (n.a->len != m.a->len || n.b->len != m.b->len)
+		return (0);
+	i = 0;
+	while (i < n.a->len || i < n.b->len)
 	{
-		if (n->weight < min->weight)
-			min = n;
-		n = n->next;
+		if (i < n.a->len && n.a->stack[i] != m.a->stack[i])
+			return (0);
+		if (i < n.b->len && n.b->stack[i] != m.b->stack[i])
+			return (0);
+		i++;
 	}
-	pop(min, queue);
-	while (min->child)
-	{
-		n = min->child;
-		pop(min->child, queue);
-		insert_new(queue, n);
-	}
-	return (min);
+	return (1);
 }
 
-t_node	*new_node(t_array *a, t_array *b, char *instr, int n_instr)
+int		dup_state(t_node *start, t_node state)
 {
-	t_node *new;
-
-	if (!instr)
-		ft_error("ft_strjoin failed to allocate");
-	new = malloc(sizeof(t_node));
-	if (!new)
-		ft_error("new_node() failed to allocate");
-	new->parent = NULL;
-	new->next = NULL;
-	new->prev = NULL;
-	new->child = NULL;
-	new->members = 1;
-	if (new->instr)
-		free(new->instr);
-	new->instr = instr;
-	new->n_instr = n_instr;
-	new->a = a;
-	new->b = b;
-	get_state_score(new);
-	// display_node(*new);
-	return (new);
+	while (start)
+	{
+		if (start->weight <= state.weight)
+		{
+			if (state_match(*start, state))
+				return (1);
+			if (start->child && dup_state(start->child, state))
+				return (1);
+		}
+		start = start->next;
+	}
+	return (0);
 }

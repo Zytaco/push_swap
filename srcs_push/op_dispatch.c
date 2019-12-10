@@ -12,30 +12,51 @@
 
 #include "../includes/push_swap.h"
 
+void		copy_array(int *new, int *old, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		new[i] = old[i];
+		i++;
+	}
+}
+
+int			prev_check(char *s, t_ops op, t_node node)
+{
+	if (!(s - 1))
+		return (0);
+	return
+	((node.score_a <= 0 && (op == op_sa || op == op_ss))
+	|| (node.score_b <= 0 && (op == op_sb || op == op_ss))
+	|| ((op <= op_ss || op == op_sup_rot_a) && ft_strequ(s, "sa\n"))
+	|| (((op <= op_ss || op == op_sup_rot_b) && ft_strequ(s, "sb\n"))
+	|| (op <= op_ss && ft_strequ(s, "ss\n"))
+	|| ((op_pb == op || op_sup_swap_a == op) && ft_strequ(s, "pa\n"))
+	|| ((op_pa == op || op_sup_swap_b == op) && ft_strequ(s, "pb\n"))
+	|| ((op_rra == op || op_rrr == op) && ft_strequ(s, "\nra\n"))
+	|| ((op_rrb == op || op_rrr == op) && ft_strequ(s, "\nrb\n"))
+	|| (op_rra <= op && ft_strequ(s, "\nrr\n"))
+	|| ((op_ra == op || op_rr == op) && ft_strequ(s, "rra\n"))
+	|| ((op_rb == op || op_rr == op) && ft_strequ(s, "rrb\n"))
+	|| ((op_ra <= op && op <= op_rr) && ft_strequ(s, "rrr\n"))
+	));
+}
+
 void		op_dispatch(t_ops op, t_node node, t_node **root, char *instr)
 {
-	t_node	*(*const f[11])(t_node) = {alt_sa, alt_sb, alt_ss, alt_pa,
-					alt_pb, alt_ra, alt_rb, alt_rr, alt_rra, alt_rrb, alt_rrr};
-	int		len;
+	t_node	*(*const f[])(t_node, t_array, t_array) = {
+	alt_sa, alt_sb, alt_ss, alt_pa, alt_pb, alt_ra, alt_rb, alt_rr, alt_rra,
+	alt_rrb, alt_rrr,
+	};
 	t_node	*new;
 
-	len = ft_strlen(node.instr);
-	if ((node.a->len <= 1 && (op == 0 || op == 2 || op == 5 || op == 7 || op == 8 || op == 10)) ||
-	(node.b->len <= 1 && (op == 1 || op == 2 || op == 6 || op == 7 || op == 9 || op == 10)) ||
-	(node.a->len <= 0 && op == 4) || (node.b->len <= 0 && op == 3) ||
-	(len >= 4 && ((ft_strequ(&instr[len - 3], "sa\n") && op_sa == op)
-	|| (ft_strequ(&instr[len - 3], "sb\n") && op_sb == op)
-	|| (ft_strequ(&instr[len - 3], "ss\n") && (op_sa <= op && op <= op_ss))
-	|| (ft_strequ(&instr[len - 3], "pa\n") && op_pb == op)
-	|| (ft_strequ(&instr[len - 3], "pb\n") && op_pa == op)
-	|| (ft_strequ(&instr[len - 4], "\nra\n") && op_rra == op)
-	|| (ft_strequ(&instr[len - 4], "\nrb\n") && op_rrb == op)
-	|| (ft_strequ(&instr[len - 4], "\nrr\n") && (op_rra <= op && op <= op_rrr))
-	|| (ft_strequ(&instr[len - 4], "rra\n") && op_ra == op)
-	|| (ft_strequ(&instr[len - 4], "rrb\n") && op_rb == op)
-	|| (ft_strequ(&instr[len - 4], "rrr\n") && (op_ra <= op && op <= op_rr)))))
-		return ;
-	new = f[op](node);
-	// display_node(*new);
-	insert_new(root, new);
+	if (node.instr && node.instr[0] && node.instr[1] && node.instr[2])
+		if (prev_check(ft_strrchr(instr - 1, '\n') + 1, op, node))
+			return ;
+	new = f[op](node, *(node.a), *(node.b));
+	if (new && !dup_state(*root, *new))
+		insert_new(root, new);
 }

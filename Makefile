@@ -21,9 +21,11 @@ SHARED_FILES =	array_help display normalise_stack parse_input\
 
 SRCS_CHECK	 =	main
 
-ALT_OPERATIONS	 =	pa pb ra rb rr rra rrb rrr sa sb ss
+ALT_OPERATIONS	 =	pa pb ra rb rr rra rrb rrr sa sb ss super_swap super_rot\
+					pushback_a pushback_b
 
-SRCS_PUSH	 =	get_state_score main queue solver op_dispatch\
+SRCS_PUSH	 =	get_state_score main queue solver op_dispatch inversion_score\
+				node_tools\
 				$(ALT_OPERATIONS:%=alt_operations/alt_%)
 
 PUSH_C		 =	$(SHARED_FILES:%=shared/%.c)\

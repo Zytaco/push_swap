@@ -47,7 +47,7 @@ int			main(int argc, char **argv)
 	data.flags.v = 0;
 	size = count_ints_store_flags(&data, argc, argv);
 	if (size >= INT32_MAX)
-		ft_error("ERROR: Too much input\n");
+		ft_error("ERROR: Too much input");
 	if (size <= 1)
 		exit(0);
 	data.a = new_array(size);

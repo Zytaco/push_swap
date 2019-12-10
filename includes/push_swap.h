@@ -24,6 +24,7 @@
 
 typedef enum		e_ops
 {
+	too_small = -1,
 	op_sa = 0,
 	op_sb = 1,
 	op_ss = 2,
@@ -34,7 +35,14 @@ typedef enum		e_ops
 	op_rr = 7,
 	op_rra = 8,
 	op_rrb = 9,
-	op_rrr = 10
+	op_rrr = 10,
+	op_sup_swap_a = 11,
+	op_sup_swap_b = 12,
+	op_sup_rot_a = 13,
+	op_sup_rot_b = 14,
+	op_pushback_a = 15,
+	op_pushback_b = 16,
+	too_big = 17
 }					t_ops;
 
 typedef struct		s_array
@@ -97,8 +105,6 @@ void				merge(t_array dump, t_data *data, char stck);
 ** solver.c
 */
 void				solver(t_data data);
-int					is_ordered(t_array a, char stack);
-int					ordered(t_array a, char stack);
 
 /*
 ** parse_input.c
@@ -117,14 +123,14 @@ int					get_pos(t_array a, int x);
 /*
 ** normalisestck.c
 */
-int					get_min_pos(t_array a);
-int					get_max_pos(t_array a);
+int					get_min_pos(int *st, int len);
+int					get_max_pos(int *st, int len);
 void				normalisestck(t_array a);
 
 /*
 ** get_state_score.c
 */
-void				get_state_score(t_node *node);
+void				get_state_score(t_node *node, t_array a, t_array b);
 
 /*
 ** operations
@@ -145,17 +151,23 @@ void				ss(t_data *data);
 /*
 ** alt_operations
 */
-t_node				*alt_pa(t_node node);
-t_node				*alt_pb(t_node node);
-t_node				*alt_ra(t_node node);
-t_node				*alt_rb(t_node node);
-t_node				*alt_rr(t_node node);
-t_node				*alt_rra(t_node node);
-t_node				*alt_rrb(t_node node);
-t_node				*alt_rrr(t_node node);
-t_node				*alt_sa(t_node node);
-t_node				*alt_sb(t_node node);
-t_node				*alt_ss(t_node node);
+t_node				*alt_pa(t_node node, t_array a, t_array b);
+t_node				*alt_pb(t_node node, t_array a, t_array b);
+t_node				*alt_ra(t_node node, t_array a, t_array b);
+t_node				*alt_rb(t_node node, t_array a, t_array b);
+t_node				*alt_rr(t_node node, t_array a, t_array b);
+t_node				*alt_rra(t_node node, t_array a, t_array b);
+t_node				*alt_rrb(t_node node, t_array a, t_array b);
+t_node				*alt_rrr(t_node node, t_array a, t_array b);
+t_node				*alt_sa(t_node node, t_array a, t_array b);
+t_node				*alt_sb(t_node node, t_array a, t_array b);
+t_node				*alt_ss(t_node node, t_array a, t_array b);
+t_node				*alt_sup_swap_a(t_node node, t_array a, t_array b);
+t_node				*alt_sup_swap_b(t_node node, t_array a, t_array b);
+t_node				*alt_sup_rot_a(t_node node, t_array a, t_array b);
+t_node				*alt_sup_rot_b(t_node node, t_array a, t_array b);
+t_node				*alt_pushback_a(t_node node, t_array a, t_array b);
+t_node				*alt_pushback_b(t_node node, t_array a, t_array b);
 
 /*
 ** alt_operations
@@ -167,12 +179,30 @@ t_node				*new_node(t_array *a, t_array *b, char *instr,
 ** queue.c
 */
 void				insert_new(t_node **start, t_node *new);
+void				remove_state(t_node **queue, t_node *start, t_node state);
+int					dup_state(t_node *start, t_node state);
+
+/*
+** node_tools.c
+*/
+void				free_node(t_node *n);
+t_node				*full_pop(t_node *n, t_node **queue);
 t_node				*pop_min(t_node **queue);
 t_node				*new_node(t_array *a, t_array *b, char *instr, int n_instr);
+void				pop(t_node *n, t_node **start);
+
 
 /*
 ** op_dispatch.c
 */
 void				op_dispatch(t_ops op, t_node node, t_node **root, char *instr);
+void				copy_array(int *new, int *old, int len);
+
+/*
+** inversion_score.c
+*/
+int					inversion_score(int *st, int len, char stck);
+int					inversion_score_a(t_array arr);
+int					inversion_score_b(t_array arr);
 
 #endif
