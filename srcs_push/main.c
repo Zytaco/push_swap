@@ -20,40 +20,18 @@ void		error_int(char *message, int x)
 	exit(0);
 }
 
-void		duplicate_check(t_array a)
-{
-	int i;
-	int j;
-
-	i = 1;
-	while (i < a.len)
-	{
-		j = 0;
-		while (j < i)
-		{
-			if (a.stack[i] == a.stack[j])
-				error_int("ERROR: duplicate int", a.stack[i]);
-			j++;
-		}
-		i++;
-	}
-}
-
 int			main(int argc, char **argv)
 {
 	t_data		data;
-	int			size;
 
-	data.flags.v = 0;
-	size = count_ints_store_flags(&data, argc, argv);
-	if (size >= INT32_MAX)
-		ft_error("ERROR: Too much input");
-	if (size <= 1)
-		exit(0);
-	data.a = new_array(size);
-	data.b = new_array(0);
-	put_int_instck(*data.a, argc, argv);
+	data = parse(argc, argv);
+	if (data.flags.h)
+	{
+		display_help();
+		return (1);
+	}
 	duplicate_check(*data.a);
 	normalisestck(*data.a);
-	solver(data);
+	display_ops(solver(data));
+	return (1);
 }

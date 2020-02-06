@@ -12,13 +12,19 @@
 
 #include "../../includes/push_swap.h"
 
-void				pa(t_data *data)
+t_stacks			pa(t_stacks stacks, char free)
 {
-	if (data->b->len <= 0)
-		return ;
-	data->a->len++;
-	rra(data);
-	data->a->stack[0] = data->b->stack[0];
-	rb(data);
-	data->b->len--;
+	t_stacks new;
+
+	if (stacks.b.size <= 0)
+		return (id(stacks, free));
+	new.a = copy(stacks.a, 1);
+	stacks.a.stack[0] = stacks.b.stack[0];
+	new.b = copy(stacks.b, -1);
+	if (free)
+	{
+		ft_free(stacks.a.stack);
+		ft_free(stacks.b.stack);
+	}
+	return (new);
 }

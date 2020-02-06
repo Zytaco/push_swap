@@ -88,25 +88,3 @@ t_node	*new_bare_node(void)
 	new->b = NULL;
 	return (new);
 }
-
-t_node	*new_node(t_array *a, t_array *b, char *new_instr, int n_used)
-{
-	t_node *new;
-
-	new = malloc(sizeof(t_node));
-	if (!new)
-		ft_error("new_node() failed to allocate");
-	new->parent = NULL;
-	new->next = NULL;
-	new->prev = NULL;
-	new->child = NULL;
-	new->members = 1;
-	new->instr = new_instr;
-	new->n_instr += n_used;
-	new->a = a;
-	new->b = b;
-	get_state_score(new, *a, *b);
-	return (new);
-}
-
-

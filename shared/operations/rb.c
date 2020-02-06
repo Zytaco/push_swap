@@ -12,23 +12,16 @@
 
 #include "../../includes/push_swap.h"
 
-void		rb(t_data *data)
+t_stacks			rb(t_stacks stacks, char free)
 {
-	int i;
-	int temp;
-	int *stack;
-	int len;
+	t_stacks new;
 
-	len = data->b->len;
-	if (len <= 1)
-		return ;
-	stack = data->b->stack;
-	temp = stack[0];
-	i = 0;
-	while (i + 1 < len)
+	new.b = rot(stacks.b);
+	new.a = copy(stacks.a, 0);
+	if (free)
 	{
-		stack[i] = stack[i + 1];
-		i++;
+		ft_free(stacks.a.stack);
+		ft_free(stacks.b.stack);
 	}
-	stack[len - 1] = temp;
+	return (new);
 }

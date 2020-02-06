@@ -12,8 +12,16 @@
 
 #include "../../includes/push_swap.h"
 
-void				rr(t_data *data)
+t_stacks			rr(t_stacks stacks, char free)
 {
-	ra(data);
-	rb(data);
+	t_stacks new;
+
+	new.a = rot(stacks.a);
+	new.b = rot(stacks.b);
+	if (free)
+	{
+		ft_free(stacks.a.stack);
+		ft_free(stacks.b.stack);
+	}
+	return (new);
 }

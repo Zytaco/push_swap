@@ -12,94 +12,113 @@
 
 #include "../includes/push_swap.h"
 
-static void	parse_error(char *line, char *message)
+static int		int_check(char *arg)
 {
-	ft_putstr(message);
-	if (line)
-	{
-		ft_putendl(" at:");
-		ft_putendl(line);
-	}
-	else
-		ft_putchar('\n');
-	exit(0);
-}
+	static char	max[11] = "2147483647";
+	int			i;
+	int			good;
 
-static void	store_flag(t_data *data, char *arg)
-{
-	if (arg[0] == '-' && arg[1] == 'v' && arg[2] == '\0')
-		data->flags.v = 1;
-	else
-		parse_error(arg, "Bad flag\n");
-}
-
-static int	count_ints(char *arg)
-{
-	int i;
-	int size;
-	int len;
-
-	size = 0;
+	if (ft_strequ("-2147483648", arg))
+		return (1);
 	i = 0;
-	while (arg[i])
-	{
-		i += ft_skip_whitespace(arg + i);
-		len = 0;
-		if (arg[i] == '-')
-			len++;
-		len = ft_skipstr(arg + i + len, "1234567890");
-		if (len == 0)
-			parse_error(arg, "ERROR: bad arg");
-		else if (ft_isint(arg + i, len))
-			size++;
-		else
-			parse_error(arg, "ERROR: bad int");
-		i += len;
-	}
-	return (size);
-}
-
-void		put_int_instck(t_array a, int argc, char **argv)
-{
-	int arg;
-	int i;
-	int pos;
-
-	pos = 0;
-	arg = 1;
-	while (arg < argc)
-	{
-		if (!(argv[arg][0] == '-' && !ft_isdigit(argv[arg][1])))
-		{
-			i = 0;
-			while (argv[arg][i])
-			{
-				i += ft_skip_whitespace(argv[arg] + i);
-				a.stack[pos] = ft_atoi(argv[arg] + i);
-				pos++;
-				if (argv[arg][i] == '-')
-					i++;
-				i += ft_skipstr(argv[arg] + i, "1234567890");
-			}
-		}
+	if (arg[i] == '-' || arg[i] == '+')
 		arg++;
-	}
-}
-
-int			count_ints_store_flags(t_data *data, int argc, char **argv)
-{
-	int		i;
-	int		size;
-
-	i = 1;
-	size = 0;
-	while (i < argc)
+	good = 1;
+	i = 0;
+	while (arg[i] && i < 10)
 	{
-		if (argv[i][0] == '-' && !ft_isdigit(argv[i][1]))
-			store_flag(data, argv[i]);
-		else
-			size += count_ints(argv[i]);
+		if (!ft_isdigit(arg[i]))
+			return (0);
+		if (arg[i] > max[i])
+			good = 0;
 		i++;
 	}
-	return (size);
+	if (i == 10)
+		return (good);
+	return (1);
+}
+
+/*
+** RAND_MAX should be the max int value.
+*/
+void			add_randoms(int randoms, t_data *data)
+{
+	int				rand_n;
+	struct timeval	the_time;
+
+	gettimeofday(&the_time, NULL);
+	srand(the_time.tv_usec);
+	while (randoms > 0)
+	{
+		if (rand() % 2 == 0)
+			rand_n = rand();
+		else
+			rand_n = INT32_MIN + rand();
+		add_last(&(data->stacks.a), new_piece(rand_n));
+		randoms--;
+	}
+}
+
+static int		flag_check(char **argv, int *i, t_flags *flags, t_data *data)
+{
+	if (ft_strequ(argv[*i], "-r"))
+	{
+		if (!argv[*i + 1] || !int_check(argv[*i + 1]))
+			flags->help = 1;
+		else
+		{
+			flags->random = 1;
+			(*i)++;
+			add_randoms(ft_atoi(argv[*i]), data);
+		}
+	}
+	else if (ft_strequ(argv[*i], "-v"))
+		flags->verbose = 1;
+	else if (ft_strequ(argv[*i], "-s"))
+		flags->silent = 1;
+	else if (ft_strequ(argv[*i], "-h"))
+		flags->help = 1;
+	else if (ft_strequ(argv[*i], "-d"))
+		flags->destinations = 1;
+	else if (ft_strequ(argv[*i], "-p"))
+		flags->points = 1;
+	else
+		return (0);
+	return (1);
+}
+
+static void		init_data(t_data *data)
+{
+	data->flags.verbose = 0;
+	data->stacks.a.first = NULL;
+	data->stacks.a.size = 0;
+	data->stacks.b.first = NULL;
+	data->stacks.b.size = 0;
+}
+
+t_data			parse(char **argv)
+{
+	t_data		data;
+	char		**input;
+	int			i;
+
+	input = ft_array_expand(argv + 1, " \t\n\f\r\v");
+	init_data(&data);
+	i = 0;
+	while (input[i])
+	{
+		if (input[i][0] == '-' && !ft_isdigit(input[i][1]))
+			flag_check(input, &i, &(data.flags), &data);
+		else if (int_check(input[i]))
+			add_last(&data.stacks.a, new_piece(ft_atoi(input[i])));
+		else
+		{
+			ft_putstr("UNRECOGNISED ARGUMENT: ");
+			ft_putstr(input[i]);
+			ft_putstr("\n");
+			data.flags.help = 1;
+		}
+		i++;
+	}
+	return (data);
 }

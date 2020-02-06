@@ -45,18 +45,17 @@ int			prev_check(char *s, t_ops op, t_node node)
 	));
 }
 
-void		op_dispatch(t_ops op, t_node node, t_node **root, char *instr)
+t_stacks	op_dispatch(t_ops op, t_node node, t_node **root, t_ops *instr)
 {
-	t_node	*(*const f[])(t_node, t_array, t_array) = {
-	alt_sa, alt_sb, alt_ss, alt_pa, alt_pb, alt_ra, alt_rb, alt_rr, alt_rra,
-	alt_rrb, alt_rrr,
-	};
-	t_node	*new;
+	t_stacks	new;
+	t_stacks	(*const f[])(t_stacks) = {
+	id, sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr};
 
 	if (node.instr && node.instr[0] && node.instr[1] && node.instr[2])
 		if (prev_check(ft_strrchr(instr - 1, '\n') + 1, op, node))
-			return ;
+			return ((t_stacks){(t_tack){0, NULL}, 0 (t_tack){0, NULL}, 0});
 	new = f[op](node, *(node.a), *(node.b));
 	if (new && !dup_state(*root, *new))
 		insert_new(root, new);
+	return (new);
 }

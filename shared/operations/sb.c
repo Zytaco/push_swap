@@ -12,13 +12,16 @@
 
 #include "../../includes/push_swap.h"
 
-void				sb(t_data *data)
+t_stacks			sb(t_stacks stacks, char free)
 {
-	int temp;
+	t_stacks new;
 
-	if (data->b->len <= 1)
-		return ;
-	temp = data->b->stack[0];
-	data->b->stack[0] = data->b->stack[1];
-	data->b->stack[1] = temp;
+	new.a = copy(stacks.a, 0);
+	new.b = swap(stacks.b);
+	if (free)
+	{
+		ft_free(stacks.a.stack);
+		ft_free(stacks.b.stack);
+	}
+	return (new);
 }

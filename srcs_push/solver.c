@@ -12,35 +12,78 @@
 
 #include "../includes/push_swap.h"
 
-void	solver(t_data data)
+static t_node	*best_desc_exceptions(t_node *best, t_node *current)
 {
-	t_node	*root;
+	if (!best || best->weight >= current->weight)
+	{
+		if (best && best->weight != INT32_MAX)
+			current->weight = best->weight + 1;
+		else
+			current->weight++;
+		if (current->parent)
+			return (current->parent);
+	}
+	return (best);
+}
+
+/*
+** Returns the best descendant unless current is as bad as the best desc.
+** In that case it may return the parent if it exists. 
+*/
+
+t_node			*best_desc(const t_node *current, const int max_depth)
+{
+	const int	depth;
+	t_node		*best;
+	t_ops		op;
+
+	best = NULL;
+	if (max_depth <= 0)
+		return (NULL);
+	if (!current->desc)
+		current->desc = ft_memalloc(sizeof(t_node*) * ((size_t)too_big + 1));
+	op = 0;
+	while (op < too_big)
+	{
+		if (!current->desc[op])
+			current->desc[op] = make_node(current, op);
+		if (max_depth > 1)
+			best_desc(current->desc[op], max_depth - 1);
+		if (!best || best->weight > current->desc[op]->weight)
+			best = current->desc[op];
+		op++;
+	}
+	best = best_desc_exceptions(best, current);
+	return (best);
+}
+
+ops			*solver(t_data data)
+{
 	t_node	*current;
 	t_ops	op;
-	int		cycles;
+	int		cycle;
 
-	cycles = 0;
-	root = new_node(data.a, data.b, ft_strdup(""), 0);
+	cycle = 0;
+	current = data.start;
 	if (data.flags.v)
-		display_node(*root);
-	current = root;
-	while (current->weight > 0)
 	{
-		cycles++;
-		current = pop_min(&root);
-		if (data.flags.v)
-			display_node(*current);
-		op = op_sa;
-		while (op <= op_rrr)
-		{
-			op_dispatch(op, *current, &root, current->instr);
-			op++;
-		}
+		ft_putstr("INPUT:\n");
+		display_node(current);
 	}
-	ft_putstr("DONE DONE DONE DONE DONE DONE DONE DONE DONE DONE cycles: ");
-	ft_putnbr(cycles);
-	ft_putstr(" | instructions: ");
-	ft_putnbr(current->n_instr);
-	ft_putchar('\n');
-	// ft_putstr(current->instr);
+	while (!solved(current->stacks))
+	{
+		current = best_desc(current, MAKE_RANGE);
+		if (flags.v)
+			display_node(current);
+		cycle++;
+	}
+	if (flags.v)
+	{
+		ft_putstr("DONE DONE DONE DONE DONE DONE DONE DONE DONE DONE cycles: ");
+		ft_putnbr(cycles);
+		ft_putstr(" | instructions: ");
+		ft_putnbr(current->n_instr);
+		ft_putchar('\n');
+	}
+	return (current->ops);
 }
