@@ -12,6 +12,10 @@
 
 #include "../../includes/push_swap.h"
 
+/*
+** 1 2 3 4
+** 2 3 4 1 
+*/
 t_stacks			ra(t_stacks stacks, char free)
 {
 	t_stacks new;

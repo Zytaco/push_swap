@@ -12,6 +12,10 @@
 
 #include "../../includes/push_swap.h"
 
+/*
+** 1 2 3 4
+** 2 3 4 1
+*/
 t_tack		rot(t_tack st)
 {
 	U int	i;
@@ -19,18 +23,25 @@ t_tack		rot(t_tack st)
 	int 	temp;
 
 	if (st.size <= 1)
+	{
+		ft_free(new);
 		return (copy(st, 0));
+	}
 	i = 0;
 	temp = st.stack[0];
 	while (i + 1 < st.size)
 	{
-		st.stack[i] = st.stack[i + 1];
+		new[i] = st.stack[i + 1];
 		i++;
 	}
-	st.stack[i] = temp;
+	new[i] = temp;
 	return ((t_tack){new, st.size});
 }
 
+/*
+** 1 2 3 4
+** 4 1 2 3
+*/
 t_tack		rev_rot(t_tack st)
 {
 	U int	i;
@@ -38,15 +49,18 @@ t_tack		rev_rot(t_tack st)
 	int		temp;
 
 	if (st.size <= 1)
+	{
+		ft_free(new);
 		return (copy(st, 0));
+	}
 	i = st.size - 1;
 	temp = st.stack[st.size - 1];
 	while (i >= 1)
 	{
-		st.stack[i] = st.stack[i - 1]; 
+		new[i] = st.stack[i - 1];
 		i--;
 	}
-	st.stack[i] = temp;
+	new[0] = temp;
 	return ((t_tack){new, st.size});
 }
 
@@ -54,8 +68,11 @@ t_tack		swap(t_tack st)
 {
 	t_tack	new = copy(st, 0);
 
-	new.stack[0] = st.stack[1];
-	new.stack[1] = st.stack[0];
+	if (st.size >= 2)
+	{
+		new.stack[0] = st.stack[1];
+		new.stack[1] = st.stack[0];
+	}
 	return (new);
 }
 
@@ -73,7 +90,7 @@ t_tack		copy(t_tack st, int offset)
 
 	if (!new)
 		return ((t_tack){NULL, 0});
-	i = (0 < offset) ? 0 : offset;
+	i = (offset < 0) ? -offset : 0;
 	while (i < st.size)
 	{
 		new[i + offset] = st.stack[i];

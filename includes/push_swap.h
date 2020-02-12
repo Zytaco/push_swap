@@ -14,13 +14,16 @@
 # define PUSH_SWAP_H
 
 # include "../c_libraries/libft/includes/libft.h"
+# include <sys/time.h>
 
 /*
 ** longest subsequence defines
 */
-# define MAKE_RANGE 1
+# define MAKE_RANGE 3
 # define INVERSE_WEIGHT 1
 # define ROT_INS_WEIGHT 1
+# define NO 0
+# define YES 1
 
 typedef enum		e_ops
 {
@@ -35,7 +38,7 @@ typedef enum		e_ops
 	op_rr,
 	op_rra,
 	op_rrb,
-	op_rrr ,
+	op_rrr,
 	too_big,
 }					t_ops;
 
@@ -66,6 +69,10 @@ typedef struct		s_node
 typedef struct		s_flags
 {
 	char			verbose;
+	char			random;
+	int				n_random;
+	char			normalize;
+	char			help;
 }					t_flags;
 
 typedef struct		s_data
@@ -73,12 +80,6 @@ typedef struct		s_data
 	t_node			*start;
 	t_flags			flags;
 }					t_data;
-
-/*
-** parse_input
-*/
-t_data				parse(char **argv);
-
 
 /*
 ** elements
@@ -105,9 +106,35 @@ t_stacks			sb(t_stacks stacks, char free);
 t_stacks			ss(t_stacks stacks, char free);
 
 /*
+** display
+*/
+void				display_node(t_node node);
+void				display_input_error(char *arg, t_flags *flags);
+void				display_ops(const t_ops *ops);
+void				push_swap_help(void);
+
+/*
+** normalize stack
+*/
+t_tack				normalize(t_tack st);
+int					get_lowest(int *st, int len);
+int					get_highest(int *st, int len);
+
+
+/*
+** parse_input
+*/
+void				parse(char **argv, t_data *data);
+
+/*
+** get weight
+*/
+void				get_weight(t_node *node);
+
+/*
 ** solver.c
 */
-void				solver(t_data data);
+const t_ops			*solver(t_data data);
 
 /*
 ** queue.c
@@ -117,18 +144,21 @@ void				remove_state(t_node **queue, t_node *start, t_node state);
 int					dup_state(t_node *start, t_node state);
 
 /*
+** make node
+*/
+t_node				*make_node(t_node *parent, t_ops op, t_flags flags);
+
+/*
 ** node_tools.c
 */
-void				free_node(t_node *n);
-t_node				*full_pop(t_node *n, t_node **queue);
-t_node				*pop_min(t_node **queue);
-void				pop(t_node *n, t_node **start);
+void				free_node(t_node **n);
+void				free_all_nodes(t_node *node);
 
 
 /*
 ** op_dispatch.c
 */
-void				op_dispatch(t_ops op, t_node node, t_node **root);
+t_stacks			op_dispatch(t_ops op, t_stacks stacks, char free);
 void				copy_array(int *new, int *old, int len);
 
 /*

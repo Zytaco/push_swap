@@ -18,21 +18,30 @@ t_ops			*add_op(const t_ops *ops, const t_ops add)
 	t_ops	*new;
 
 	i = 0;
-	while (ops && ops[i] != overflow)
+	while (ops && ops[i] != too_big)
 		i++;
 	new = ft_memalloc(sizeof(t_ops) * (i + 2));
-	new[i + 1] = overflow;
+	new[i + 1] = too_big;
+	new[i] = add;
 	while (ops && i > 0)
 	{
 		i--;
-		new[i + j] = ops[i];
+		new[i] = ops[i];
 	}
 	return (new);
 }
 
-int				exception(t_ops last, t_ops op)
+int				exception(t_ops last, t_ops op, int size_a, int size_b)
 {
-	if (
+	return (
+	(size_a < 2 && (op == op_sa || op == op_ss)) ||
+	(size_b < 2 && (op == op_sb || op == op_ss)) ||
+	(size_a < 2 &&
+	(op == op_ra || op == op_rr || op == op_rra || op == op_rrr)) ||
+	(size_b < 2 &&
+	(op == op_rb || op == op_rr || op == op_rrb || op == op_rrr)) ||
+	(size_a == 0 && op == op_pb) ||
+	(size_b == 0 && op == op_pa) ||
 	(last == op_sa && (op == op_sa || op == op_ss)) ||
 	(last == op_sb && (op == op_sb || op == op_ss)) ||
 	(last == op_pb && op == op_pa) ||
@@ -42,37 +51,42 @@ int				exception(t_ops last, t_ops op)
 	(last == op_rr && (op == op_rrb || op == op_rra || op == op_rrr)) ||
 	(last == op_rra && op == op_ra) ||
 	(last == op_rrb && op == op_rb) ||
-	(last == op_rrr && (op == op_rb || op == op_ra || op == op_rr)) ||
-	)
+	(last == op_rrr && (op == op_rb || op == op_ra || op == op_rr))
+	);
+}
+
+static int		pessimism_test(t_node *parent, t_node n)
+{
+	if (parent && n.weight != INT32_MAX && n.weight + 1 < parent->weight)
+	{
+		parent->weight = n.weight + 1;
+		pessimism_test(parent->parent, *parent);
 		return (1);
+	}
 	return (0);
 }
 
-static void		pessimism_test(t_node *parent, int child_weight)
-{
-	if (parent && parent->weight > child_weight + 1)
-	{
-		ft_putstr("PESSIMISM\n");
-		parent->weight = child_weight + 1;
-		pessimism_test(parent->parent, parent->weight);
-	}
-}
-
-t_node			*make_node(t_node *parent, t_ops op)
+t_node			*make_node(t_node *parent, t_ops op, t_flags flags)
 {
 	t_node *const new = ft_memalloc(sizeof(t_node));
 
-	if (parent->depth > 0 && exception(parent->ops[parent->depth - 1], op))
-	{
+	if (parent && parent->depth > 0 &&
+	exception(parent->ops[parent->depth - 1], op,
+								parent->stacks.a.size, parent->stacks.b.size))
 		new->weight = INT32_MAX;
-		return (new);
+	else
+	{
+		new->parent = parent;
+		new->desc = NULL;
+		new->depth = parent->depth + 1;
+		new->ops = add_op(parent->ops, op);
+		new->stacks = op_dispatch(op, parent->stacks, NO);
+		get_weight(new);
 	}
-	new->parent = parent
-	new->desc = NULL;
-	new->stacks = op_dispatch(op, );
-	new->ops = add_op(parent->ops, op);
-	new->depth = parent->depth + 1;
-	current->desc[op]->weight = get_weight(current->desc[op]);
-	pessimism_test(parent, new->weight);
+	if (pessimism_test(parent, *new) && flags.verbose)
+	{
+		ft_putstr("PESSIMISM\n");
+		// display_node(*new);
+	}
 	return (new);
 }

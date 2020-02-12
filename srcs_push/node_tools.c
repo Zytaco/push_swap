@@ -12,79 +12,39 @@
 
 #include "../includes/push_swap.h"
 
-void	free_node(t_node *n)
+void	free_node(t_node **n)
 {
 	if (!n)
 		return ;
-	if (n->a)
-		free(n->a);
-	if (n->b)
-		free(n->b);
-	if (n->instr)
-		free(n->instr);
-	free(n);
+	ft_free((*n)->desc);
+	(*n)->desc = NULL;
+	ft_free((void*)(*n)->ops);
+	(*n)->ops = (const t_ops*)NULL;
+	(*n)->stacks.a.size = 0;
+	ft_free((*n)->stacks.a.stack);
+	(*n)->stacks.a.stack = NULL;
+	(*n)->stacks.b.size = 0;
+	ft_free((*n)->stacks.b.stack);
+	(*n)->stacks.b.stack = NULL;
+	ft_free(*n);
+	*n = NULL;
 }
 
-void	pop(t_node *n, t_node **start)
+void	free_all_nodes(t_node *node)
 {
-	if (start && *start == n)
-		*start = n->next;
-	if (n->prev)
-		n->prev->next = n->next;
-	if (n->next)
-		n->next->prev = n->prev;
-	if (n->parent && n->parent->child == n)
-		n->parent->child = n->next;
-	n->next = NULL;
-	n->prev = NULL;
-	n->parent = NULL;
-}
+	int i;
 
-t_node	*full_pop(t_node *n, t_node **queue)
-{
-	t_node *child;
-
-	pop(n, queue);
-	while (n->child)
+	if (node->parent)
 	{
-		child = n->child;
-		pop(n->child, queue);
-		insert_new(queue, child);
+		free_all_nodes(node->parent);
+		return ;
 	}
-	return (n);
-}
-
-t_node	*pop_min(t_node **queue)
-{
-	t_node *min;
-	t_node *n;
-
-	min = *queue;
-	n = (*queue)->next;
-	while (n)
+	i = 0;
+	while (node->desc[i])
 	{
-		if (n->weight < min->weight)
-			min = n;
-		n = n->next;
+		node->desc[i]->parent = NULL;
+		free_all_nodes(node->desc[i]);
+		i++;
 	}
-	return (full_pop(min, queue));
-}
-
-t_node	*new_bare_node(void)
-{
-	t_node *new;
-
-	new = malloc(sizeof(t_node));
-	if (!new)
-		ft_error("new_node() failed to allocate");
-	new->parent = NULL;
-	new->next = NULL;
-	new->prev = NULL;
-	new->child = NULL;
-	new->members = 1;
-	new->instr = NULL;
-	new->n_instr = 0;
-	new->a = NULL;
-	new->b = NULL;
-	return (new);
+	free_node(&node);
 }

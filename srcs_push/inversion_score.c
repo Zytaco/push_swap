@@ -23,29 +23,14 @@ static int cmp(int a, int b, char stck)
 	return (-1);
 }
 
-int			ordered(int *st, int len, char stck)
-{
-	int i;
-	int bad_count;
-
-	bad_count = 0;
-	i = 0;
-	while (i < len)
-	{
-		if (!cmp(st[i], st[(i + 1) % len], stck))
-			bad_count++;
-		if (bad_count >= 2)
-			return (0);
-	}
-	return (1);
-}
-
 int			inversion_score(int *st, int len, char stck)
 {
 	int i;
 	int j;
 	int inver;
 
+	if (len <= 1)
+		return (0);
 	inver = 0;
 	i = 1;
 	while (i == 1 || i < (len - 1) / 2)

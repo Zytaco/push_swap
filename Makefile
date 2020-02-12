@@ -16,7 +16,7 @@ NAME2		 =	checker
 
 OPERATIONS	 =	elements id pa pb ra rb rr rra rrb rrr sa sb ss
 
-SHARED_FILES =	normalise_stack parse_input\
+SHARED_FILES =	display normalise_stack parse_input\
 				$(OPERATIONS:%=operations/%)
 
 SRCS_CHECK	 =	main

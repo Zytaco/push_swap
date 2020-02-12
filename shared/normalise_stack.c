@@ -12,7 +12,38 @@
 
 #include "../includes/push_swap.h"
 
-int		get_min_pos(int *st, int len)
+static int		count_smaller(int x, t_tack st)
+{
+	size_t	i;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (i < st.size)
+	{
+		if (st.stack[i] < x)
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+t_tack			normalize(t_tack st)
+{
+	t_tack norm;
+
+	norm.stack = ft_memalloc(sizeof(int) * st.size);
+	norm.size = 0;
+	while (norm.size < st.size)
+	{
+		norm.stack[norm.size] = count_smaller(st.stack[norm.size], st);
+		norm.size++;
+	}
+	ft_free(st.stack);
+	return (norm);
+}
+
+int		get_lowest(int *st, int len)
 {
 	int min_pos;
 	int i;
@@ -28,7 +59,7 @@ int		get_min_pos(int *st, int len)
 	return (min_pos);
 }
 
-int		get_max_pos(int *st, int len)
+int		get_highest(int *st, int len)
 {
 	int max_pos;
 	int i;
