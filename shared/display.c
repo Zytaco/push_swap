@@ -26,7 +26,8 @@ static void	print_ints(t_tack st)
 
 void		display_node(t_node node)
 {
-	ft_printf("Score: %d  |  Operations: ", node.weight);
+	ft_printf("Score: %d  |  Depth: %d  |  S+D=%d |  Operations: ",
+	node.weight, node.depth, node.weight + node.depth);
 	display_ops(node.ops);
 	ft_printf("\na length: %d   a score: %d\n", node.stacks.a.size,
 														node.stacks.score_a);

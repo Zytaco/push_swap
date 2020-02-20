@@ -34,30 +34,28 @@ t_ops			*add_op(const t_ops *ops, const t_ops add)
 int				exception(t_ops last, t_ops op, int size_a, int size_b)
 {
 	return (
-	(size_a < 2 && (op == op_sa || op == op_ss)) ||
-	(size_b < 2 && (op == op_sb || op == op_ss)) ||
-	(size_a < 2 &&
-	(op == op_ra || op == op_rr || op == op_rra || op == op_rrr)) ||
-	(size_b < 2 &&
-	(op == op_rb || op == op_rr || op == op_rrb || op == op_rrr)) ||
+	(size_a < 2 && (op == op_sa || op == op_ss || op == op_ra || op == op_rr
+	|| op == op_rra || op == op_rrr)) ||
+	(size_b < 2 && (op == op_sb || op == op_ss || op == op_rb || op == op_rr
+	|| op == op_rrb || op == op_rrr)) ||
 	(size_a == 0 && op == op_pb) ||
 	(size_b == 0 && op == op_pa) ||
 	(last == op_sa && (op == op_sa || op == op_ss)) ||
 	(last == op_sb && (op == op_sb || op == op_ss)) ||
 	(last == op_pb && op == op_pa) ||
 	(last == op_pa && op == op_pb) ||
-	(last == op_ra && op == op_rra) ||
-	(last == op_rb && op == op_rrb) ||
+	(last == op_ra && (op == op_rra || op == op_rrr)) ||
+	(last == op_rb && (op == op_rrb || op == op_rrr)) ||
 	(last == op_rr && (op == op_rrb || op == op_rra || op == op_rrr)) ||
-	(last == op_rra && op == op_ra) ||
-	(last == op_rrb && op == op_rb) ||
+	(last == op_rra && (op == op_ra || op == op_rr)) ||
+	(last == op_rrb && (op == op_rb || op == op_rr)) ||
 	(last == op_rrr && (op == op_rb || op == op_ra || op == op_rr))
 	);
 }
 
 static int		pessimism_test(t_node *parent, t_node n)
 {
-	if (parent && n.weight != INT32_MAX && n.weight + 1 < parent->weight)
+	if (parent && n.weight != INT32_MAX && parent->weight > n.weight + 1)
 	{
 		parent->weight = n.weight + 1;
 		pessimism_test(parent->parent, *parent);
@@ -66,7 +64,7 @@ static int		pessimism_test(t_node *parent, t_node n)
 	return (0);
 }
 
-t_node			*make_node(t_node *parent, t_ops op, t_flags flags)
+t_node			*make_node(t_node *parent, t_ops op, t_flags flags, t_data data)
 {
 	t_node *const new = ft_memalloc(sizeof(t_node));
 
@@ -81,12 +79,19 @@ t_node			*make_node(t_node *parent, t_ops op, t_flags flags)
 		new->depth = parent->depth + 1;
 		new->ops = add_op(parent->ops, op);
 		new->stacks = op_dispatch(op, parent->stacks, NO);
-		get_weight(new);
+		new->stacks.score_a = 0;
+		new->stacks.score_b = 0;
+		get_weight(new, data);
 	}
 	if (pessimism_test(parent, *new) && flags.verbose)
 	{
-		ft_putstr("PESSIMISM\n");
+		// ft_putstr("PESSIMISM\n");
 		// display_node(*new);
+	}
+	if (!duplicate_check(parent->stacks) || !duplicate_check(new->stacks))
+	{
+		display_node(*new);
+		ft_error("BAD OPERATION");
 	}
 	return (new);
 }

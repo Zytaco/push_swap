@@ -12,9 +12,26 @@
 
 #include "../includes/push_swap.h"
 
-int			rot_distance(int dist, int len)
+int			distance_score(t_tack a, t_tack ord_a)
 {
-	return ((len - ft_abs((2 * ft_abs(dist)) - len)) / 2);
+	size_t	i;
+	int		pos;
+	int		score;
+	int		ignore;
+
+	ignore = 0;
+	score = 0;
+	i = 0;
+	while (i < a.size)
+	{
+		pos = get_pos(ord_a.stack[i], a);
+		if (pos != -1)
+			score += ft_abs(pos - i);
+		else
+			ignore++;
+		i++;
+	}
+	return (score);
 }
 
 static int	rot_score(t_tack st, char stack)
@@ -25,7 +42,7 @@ static int	rot_score(t_tack st, char stack)
 
 static int	get_score_a(t_tack a)
 {
-	const int inver_score = inversion_score(a.stack, a.size, 'a');
+	const int inver_score = inversion_score(a, 'a');
 
 	if (inver_score == 0)
 		return (rot_score(a, 'a'));
@@ -33,25 +50,91 @@ static int	get_score_a(t_tack a)
 		return (inver_score);
 }
 
-static int	get_score_b(t_tack b)
+static int	get_score_b(t_stacks stacks, t_data data)
 {
-	const int inver_score = inversion_score(b.stack, b.size, 'b');
+	const t_tack	b = stacks.b;
+	const int		inver_score = inversion_score(b, 'b');
+	int				merge_score;
 
+	while (b.size > 0 && b.stack[0] == data.smallest)
+
+	merge_score = 2 * b.size;
 	if (inver_score == 0)
-		return (rot_score(b, 'b'));
+		return (rot_score(b, 'b') + merge_score);
 	else
-		return (inver_score);
+		return (inver_score + merge_score);
 }
 
-static int	merge_score(t_stacks stacks)
+static t_stacks	cuts(t_stacks stacks, t_data data)
 {
-	return (2 * stacks.b.size);
+	while (1)
+	{
+		if (stacks.a.size > 0 && stacks.a.stack[stacks.a.size - 1] == data.biggest)
+		{
+			stacks.a.size--;
+			data.biggest--;
+			stacks.score_a += 1;
+		}
+		else if (stacks.a.size > 0 && stacks.a.stack[0] == data.smallest)
+		{
+			stacks.a.stack++;
+			stacks.a.size--;
+			data.smallest++;
+		}
+		else if (stacks.a.size > 1 && stacks.a.stack[1] == data.smallest && stacks.a.stack[0] == data.smallest + 1)
+		{
+			stacks.a.stack += 2;
+			stacks.a.size -= 2;
+			data.smallest += 2;
+			stacks.score_a += 1;
+		}
+		else if (stacks.a.size > 1 && stacks.a.stack[1] == data.smallest && stacks.a.stack[0] == data.smallest + 1)
+		{
+			stacks.a.size -= 2;
+			data.biggest -= 2;
+			stacks.score_a += 3;
+		}
+		else if (stacks.b.size > 0 && stacks.b.stack[stacks.b.size - 1] == data.smallest)
+		{
+			stacks.b.size--;
+			data.smallest++;
+			stacks.score_b += 1;
+		}
+		else if (stacks.b.size > 0 && stacks.b.stack[0] == data.biggest)
+		{
+			stacks.b.stack++;
+			stacks.b.size--;
+			data.biggest--;
+			stacks.score_b += 2;
+		}
+		else if (stacks.b.size > 1 && stacks.b.stack[stacks.b.size - 1] == data.smallest - 1 && stacks.b.stack[stacks.b.size - 2] == data.smallest)
+		{
+			stacks.b.size -= 2;
+			data.smallest += 2;
+			stacks.score_b += 3;
+		}
+		else if (stacks.b.size > 1 && stacks.b.stack[1] == data.smallest && stacks.b.stack[0] == data.biggest - 1)
+		{
+			stacks.b.stack += 2;
+			stacks.b.size -= 2;
+			data.smallest += 2;
+			stacks.score_b += 5;
+		}
+		else
+			return (stacks);
+	}
 }
 
-void		get_weight(t_node *node)
+void		get_weight(t_node *node, t_data data)
 {
-	node->stacks.score_a = get_score_a(node->stacks.a);
-	node->stacks.score_b = get_score_b(node->stacks.b);
-	node->weight = node->stacks.score_a + node->stacks.score_b +
-									merge_score(node->stacks);
+	data.max_depth = ft_min(data.max_depth, INT32_MAX);
+	if (node->stacks.a.size <= 1)
+		node->stacks.score_a = 0;
+	else
+		node->stacks.score_a = get_score_a(node->stacks.a, data);
+	if (node->stacks.b.size <= 0)
+		node->stacks.score_b = 0;
+	else
+		node->stacks.score_b = get_score_b(node->stacks, data);
+	node->weight = node->stacks.score_a + node->stacks.score_b;
 }

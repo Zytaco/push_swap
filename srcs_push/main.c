@@ -12,44 +12,21 @@
 
 #include "../includes/push_swap.h"
 
-static int		duplicate_check(t_tack a)
+static t_stacks	get_ordered(t_stacks stacks)
 {
-	size_t i;
-	size_t j;
+	t_stacks	ordered;
+	size_t		i;
 
+	ordered.a.size = stacks.a.size;
+	ordered.a.stack = ft_memalloc(sizeof(int) * ordered.a.size);
 	i = 0;
-	while (i + 1 < a.size)
+	while (i < ordered.a.size)
 	{
-		j = i + 1;
-		while (j < a.size)
-		{
-			if (a.stack[i] == a.stack[j])
-				return (0);
-			j++;
-		}
+		ordered.a.stack[count_smaller(stacks.a.stack[i], stacks.a)] =
+															stacks.a.stack[i];
 		i++;
 	}
-	return (1);
-}
-
-int				ordered(t_tack st)
-{
-	size_t i;
-	size_t j;
-
-	i = 0;
-	while (i + 1 < st.size)
-	{
-		j = 0;
-		while (j < st.size)
-		{
-			if (st.stack[i] == st.stack[j])
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
+	return (ordered);
 }
 
 static t_data	init_data(void)
@@ -73,6 +50,11 @@ static t_data	init_data(void)
 	data.start->stacks.b.stack = NULL;
 	data.start->stacks.score_b = INT32_MAX;
 	data.start->weight = INT32_MAX;
+	data.ordered.a.size = 0;
+	data.ordered.a.stack = NULL;
+	data.ordered.b.size = 0;
+	data.ordered.b.stack = NULL;
+	data.max_depth = MAKE_RANGE;
 	return (data);
 }
 
@@ -91,10 +73,16 @@ int				main(int argc, char **argv)
 		push_swap_help();
 		return (1);
 	}
-	duplicate_check(data.start->stacks.a);
+	duplicate_check(data.start->stacks);
 	if (data.flags.normalize)
-		data.start->stacks.a = normalize(data.start->stacks.a);
-	get_weight(data.start);
+	{
+		ft_free(data.start->stacks.a.stack);
+		data.start->stacks.a = data.ordered.a;
+	}
+	data.ordered = get_ordered(data.start->stacks);
+	if (data.ordered.a.size > 0)
+		data.smallest = data.ordered.a.stack[0];
+	get_weight(data.start, data);
 	display_ops(solver(data));
 	return (1);
 }

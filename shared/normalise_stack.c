@@ -12,7 +12,23 @@
 
 #include "../includes/push_swap.h"
 
-static int		count_smaller(int x, t_tack st)
+int				count_bigger(int x, t_tack st)
+{
+	size_t	i;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (i < st.size)
+	{
+		if (st.stack[i] > x)
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+int				count_smaller(int x, t_tack st)
 {
 	size_t	i;
 	int		count;
@@ -26,6 +42,20 @@ static int		count_smaller(int x, t_tack st)
 		i++;
 	}
 	return (count);
+}
+
+int			get_pos(int x, t_tack st)
+{
+	int i;
+
+	i = 0;
+	while((U int)i < st.size)
+	{
+		if (st.stack[i] == x)
+			return (i);
+		i++;
+	}
+	return (-1);
 }
 
 t_tack			normalize(t_tack st)

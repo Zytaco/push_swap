@@ -18,9 +18,9 @@ t_stacks			pa(t_stacks stacks, char free)
 
 	if (stacks.b.size <= 0)
 		return (id(stacks, free));
-	new.a = copy(stacks.a, 1);
-	stacks.a.stack[0] = stacks.b.stack[0];
 	new.b = copy(stacks.b, -1);
+	new.a = copy(stacks.a, 1);
+	new.a.stack[0] = stacks.b.stack[0];
 	if (free)
 	{
 		ft_free(stacks.a.stack);

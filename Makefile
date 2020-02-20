@@ -16,13 +16,13 @@ NAME2		 =	checker
 
 OPERATIONS	 =	elements id pa pb ra rb rr rra rrb rrr sa sb ss
 
-SHARED_FILES =	display normalise_stack parse_input\
+SHARED_FILES =	display duplicate_check normalise_stack parse_input\
 				$(OPERATIONS:%=operations/%)
 
 SRCS_CHECK	 =	main
 
-SRCS_PUSH	 =	get_state_score inversion_score main make_node node_tools \
-				op_dispatch solver
+SRCS_PUSH	 =	descendants get_state_score inversion_score main make_node \
+				node_tools op_dispatch solver
 
 PUSH_C		 =	$(SHARED_FILES:%=shared/%.c)\
 				$(SRCS_PUSH:%=srcs_push/%.c)

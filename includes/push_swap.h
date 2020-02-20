@@ -19,11 +19,14 @@
 /*
 ** longest subsequence defines
 */
-# define MAKE_RANGE 3
+# define MAKE_RANGE 1
 # define INVERSE_WEIGHT 1
 # define ROT_INS_WEIGHT 1
 # define NO 0
 # define YES 1
+# define CHILD_WEIGHT (current->desc[op - 1]->weight)
+# define CHILD (current->desc[op - 1])
+# define BACKTRACK_WEIGHT 0
 
 typedef enum		e_ops
 {
@@ -75,10 +78,22 @@ typedef struct		s_flags
 	char			help;
 }					t_flags;
 
+typedef struct		s_qnode
+{
+	struct s_qnode	*next;
+	t_node			*node;
+	int				weight;
+}					t_qnode;
+
 typedef struct		s_data
 {
 	t_node			*start;
 	t_flags			flags;
+	t_stacks		ordered;
+	int				max_depth;
+	int				smallest;
+	int				biggest;
+	t_qnode			*queue;
 }					t_data;
 
 /*
@@ -114,12 +129,19 @@ void				display_ops(const t_ops *ops);
 void				push_swap_help(void);
 
 /*
+** duplicate check
+*/
+int					duplicate_check(t_stacks stacks);
+
+/*
 ** normalize stack
 */
 t_tack				normalize(t_tack st);
 int					get_lowest(int *st, int len);
 int					get_highest(int *st, int len);
-
+int					count_smaller(int x, t_tack st);
+int					count_bigger(int x, t_tack st);
+int					get_pos(int x, t_tack st);
 
 /*
 ** parse_input
@@ -129,24 +151,24 @@ void				parse(char **argv, t_data *data);
 /*
 ** get weight
 */
-void				get_weight(t_node *node);
+void				get_weight(t_node *node, t_data data);
+
+/*
+** queue.c
+*/
+void				add_to_queue(t_node *node, t_qnode *queue, t_data *data);
+t_node				*next_from_queue(t_data *data);
 
 /*
 ** solver.c
 */
 const t_ops			*solver(t_data data);
 
-/*
-** queue.c
-*/
-void				insert_new(t_node **start, t_node *new);
-void				remove_state(t_node **queue, t_node *start, t_node state);
-int					dup_state(t_node *start, t_node state);
 
 /*
 ** make node
 */
-t_node				*make_node(t_node *parent, t_ops op, t_flags flags);
+t_node				*make_node(t_node *parent, t_ops op, t_flags flags, t_data data);
 
 /*
 ** node_tools.c
@@ -162,8 +184,18 @@ t_stacks			op_dispatch(t_ops op, t_stacks stacks, char free);
 void				copy_array(int *new, int *old, int len);
 
 /*
+** descendants
+*/
+t_node				*best_desc(t_node *current, const int depth,
+												t_flags flags, t_data *data);
+
+/*
 ** inversion_score.c
 */
-int					inversion_score(int *st, int len, char stck);
+int					rot_distance(int dist, int len);
+int					inversion_score(t_tack st, char stack);
+int					new_inversion_score(t_tack st, char stack);
+int					swap_score(t_tack st, char stck);
+t_stacks			stacks_cuts(t_stacks stacks);
 
 #endif
