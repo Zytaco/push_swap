@@ -64,7 +64,7 @@ static int		pessimism_test(t_node *parent, t_node n)
 	return (0);
 }
 
-t_node			*make_node(t_node *parent, t_ops op, t_flags flags, t_data data)
+t_node			*make_node(t_node *parent, t_ops op, t_flags flags, t_data *data)
 {
 	t_node *const new = ft_memalloc(sizeof(t_node));
 
@@ -81,17 +81,19 @@ t_node			*make_node(t_node *parent, t_ops op, t_flags flags, t_data data)
 		new->stacks = op_dispatch(op, parent->stacks, NO);
 		new->stacks.score_a = 0;
 		new->stacks.score_b = 0;
-		get_weight(new, data);
+		get_weight(new, *data);
+		new->score = new->weight + new->depth;
 	}
 	if (pessimism_test(parent, *new) && flags.verbose)
 	{
 		// ft_putstr("PESSIMISM\n");
 		// display_node(*new);
 	}
-	if (!duplicate_check(parent->stacks) || !duplicate_check(new->stacks))
-	{
-		display_node(*new);
-		ft_error("BAD OPERATION");
-	}
+	add_to_queue(new, data->queue, data);
+	// if (!duplicate_check(parent->stacks) || !duplicate_check(new->stacks))
+	// {
+	// 	display_node(*new);
+	// 	ft_error("BAD OPERATION");
+	// }
 	return (new);
 }

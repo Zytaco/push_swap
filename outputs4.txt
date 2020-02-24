@@ -1,0 +1,3508 @@
+Cycle: 0
+INPUT:
+Score: 8  |  Depth: 0  |  S+D=8 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 1
+Score: 8  |  Depth: 0  |  S+D=8 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 2
+Score: 7  |  Depth: 1  |  S+D=8 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 3
+Score: 8  |  Depth: 0  |  S+D=8 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 4
+Score: 7  |  Depth: 1  |  S+D=8 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 5
+Score: 8  |  Depth: 0  |  S+D=8 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 6
+Score: 7  |  Depth: 1  |  S+D=8 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 7
+Score: 8  |  Depth: 0  |  S+D=8 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 8
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 9
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 10
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb sa
+a length: 5   a score: 4
+ 4  5  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 11
+Score: 5  |  Depth: 3  |  S+D=8 |  Operations: pb sa rra
+a length: 5   a score: 4
+ 1  4  5  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 12
+Score: 6  |  Depth: 2  |  S+D=8 |  Operations: pb sa
+a length: 5   a score: 4
+ 4  5  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 13
+Score: 5  |  Depth: 3  |  S+D=8 |  Operations: pb sa ra
+a length: 5   a score: 4
+ 5  3  2  1  4 
+b length: 1   b score: 7
+ 6 
+Cycle: 14
+Score: 6  |  Depth: 2  |  S+D=8 |  Operations: pb sa
+a length: 5   a score: 4
+ 4  5  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 15
+Score: 7  |  Depth: 1  |  S+D=8 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 16
+Score: 8  |  Depth: 0  |  S+D=8 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 17
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 18
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 19
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb sa
+a length: 5   a score: 4
+ 4  5  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 20
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb sa ra
+a length: 5   a score: 4
+ 5  3  2  1  4 
+b length: 1   b score: 7
+ 6 
+Cycle: 21
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb sa ra ra
+a length: 5   a score: 4
+ 3  2  1  4  5 
+b length: 1   b score: 7
+ 6 
+Cycle: 22
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb sa ra
+a length: 5   a score: 4
+ 5  3  2  1  4 
+b length: 1   b score: 7
+ 6 
+Cycle: 23
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb sa ra pb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 24
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb sa ra
+a length: 5   a score: 4
+ 5  3  2  1  4 
+b length: 1   b score: 7
+ 6 
+Cycle: 25
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb sa
+a length: 5   a score: 4
+ 4  5  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 26
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb sa rra
+a length: 5   a score: 4
+ 1  4  5  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 27
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb sa rra rra
+a length: 5   a score: 4
+ 2  1  4  5  3 
+b length: 1   b score: 7
+ 6 
+Cycle: 28
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb sa rra
+a length: 5   a score: 4
+ 1  4  5  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 29
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb sa rra pa
+a length: 6   a score: 4
+ 6  1  4  5  3  2 
+b length: 0   b score: 0
+
+Cycle: 30
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb sa rra
+a length: 5   a score: 4
+ 1  4  5  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 31
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb sa rra pb
+a length: 4   a score: 2
+ 4  5  3  2 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 32
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb sa rra
+a length: 5   a score: 4
+ 1  4  5  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 33
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb sa
+a length: 5   a score: 4
+ 4  5  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 34
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 35
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb ra
+a length: 5   a score: 6
+ 4  3  2  1  5 
+b length: 1   b score: 7
+ 6 
+Cycle: 36
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 37
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 38
+Score: 5  |  Depth: 3  |  S+D=8 |  Operations: pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 39
+Score: 6  |  Depth: 2  |  S+D=8 |  Operations: pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 40
+Score: 5  |  Depth: 3  |  S+D=8 |  Operations: pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 41
+Score: 6  |  Depth: 2  |  S+D=8 |  Operations: pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 42
+Score: 5  |  Depth: 3  |  S+D=8 |  Operations: pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 43
+Score: 6  |  Depth: 2  |  S+D=8 |  Operations: pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 44
+Score: 5  |  Depth: 3  |  S+D=8 |  Operations: pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 45
+Score: 6  |  Depth: 2  |  S+D=8 |  Operations: pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 46
+Score: 7  |  Depth: 1  |  S+D=8 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 47
+Score: 8  |  Depth: 0  |  S+D=8 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 48
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 49
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 50
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 51
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 52
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ra ss
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 53
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 54
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ra sa
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 55
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 56
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ra pa
+a length: 5   a score: 4
+ 5  3  2  1  4 
+b length: 1   b score: 7
+ 6 
+Cycle: 57
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 58
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ra sb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 59
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 60
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ra rb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 61
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 62
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ra rrb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 63
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 64
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ra rr
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 65
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 66
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ra ra
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 67
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 68
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 69
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 70
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb sa rrr
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 71
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 72
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb sa sb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 73
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 74
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb sa rb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 75
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 76
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb sa rrb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 77
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 78
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb sa rra
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 79
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 80
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb sa rr
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 81
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 82
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb sa ra
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 83
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 84
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 85
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 86
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb rr sa
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 87
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 88
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb rr ss
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 89
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 90
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb rr ra
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 91
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 92
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb rr rb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 93
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 94
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb rr rr
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 95
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 96
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 97
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 98
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ss rra
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 99
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 100
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ss pa
+a length: 5   a score: 4
+ 6  3  4  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 101
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 102
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ss rrr
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 103
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 104
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ss ra
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 105
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 106
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ss sb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 107
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 108
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ss rb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 109
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 110
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ss rr
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 111
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 112
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb pb ss rrb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 113
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 114
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 115
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 116
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb rra
+a length: 5   a score: 6
+ 1  5  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 117
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 118
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 119
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 120
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: ss ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 121
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 122
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: ss rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 123
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 124
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: ss pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 125
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 126
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 127
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 128
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: sa ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 129
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 130
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: sa rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 131
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 132
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: sa pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 133
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 134
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 135
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 136
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 137
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 138
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb sa
+a length: 5   a score: 4
+ 4  6  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 139
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: sa pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 140
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: sa pb sa
+a length: 5   a score: 4
+ 4  6  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 141
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: sa pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 142
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 143
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 144
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 145
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 146
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 147
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb sa
+a length: 5   a score: 4
+ 4  6  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 148
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 149
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb sa rra rra
+a length: 5   a score: 4
+ 2  1  4  6  3 
+b length: 1   b score: 7
+ 5 
+Cycle: 150
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 151
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb sa rra pa
+a length: 6   a score: 4
+ 5  1  4  6  3  2 
+b length: 0   b score: 0
+
+Cycle: 152
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 153
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb sa rra sa
+a length: 5   a score: 4
+ 4  1  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 154
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 155
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb sa rra pb
+a length: 4   a score: 2
+ 4  6  3  2 
+b length: 2   b score: 9
+ 1  5 
+Cycle: 156
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 157
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb sa
+a length: 5   a score: 4
+ 4  6  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 158
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 159
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb rra
+a length: 5   a score: 6
+ 1  6  4  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 160
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 161
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb ra
+a length: 5   a score: 6
+ 4  3  2  1  6 
+b length: 1   b score: 7
+ 5 
+Cycle: 162
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 163
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 164
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: sa pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 165
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: sa pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 166
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: sa pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 167
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: sa pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 168
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: sa pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 169
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: sa pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 170
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: sa pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 171
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: sa pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 172
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: sa pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 173
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 174
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 175
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 176
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 177
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 178
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 179
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 180
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb rr ss
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 181
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 182
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb rr sa
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 183
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 184
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb rr pa
+a length: 5   a score: 4
+ 5  3  2  1  4 
+b length: 1   b score: 7
+ 6 
+Cycle: 185
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 186
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb rr sb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 187
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 188
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb rr rb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 189
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 190
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb rr rr
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 191
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 192
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb rr ra
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 193
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 194
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 195
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 196
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ss rrr
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 197
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 198
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ss sb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 199
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 200
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ss rb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 201
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 202
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ss rrb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 203
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 204
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ss rra
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 205
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 206
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ss rr
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 207
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 208
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ss ra
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 209
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 210
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 211
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 212
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ra sa
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 213
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 214
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ra ss
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 215
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 216
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ra ra
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 217
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 218
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ra rb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 219
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 220
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ra rrb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 221
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 222
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb ra rr
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 223
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 224
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 225
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 226
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb sa rra
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 227
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 228
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb sa pa
+a length: 5   a score: 4
+ 6  3  4  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 229
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 230
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb sa rrr
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 231
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 232
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb sa ra
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 233
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 234
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb sa sb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 235
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 236
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb sa rb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 237
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 238
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb sa rr
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 239
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 240
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa pb pb sa rrb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 241
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 242
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 243
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 244
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 245
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 246
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa rra rra
+a length: 6   a score: 6
+ 2  1  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 247
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: sa rra rra sa
+a length: 6   a score: 4
+ 1  2  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 248
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: sa rra rra
+a length: 6   a score: 6
+ 2  1  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 249
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: sa rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 250
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 251
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 252
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 253
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 254
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 255
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa rra rra
+a length: 6   a score: 6
+ 2  1  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 256
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa rra rra sa
+a length: 6   a score: 4
+ 1  2  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 257
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa rra rra sa rra
+a length: 6   a score: 4
+ 3  1  2  5  6  4 
+b length: 0   b score: 0
+
+Cycle: 258
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa rra rra sa
+a length: 6   a score: 4
+ 1  2  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 259
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa rra rra sa pb
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 260
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa rra rra sa
+a length: 6   a score: 4
+ 1  2  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 261
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa rra rra
+a length: 6   a score: 6
+ 2  1  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 262
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 263
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa rra sa
+a length: 6   a score: 6
+ 5  1  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 264
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 265
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 266
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: sa rra pb rra
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 267
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: sa rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 268
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: sa rra pb ra
+a length: 5   a score: 4
+ 6  4  3  2  5 
+b length: 1   b score: 7
+ 1 
+Cycle: 269
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: sa rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 270
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: sa rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 271
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 272
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 273
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 274
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 275
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 276
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 277
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa rra pb ra
+a length: 5   a score: 4
+ 6  4  3  2  5 
+b length: 1   b score: 7
+ 1 
+Cycle: 278
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa rra pb ra ra
+a length: 5   a score: 4
+ 4  3  2  5  6 
+b length: 1   b score: 7
+ 1 
+Cycle: 279
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa rra pb ra
+a length: 5   a score: 4
+ 6  4  3  2  5 
+b length: 1   b score: 7
+ 1 
+Cycle: 280
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa rra pb ra pb
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 281
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa rra pb ra
+a length: 5   a score: 4
+ 6  4  3  2  5 
+b length: 1   b score: 7
+ 1 
+Cycle: 282
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 283
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa rra pb rra
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 284
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa rra pb rra rra
+a length: 5   a score: 4
+ 3  2  5  6  4 
+b length: 1   b score: 7
+ 1 
+Cycle: 285
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa rra pb rra
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 286
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa rra pb rra pa
+a length: 6   a score: 4
+ 1  2  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 287
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa rra pb rra
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 288
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa rra pb rra pb
+a length: 4   a score: 2
+ 5  6  4  3 
+b length: 2   b score: 8
+ 2  1 
+Cycle: 289
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa rra pb rra
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 290
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 291
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 292
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 293
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 294
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 295
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: sa ra ra sa
+a length: 6   a score: 4
+ 3  4  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 296
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: sa ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 297
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: sa ra ra pb
+a length: 5   a score: 4
+ 3  2  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 298
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: sa ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 299
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: sa ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 300
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 301
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 302
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 303
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 304
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 305
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 306
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa ra ra pb
+a length: 5   a score: 4
+ 3  2  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 307
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa ra ra pb ra
+a length: 5   a score: 4
+ 2  1  5  6  3 
+b length: 1   b score: 7
+ 4 
+Cycle: 308
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa ra ra pb
+a length: 5   a score: 4
+ 3  2  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 309
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa ra ra pb sa
+a length: 5   a score: 2
+ 2  3  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 310
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa ra ra pb
+a length: 5   a score: 4
+ 3  2  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 311
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa ra ra pb pb
+a length: 4   a score: 2
+ 2  1  5  6 
+b length: 2   b score: 9
+ 3  4 
+Cycle: 312
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa ra ra pb
+a length: 5   a score: 4
+ 3  2  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 313
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 314
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa ra ra sa
+a length: 6   a score: 4
+ 3  4  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 315
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa ra ra sa ra
+a length: 6   a score: 4
+ 4  2  1  5  6  3 
+b length: 0   b score: 0
+
+Cycle: 316
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa ra ra sa
+a length: 6   a score: 4
+ 3  4  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 317
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: sa ra ra sa pb
+a length: 5   a score: 4
+ 4  2  1  5  6 
+b length: 1   b score: 7
+ 3 
+Cycle: 318
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: sa ra ra sa
+a length: 6   a score: 4
+ 3  4  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 319
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 320
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 321
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa ra sa
+a length: 6   a score: 6
+ 4  6  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 322
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 323
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: sa ra pb
+a length: 5   a score: 6
+ 4  3  2  1  5 
+b length: 1   b score: 7
+ 6 
+Cycle: 324
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: sa ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 325
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: sa
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 326
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 327
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 328
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 329
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb sa
+a length: 5   a score: 4
+ 4  6  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 330
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: ss pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 331
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: ss pb sa
+a length: 5   a score: 4
+ 4  6  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 332
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: ss pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 333
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 334
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 335
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 336
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 337
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 338
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb sa
+a length: 5   a score: 4
+ 4  6  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 339
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 340
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb sa rra rra
+a length: 5   a score: 4
+ 2  1  4  6  3 
+b length: 1   b score: 7
+ 5 
+Cycle: 341
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 342
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb sa rra pa
+a length: 6   a score: 4
+ 5  1  4  6  3  2 
+b length: 0   b score: 0
+
+Cycle: 343
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 344
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb sa rra sa
+a length: 5   a score: 4
+ 4  1  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 345
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 346
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb sa rra pb
+a length: 4   a score: 2
+ 4  6  3  2 
+b length: 2   b score: 9
+ 1  5 
+Cycle: 347
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb sa rra
+a length: 5   a score: 4
+ 1  4  6  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 348
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb sa
+a length: 5   a score: 4
+ 4  6  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 349
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 350
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb rra
+a length: 5   a score: 6
+ 1  6  4  3  2 
+b length: 1   b score: 7
+ 5 
+Cycle: 351
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 352
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb ra
+a length: 5   a score: 6
+ 4  3  2  1  6 
+b length: 1   b score: 7
+ 5 
+Cycle: 353
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 354
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 355
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: ss pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 356
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: ss pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 357
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: ss pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 358
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: ss pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 359
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: ss pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 360
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: ss pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 361
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: ss pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 362
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: ss pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 363
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: ss pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 364
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 365
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 366
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 367
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 368
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 369
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 370
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 371
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb rr ss
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 372
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 373
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb rr sa
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 374
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 375
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb rr pa
+a length: 5   a score: 4
+ 5  3  2  1  4 
+b length: 1   b score: 7
+ 6 
+Cycle: 376
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 377
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb rr sb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 378
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 379
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb rr rb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 380
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 381
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb rr rr
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 382
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 383
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb rr ra
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 384
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb rr
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 385
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 386
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 387
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ss rrr
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 388
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 389
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ss sb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 390
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 391
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ss rb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 392
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 393
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ss rrb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 394
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 395
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ss rra
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 396
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 397
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ss rr
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 398
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 399
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ss ra
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 400
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ss
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 401
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 402
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 403
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ra sa
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 404
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 405
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ra ss
+a length: 4   a score: 2
+ 2  3  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 406
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 407
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ra ra
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 408
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 409
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ra rb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 410
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 411
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ra rrb
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 412
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 413
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb ra rr
+a length: 4   a score: 4
+ 2  1  4  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 414
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb ra
+a length: 4   a score: 4
+ 3  2  1  4 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 415
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 416
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 417
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb sa rra
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 418
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 419
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb sa pa
+a length: 5   a score: 4
+ 6  3  4  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 420
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 421
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb sa rrr
+a length: 4   a score: 2
+ 1  3  4  2 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 422
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 423
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb sa ra
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 424
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 425
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb sa sb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 426
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 427
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb sa rb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 428
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 429
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb sa rr
+a length: 4   a score: 2
+ 4  2  1  3 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 430
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 431
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss pb pb sa rrb
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 9
+ 5  6 
+Cycle: 432
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss pb pb sa
+a length: 4   a score: 2
+ 3  4  2  1 
+b length: 2   b score: 8
+ 6  5 
+Cycle: 433
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss pb pb
+a length: 4   a score: 4
+ 4  3  2  1 
+b length: 2   b score: 4
+ 6  5 
+Cycle: 434
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss pb
+a length: 5   a score: 6
+ 6  4  3  2  1 
+b length: 1   b score: 7
+ 5 
+Cycle: 435
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 436
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 437
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss rra rra
+a length: 6   a score: 6
+ 2  1  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 438
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: ss rra rra sa
+a length: 6   a score: 4
+ 1  2  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 439
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: ss rra rra
+a length: 6   a score: 6
+ 2  1  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 440
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: ss rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 441
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 442
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 443
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 444
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 445
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 446
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss rra rra
+a length: 6   a score: 6
+ 2  1  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 447
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss rra rra sa
+a length: 6   a score: 4
+ 1  2  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 448
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss rra rra sa rra
+a length: 6   a score: 4
+ 3  1  2  5  6  4 
+b length: 0   b score: 0
+
+Cycle: 449
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss rra rra sa
+a length: 6   a score: 4
+ 1  2  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 450
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss rra rra sa pb
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 451
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss rra rra sa
+a length: 6   a score: 4
+ 1  2  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 452
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss rra rra
+a length: 6   a score: 6
+ 2  1  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 453
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 454
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss rra sa
+a length: 6   a score: 6
+ 5  1  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 455
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 456
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 457
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: ss rra pb rra
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 458
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: ss rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 459
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: ss rra pb ra
+a length: 5   a score: 4
+ 6  4  3  2  5 
+b length: 1   b score: 7
+ 1 
+Cycle: 460
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: ss rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 461
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: ss rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 462
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 463
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 464
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 465
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 466
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 467
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 468
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss rra pb ra
+a length: 5   a score: 4
+ 6  4  3  2  5 
+b length: 1   b score: 7
+ 1 
+Cycle: 469
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss rra pb ra ra
+a length: 5   a score: 4
+ 4  3  2  5  6 
+b length: 1   b score: 7
+ 1 
+Cycle: 470
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss rra pb ra
+a length: 5   a score: 4
+ 6  4  3  2  5 
+b length: 1   b score: 7
+ 1 
+Cycle: 471
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss rra pb ra pb
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 472
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss rra pb ra
+a length: 5   a score: 4
+ 6  4  3  2  5 
+b length: 1   b score: 7
+ 1 
+Cycle: 473
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 474
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss rra pb rra
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 475
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss rra pb rra rra
+a length: 5   a score: 4
+ 3  2  5  6  4 
+b length: 1   b score: 7
+ 1 
+Cycle: 476
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss rra pb rra
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 477
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss rra pb rra pa
+a length: 6   a score: 4
+ 1  2  5  6  4  3 
+b length: 0   b score: 0
+
+Cycle: 478
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss rra pb rra
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 479
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss rra pb rra pb
+a length: 4   a score: 2
+ 5  6  4  3 
+b length: 2   b score: 8
+ 2  1 
+Cycle: 480
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss rra pb rra
+a length: 5   a score: 4
+ 2  5  6  4  3 
+b length: 1   b score: 7
+ 1 
+Cycle: 481
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss rra pb
+a length: 5   a score: 4
+ 5  6  4  3  2 
+b length: 1   b score: 7
+ 1 
+Cycle: 482
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss rra
+a length: 6   a score: 6
+ 1  5  6  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 483
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 484
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 485
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 486
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: ss ra ra sa
+a length: 6   a score: 4
+ 3  4  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 487
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: ss ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 488
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: ss ra ra pb
+a length: 5   a score: 4
+ 3  2  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 489
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: ss ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 490
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: ss ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 491
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 492
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 493
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 494
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 495
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 496
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 497
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss ra ra pb
+a length: 5   a score: 4
+ 3  2  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 498
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss ra ra pb ra
+a length: 5   a score: 4
+ 2  1  5  6  3 
+b length: 1   b score: 7
+ 4 
+Cycle: 499
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss ra ra pb
+a length: 5   a score: 4
+ 3  2  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 500
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss ra ra pb sa
+a length: 5   a score: 2
+ 2  3  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 501
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss ra ra pb
+a length: 5   a score: 4
+ 3  2  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 502
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss ra ra pb pb
+a length: 4   a score: 2
+ 2  1  5  6 
+b length: 2   b score: 9
+ 3  4 
+Cycle: 503
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss ra ra pb
+a length: 5   a score: 4
+ 3  2  1  5  6 
+b length: 1   b score: 7
+ 4 
+Cycle: 504
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 505
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss ra ra sa
+a length: 6   a score: 4
+ 3  4  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 506
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss ra ra sa ra
+a length: 6   a score: 4
+ 4  2  1  5  6  3 
+b length: 0   b score: 0
+
+Cycle: 507
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss ra ra sa
+a length: 6   a score: 4
+ 3  4  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 508
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: ss ra ra sa pb
+a length: 5   a score: 4
+ 4  2  1  5  6 
+b length: 1   b score: 7
+ 3 
+Cycle: 509
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: ss ra ra sa
+a length: 6   a score: 4
+ 3  4  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 510
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss ra ra
+a length: 6   a score: 6
+ 4  3  2  1  5  6 
+b length: 0   b score: 0
+
+Cycle: 511
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 512
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss ra sa
+a length: 6   a score: 6
+ 4  6  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 513
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 514
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: ss ra pb
+a length: 5   a score: 6
+ 4  3  2  1  5 
+b length: 1   b score: 7
+ 6 
+Cycle: 515
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: ss ra
+a length: 6   a score: 6
+ 6  4  3  2  1  5 
+b length: 0   b score: 0
+
+Cycle: 516
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: ss
+a length: 6   a score: 6
+ 5  6  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 517
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 518
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 519
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: pb rra
+a length: 5   a score: 6
+ 1  5  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 520
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: pb rra sa
+a length: 5   a score: 4
+ 5  1  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 521
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb rra sa rra
+a length: 5   a score: 4
+ 2  5  1  4  3 
+b length: 1   b score: 7
+ 6 
+Cycle: 522
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb rra sa
+a length: 5   a score: 4
+ 5  1  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 523
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb rra
+a length: 5   a score: 6
+ 1  5  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 524
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 525
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 526
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 527
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 528
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: pb rra
+a length: 5   a score: 6
+ 1  5  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 529
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: pb rra sa
+a length: 5   a score: 4
+ 5  1  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 530
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra sa rra
+a length: 5   a score: 4
+ 2  5  1  4  3 
+b length: 1   b score: 7
+ 6 
+Cycle: 531
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra sa rra rra
+a length: 5   a score: 4
+ 3  2  5  1  4 
+b length: 1   b score: 7
+ 6 
+Cycle: 532
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra sa rra
+a length: 5   a score: 4
+ 2  5  1  4  3 
+b length: 1   b score: 7
+ 6 
+Cycle: 533
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra sa rra pa
+a length: 6   a score: 4
+ 6  2  5  1  4  3 
+b length: 0   b score: 0
+
+Cycle: 534
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra sa rra
+a length: 5   a score: 4
+ 2  5  1  4  3 
+b length: 1   b score: 7
+ 6 
+Cycle: 535
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra sa rra sa
+a length: 5   a score: 4
+ 5  2  1  4  3 
+b length: 1   b score: 7
+ 6 
+Cycle: 536
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra sa rra
+a length: 5   a score: 4
+ 2  5  1  4  3 
+b length: 1   b score: 7
+ 6 
+Cycle: 537
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra sa rra pb
+a length: 4   a score: 2
+ 5  1  4  3 
+b length: 2   b score: 9
+ 2  6 
+Cycle: 538
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra sa rra
+a length: 5   a score: 4
+ 2  5  1  4  3 
+b length: 1   b score: 7
+ 6 
+Cycle: 539
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: pb rra sa
+a length: 5   a score: 4
+ 5  1  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 540
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: pb rra
+a length: 5   a score: 6
+ 1  5  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 541
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: pb rra rra
+a length: 5   a score: 6
+ 2  1  5  4  3 
+b length: 1   b score: 7
+ 6 
+Cycle: 542
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: pb rra
+a length: 5   a score: 6
+ 1  5  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 543
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: pb rra pa
+a length: 6   a score: 6
+ 6  1  5  4  3  2 
+b length: 0   b score: 0
+
+Cycle: 544
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: pb rra
+a length: 5   a score: 6
+ 1  5  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 545
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: pb rra pb
+a length: 4   a score: 4
+ 5  4  3  2 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 546
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb rra pb sa
+a length: 4   a score: 2
+ 4  5  3  2 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 547
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb rra pb
+a length: 4   a score: 4
+ 5  4  3  2 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 548
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb rra pb ra
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 549
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb rra pb
+a length: 4   a score: 4
+ 5  4  3  2 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 550
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb rra pb ss
+a length: 4   a score: 2
+ 4  5  3  2 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 551
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb rra pb
+a length: 4   a score: 4
+ 5  4  3  2 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 552
+Score: 5  |  Depth: 4  |  S+D=9 |  Operations: pb rra pb rr
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 553
+Score: 6  |  Depth: 3  |  S+D=9 |  Operations: pb rra pb
+a length: 4   a score: 4
+ 5  4  3  2 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 554
+Score: 7  |  Depth: 2  |  S+D=9 |  Operations: pb rra
+a length: 5   a score: 6
+ 1  5  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 555
+Score: 8  |  Depth: 1  |  S+D=9 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 556
+Score: 9  |  Depth: 0  |  S+D=9 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 557
+Score: 10  |  Depth: 0  |  S+D=10 |  Operations: 
+a length: 6   a score: 8
+ 6  5  4  3  2  1 
+b length: 0   b score: 0
+
+Cycle: 558
+Score: 9  |  Depth: 1  |  S+D=10 |  Operations: pb
+a length: 5   a score: 6
+ 5  4  3  2  1 
+b length: 1   b score: 7
+ 6 
+Cycle: 559
+Score: 8  |  Depth: 2  |  S+D=10 |  Operations: pb rra
+a length: 5   a score: 6
+ 1  5  4  3  2 
+b length: 1   b score: 7
+ 6 
+Cycle: 560
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: pb rra pb
+a length: 4   a score: 4
+ 5  4  3  2 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 561
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra pb rr
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 562
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra pb rr ss
+a length: 4   a score: 2
+ 3  4  2  5 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 563
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra pb rr
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 564
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra pb rr sa
+a length: 4   a score: 2
+ 3  4  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 565
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra pb rr
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 566
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra pb rr pa
+a length: 5   a score: 4
+ 6  4  3  2  5 
+b length: 1   b score: 7
+ 1 
+Cycle: 567
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra pb rr
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 568
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra pb rr sb
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 569
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra pb rr
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 570
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra pb rr rb
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 571
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra pb rr
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 572
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra pb rr rr
+a length: 4   a score: 4
+ 3  2  5  4 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 573
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra pb rr
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 574
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra pb rr ra
+a length: 4   a score: 4
+ 3  2  5  4 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 575
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra pb rr
+a length: 4   a score: 4
+ 4  3  2  5 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 576
+Score: 7  |  Depth: 3  |  S+D=10 |  Operations: pb rra pb
+a length: 4   a score: 4
+ 5  4  3  2 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 577
+Score: 6  |  Depth: 4  |  S+D=10 |  Operations: pb rra pb ss
+a length: 4   a score: 2
+ 4  5  3  2 
+b length: 2   b score: 8
+ 6  1 
+Cycle: 578
+Score: 5  |  Depth: 5  |  S+D=10 |  Operations: pb rra pb ss rrr
+a length: 4   a score: 2
+ 2  4  5  3 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 579
+Score: 4  |  Depth: 6  |  S+D=10 |  Operations: pb rra pb ss rrr rra
+a length: 4   a score: 2
+ 3  2  4  5 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 580
+Score: 3  |  Depth: 7  |  S+D=10 |  Operations: pb rra pb ss rrr rra sa
+a length: 4   a score: 0
+ 2  3  4  5 
+b length: 2   b score: 9
+ 1  6 
+Cycle: 581
+Score: 2  |  Depth: 8  |  S+D=10 |  Operations: pb rra pb ss rrr rra sa pa
+a length: 5   a score: 0
+ 1  2  3  4  5 
+b length: 1   b score: 7
+ 6 
+Cycle: 582
+Score: 1  |  Depth: 9  |  S+D=10 |  Operations: pb rra pb ss rrr rra sa pa pa
+a length: 6   a score: 1
+ 6  1  2  3  4  5 
+b length: 0   b score: 0
+
+Cycle: 583
+Score: 0  |  Depth: 10  |  S+D=10 |  Operations: pb rra pb ss rrr rra sa pa pa ra
+a length: 6   a score: 0
+ 1  2  3  4  5  6 
+b length: 0   b score: 0
+
+DONE DONE
+cycles: 583  depth: 10
+pb rra pb ss rrr rra sa pa pa ra

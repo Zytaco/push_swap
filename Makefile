@@ -22,7 +22,7 @@ SHARED_FILES =	display duplicate_check normalise_stack parse_input\
 SRCS_CHECK	 =	main
 
 SRCS_PUSH	 =	descendants get_state_score inversion_score main make_node \
-				node_tools op_dispatch solver
+				node_tools op_dispatch queue solver
 
 PUSH_C		 =	$(SHARED_FILES:%=shared/%.c)\
 				$(SRCS_PUSH:%=srcs_push/%.c)

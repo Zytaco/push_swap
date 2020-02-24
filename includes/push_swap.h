@@ -17,6 +17,19 @@
 # include <sys/time.h>
 
 /*
+	Let's say that input size = N. And that all input ints (n) are normalised
+	so that for all n it holds that 0 <= n < N.
+
+	The space can be described as the following 0 is in one of N locations,
+	1 is in one of N - 1 locations 2 is in one of N - 2 locations etc.
+
+	Example:
+	Input is 10 3 -100 0 -101 which is normalised to 4 3 1 2 0
+	Representation of input is [4][2][3][1][0]
+	Swap : 0 and 1 are swapped -> [4][2][3][0][1]
+	Rot: 
+*/
+/*
 ** longest subsequence defines
 */
 # define MAKE_RANGE 1
@@ -67,6 +80,7 @@ typedef struct		s_node
 	const t_ops		*ops;
 	int				depth;
 	int				weight;
+	int				score;
 }					t_node;
 
 typedef struct		s_flags
@@ -89,12 +103,19 @@ typedef struct		s_data
 {
 	t_node			*start;
 	t_flags			flags;
-	t_stacks		ordered;
 	int				max_depth;
 	int				smallest;
 	int				biggest;
 	t_qnode			*queue;
 }					t_data;
+
+typedef struct		s_queue
+{
+	struct s_queue	*first;
+	struct s_queue	*last;
+	U int			size;
+}					t_queue;
+
 
 /*
 ** elements
@@ -168,7 +189,7 @@ const t_ops			*solver(t_data data);
 /*
 ** make node
 */
-t_node				*make_node(t_node *parent, t_ops op, t_flags flags, t_data data);
+t_node				*make_node(t_node *parent, t_ops op, t_flags flags, t_data *data);
 
 /*
 ** node_tools.c

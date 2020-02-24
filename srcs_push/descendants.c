@@ -97,7 +97,7 @@ t_node		*best_desc(t_node *current, const int depth, t_flags flags, t_data *data
 		op = op_id + 1;
 		while (op < too_big)
 		{
-			CHILD = make_node(current, op, flags, *data);
+			CHILD = make_node(current, op, flags, data);
 			op++;
 		}
 	}

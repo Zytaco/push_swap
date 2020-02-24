@@ -12,22 +12,22 @@
 
 #include "../includes/push_swap.h"
 
-static t_stacks	get_ordered(t_stacks stacks)
-{
-	t_stacks	ordered;
-	size_t		i;
+// static t_stacks	get_ordered(t_stacks stacks)
+// {
+// 	t_stacks	ordered;
+// 	size_t		i;
 
-	ordered.a.size = stacks.a.size;
-	ordered.a.stack = ft_memalloc(sizeof(int) * ordered.a.size);
-	i = 0;
-	while (i < ordered.a.size)
-	{
-		ordered.a.stack[count_smaller(stacks.a.stack[i], stacks.a)] =
-															stacks.a.stack[i];
-		i++;
-	}
-	return (ordered);
-}
+// 	ordered.a.size = stacks.a.size;
+// 	ordered.a.stack = ft_memalloc(sizeof(int) * ordered.a.size);
+// 	i = 0;
+// 	while (i < ordered.a.size)
+// 	{
+// 		ordered.a.stack[count_smaller(stacks.a.stack[i], stacks.a)] =
+// 															stacks.a.stack[i];
+// 		i++;
+// 	}
+// 	return (ordered);
+// }
 
 static t_data	init_data(void)
 {
@@ -50,11 +50,9 @@ static t_data	init_data(void)
 	data.start->stacks.b.stack = NULL;
 	data.start->stacks.score_b = INT32_MAX;
 	data.start->weight = INT32_MAX;
-	data.ordered.a.size = 0;
-	data.ordered.a.stack = NULL;
-	data.ordered.b.size = 0;
-	data.ordered.b.stack = NULL;
+	data.start->score = INT32_MAX;
 	data.max_depth = MAKE_RANGE;
+	data.queue = NULL;
 	return (data);
 }
 
@@ -74,14 +72,11 @@ int				main(int argc, char **argv)
 		return (1);
 	}
 	duplicate_check(data.start->stacks);
-	if (data.flags.normalize)
-	{
-		ft_free(data.start->stacks.a.stack);
-		data.start->stacks.a = data.ordered.a;
-	}
-	data.ordered = get_ordered(data.start->stacks);
-	if (data.ordered.a.size > 0)
-		data.smallest = data.ordered.a.stack[0];
+	data.start->stacks.a = normalize(data.start->stacks.a);
+	data.smallest = get_lowest(data.start->stacks.a.stack,
+												data.start->stacks.a.size);
+	data.biggest = get_highest(data.start->stacks.a.stack,
+												data.start->stacks.a.size);
 	get_weight(data.start, data);
 	display_ops(solver(data));
 	return (1);

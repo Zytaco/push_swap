@@ -12,23 +12,16 @@
 
 #include "../includes/push_swap.h"
 
-int				solved(t_stacks stacks, t_stacks ordered)
+int				solved(t_stacks stacks)
 {
 	size_t i;
 
-	if (stacks.b.size != ordered.b.size || stacks.a.size != ordered.a.size)
+	if (stacks.b.size != 0)
 		return (0);
 	i = 0;
-	while (i < stacks.a.size)
+	while (i + 1 < stacks.a.size)
 	{
-		if (stacks.a.stack[i] != ordered.a.stack[i])
-			return (0);
-		i++;
-	}
-	i = 0;
-	while (i < stacks.b.size)
-	{
-		if (stacks.b.stack[i] != ordered.b.stack[i])
+		if (stacks.a.stack[i] + 1 != stacks.a.stack[i + 1])
 			return (0);
 		i++;
 	}
@@ -48,17 +41,19 @@ const t_ops		*solver(t_data data)
 		ft_putstr("INPUT:\n");
 		display_node(*current);
 	}
-	while (!solved(current->stacks, data.ordered))
+	while (!solved(current->stacks))
 	{
-		current = best_desc(current, 0, data.flags, &data);
+		best_desc(current, 0, data.flags, &data);
+		ft_putstr("\n\nHeyyy\n\n");
+		current = next_from_queue(&data);
 		cycle++;
+		// if (cycle >= MAKE_RANGE)
+		// 	ft_error("Too many cycles");
 		if (data.flags.verbose)
 		{
 			ft_printf("Cycle: %d\n", cycle);
 			display_node(*current);
 		}
-		// if (cycle >= MAKE_RANGE)
-		// 	ft_error("Too many cycles");
 	}
 	if (data.flags.verbose)
 		ft_printf("DONE DONE\ncycles: %d  depth: %d\n", cycle, current->depth);

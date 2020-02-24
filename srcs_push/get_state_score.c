@@ -127,14 +127,16 @@ static t_stacks	cuts(t_stacks stacks, t_data data)
 
 void		get_weight(t_node *node, t_data data)
 {
+	t_stacks stacks = cuts(node->stacks, data);
+
 	data.max_depth = ft_min(data.max_depth, INT32_MAX);
-	if (node->stacks.a.size <= 1)
-		node->stacks.score_a = 0;
+	if (stacks.a.size <= 1)
+		stacks.score_a = 0;
 	else
-		node->stacks.score_a = get_score_a(node->stacks.a, data);
-	if (node->stacks.b.size <= 0)
-		node->stacks.score_b = 0;
+		stacks.score_a = get_score_a(stacks.a);
+	if (stacks.b.size <= 0)
+		stacks.score_b = 0;
 	else
-		node->stacks.score_b = get_score_b(node->stacks, data);
-	node->weight = node->stacks.score_a + node->stacks.score_b;
+		node->stacks.score_b = get_score_b(stacks, data);
+	node->weight = stacks.score_a + stacks.score_b;
 }
